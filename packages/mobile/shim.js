@@ -11,6 +11,10 @@ if (typeof process === 'undefined') {
   }
 }
 
+// if (!global.WebAssembly) {
+//   global.WebAssembly = require('webassemblyjs');
+// }
+
 process.browser = false
 if (typeof Buffer === 'undefined') global.Buffer = require('buffer').Buffer
 

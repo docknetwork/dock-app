@@ -1,0 +1,10 @@
+{  
+  "name": "@docknetwork/wallet-components",
+	"version": "0.1.0",
+	"private": true, 
+  "depenencies": {
+    "native-base": "^3",
+    "react": "17.0.1",
+    "react-redux": "^7.2.3"
+  }
+}
