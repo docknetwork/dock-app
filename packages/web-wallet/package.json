@@ -5,7 +5,7 @@
   "dependencies": {
     "@craco/craco": "^6.0.0",
     "@docknetwork/mobile-wallet": "0.1.0",
-    "@docknetwork/react-native-sdk": "file:/Users/maycon/dev/dock/dock-rn-web-bridge",
+    "@docknetwork/react-native-sdk": "https://github.com/docknetwork/react-native-sdk",
     "@docknetwork/wallet-components": "0.1.0",
     "@react-aria/focus": "^3.4.0",
     "@react-stately/checkbox": "^3.0.2",
