@@ -16,7 +16,9 @@ export const Content = styled.ScrollView`
   flex: 1;
 `;
 
-export const Image = styled.Image``;
+export const Image = styled.Image`
+  position: relative;
+`;
 
 export * from '../assets/icons';
 export * from './buttons';

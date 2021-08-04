@@ -45,7 +45,7 @@ const DEV_MODE = false;
 export function DockRpcWeb({ onReady }) {
   
   useEffect(() => {
-    window.ReactNativeWebView = {
+    global.ReactNativeWebView = {
       postMessage: async event => {
         const data = JSON.parse(event.nativeEvent.data);
 
@@ -53,7 +53,7 @@ export function DockRpcWeb({ onReady }) {
           initRpcClient(async jsonRPCRequest => {
             console.log('Send request to webview client', jsonRPCRequest);
             
-            window.postMessage(JSON.stringify(
+            global.postMessage(JSON.stringify(
               {
                 type: 'json-rpc-request',
                 body: jsonRPCRequest,

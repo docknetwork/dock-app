@@ -30,6 +30,7 @@ function GlobalComponents({ NavigationComponent, RpcComponent = RNRpcWebView }) 
       <View style={{height: 0}}>
         <RpcComponent
           onReady={() => {
+            debugger;
             dispatch(appOperations.rpcReady());
           }}
         />

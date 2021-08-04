@@ -25,9 +25,11 @@ export function CreateWalletScreen() {
       <Content>
         <Box flex={1} justifyContent="center" row marginTop="50%">
           <Image
+            className="rn-image"
             source={SplashLogo}
             style={{
               width: '57%',
+              height: '100px',
             }}
             resizeMode="contain"
           />
