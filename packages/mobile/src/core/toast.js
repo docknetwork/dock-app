@@ -3,10 +3,13 @@ import {
   Text,
   CheckCircleIcon,
   ExclamationCircle,
+  XCircleIcon,
+  Theme,
 } from '../design-system';
 import {
   Stack,
 } from 'native-base';
+import { Pressable } from 'react-native';
 
 let toast;
 
@@ -21,8 +24,8 @@ const typeMap = {
     bg: '#27272A',
   },
   error: {
-    icon: () => <ExclamationCircle />,
-    bg: '#F87171',
+    icon: () => <XCircleIcon />,
+    bg: Theme.colors.gray,
   }
 }
 
@@ -48,13 +51,17 @@ export function showToast({
 }) {
     toast.show({
       duration: 2000,
-      render: () => {
+      placement: 'top',
+      isClosable: true,
+      render: (props) => {
         const typeProps = typeMap[type] || typeMap.success;
         return (
-          <Stack bg={typeProps.bg} px={6} py={4} rounded="md" mb={5} direction="row">
-            {typeProps.icon()}
-            <Text ml={2} fontWeight={600} fontSize={14}>{message}</Text>
-          </Stack>
+          <Pressable onPress={toast.closeAll}>
+            <Stack bg={typeProps.bg} px={6} py={4} rounded="md" mb={5} direction="row">
+                {typeProps.icon()}
+              <Text ml={2} fontWeight={600} fontSize={14}>{message}</Text>
+            </Stack>
+          </Pressable>
         );
       },
     });

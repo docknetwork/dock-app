@@ -13,6 +13,7 @@ import TrashIcon from './trash.svg';
 import AlertModalIcon from './alert-modal.svg';
 import InfoModalIcon from './info-modal.svg';
 import ErrorAlert from './error-alert.svg';
+import XCircleIcon from './x-circle.svg';
 
 export {
   DockLogoIcon,
@@ -29,5 +30,6 @@ export {
   TrashIcon,
   InfoModalIcon,
   AlertModalIcon,
-  ErrorAlert
+  ErrorAlert,
+  XCircleIcon,
 }
