@@ -8,7 +8,7 @@ import rpcServer from '@docknetwork/mobile-wallet/src/rn-rpc-webview/server';
 import {Platform} from 'react-native';
 
 
-import '@docknetwork/react-native-sdk/src';
+// import '@docknetwork/react-native-sdk/src';
 
 
 const WEBVIEW_URI = 'http://localhost:3000';

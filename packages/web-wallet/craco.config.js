@@ -3,6 +3,7 @@ const { getLoader, loaderByName, addBeforeLoader } = require("@craco/craco");
 
 
 process.env.CI = false;
+process.env.NODE_ENV = 'development';
 
 module.exports = {
 	webpack: {
@@ -12,6 +13,15 @@ module.exports = {
 			'react-native-camera': require.resolve('./mock.js'),
 			'react-native-gesture-handler': require.resolve('./mock.js'),
 			'react-native-share': require.resolve('./mock.js'),
+			// 'randomfill': path.resolve(__dirname, '../../node_modules/randomfill'),
+			
+			
+			// 'public-encrypt': require.resolve('public-encrypt'),
+			
+			// '@polkadot/x-textdecoder': require.resolve('@polkadot/x-textdecoder'),
+			// '@polkadot/x-randomvalues': require.resolve('@polkadot/x-randomvalues'),
+			// '@polkadot/wasm-crypto': require.resolve('@polkadot/wasm-crypto'),
+			'query-string': require.resolve('query-string'),
 			'react-native-fs': require.resolve('./mock.js'),
 			'react-native-qrcode-scanner': require.resolve('./mock.js'),
 			mrklt: require.resolve('./mock.js'),

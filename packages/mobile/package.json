@@ -38,14 +38,14 @@
     ]
   },
   "dependencies": {
-    "@docknetwork/wallet-components": "^0.1.0",
     "@docknetwork/react-native-sdk": "https://github.com/docknetwork/react-native-sdk",
+    "@docknetwork/wallet-components": "^0.1.0",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/clipboard": "^1.5.1",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-native-community/picker": "^1.8.1",
-    "@react-navigation/native": "^5.9.3",
-    "@react-navigation/stack": "^5.14.3",
+    "@react-navigation/native": "6",
+    "@react-navigation/stack": "^6.0.0",
     "@reduxjs/toolkit": "^1.5.1",
     "@textile/hub": "^6.1.2",
     "@tradle/react-native-http": "^2.0.1",
@@ -72,6 +72,7 @@
     "path-browserify": "^0.0.0",
     "process": "^0.11.10",
     "punycode": "^1.4.1",
+    "query-string": "7.0.1",
     "querystring-es3": "^0.2.1",
     "react": "17.0.1",
     "react-dom": "^17.0.2",
@@ -153,7 +154,8 @@
     "typescript": "^3.8.3"
   },
   "resolutions": {
-    "@types/react": "^17"
+    "@types/react": "^17",
+    "query-string": "^7.0.1"
   },
   "react-native": {
     "zlib": "browserify-zlib",
