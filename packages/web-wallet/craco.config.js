@@ -13,14 +13,7 @@ module.exports = {
 			'react-native-camera': require.resolve('./mock.js'),
 			'react-native-gesture-handler': require.resolve('./mock.js'),
 			'react-native-share': require.resolve('./mock.js'),
-			// 'randomfill': path.resolve(__dirname, '../../node_modules/randomfill'),
-			
-			
-			// 'public-encrypt': require.resolve('public-encrypt'),
-			
-			// '@polkadot/x-textdecoder': require.resolve('@polkadot/x-textdecoder'),
-			// '@polkadot/x-randomvalues': require.resolve('@polkadot/x-randomvalues'),
-			// '@polkadot/wasm-crypto': require.resolve('@polkadot/wasm-crypto'),
+			'@docknetwork/react-native-sdk': path.resolve(__dirname, './node_modules/@docknetwork/react-native-sdk'),
 			'query-string': require.resolve('query-string'),
 			'react-native-fs': require.resolve('./mock.js'),
 			'react-native-qrcode-scanner': require.resolve('./mock.js'),
@@ -56,6 +49,7 @@ module.exports = {
 						},
 					],
 					require.resolve('babel-plugin-inline-react-svg'),
+					require.resolve('@babel/plugin-transform-flow-strip-types'),
 				]);
 			}
 
@@ -71,6 +65,7 @@ module.exports = {
 				const newIncludePaths = [
 					path.resolve(__dirname, "../../packages/wallet-components/"),
 					path.resolve(__dirname, "../../packages/mobile/"),
+					path.resolve(__dirname, './node_modules/@docknetwork/react-native-sdk'),
 				];
 				if (tsxRule) {
 					if (Array.isArray(tsxRule.include)) {

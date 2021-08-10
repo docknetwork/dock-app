@@ -1,0 +1,12 @@
+<html>
+  <script>
+    window.ReactNativeWebView = {
+      postMessage: (event) => {
+        console.log('sending message from iframe', event);
+        window.parent.handleMessage(event);
+      },
+    }
+  </script>
+  <script src="/bundle.js"></script>
+</html>
+

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-transform-flow-strip-types": "^7.14.5",
     "@craco/craco": "^6.0.0",
     "@docknetwork/mobile-wallet": "0.1.0",
     "@docknetwork/react-native-sdk": "https://github.com/docknetwork/react-native-sdk",

@@ -9,6 +9,13 @@ import {Platform} from 'react-native';
 
 
 // import '@docknetwork/react-native-sdk/src';
+// var myWorker = new Worker('/bundle.js');
+const iframe = document.createElement('iframe');
+
+iframe.src = '/rpc-layer.html';
+
+document.body.appendChild(iframe);
+window.iframe = iframe;
 
 
 const WEBVIEW_URI = 'http://localhost:3000';
@@ -45,20 +52,21 @@ const DEV_MODE = false;
 export function DockRpcWeb({ onReady }) {
   
   useEffect(() => {
-    global.ReactNativeWebView = {
-      postMessage: async event => {
-        const data = JSON.parse(event.nativeEvent.data);
+    global.handleMessage = async event => {
+      const data = JSON.parse(event);
+      console.log('received message', data);
 
         if (data.type === 'json-rpc-ready') {
+          console.log('initializing client');
           initRpcClient(async jsonRPCRequest => {
             console.log('Send request to webview client', jsonRPCRequest);
             
-            global.postMessage(JSON.stringify(
-              {
+            iframe.contentWindow.handleEvent({
+              data: {
                 type: 'json-rpc-request',
                 body: jsonRPCRequest,
-              },
-            ));
+              }
+            });
             
             return jsonRPCRequest;
           });
@@ -71,12 +79,12 @@ export function DockRpcWeb({ onReady }) {
         } else if (data.type === 'json-rpc-request') {
           rpcServer.receive(data.body).then((response) => {
             console.log('RN: Send json-rpc-request to webview client', response);
-            window.postMessage(JSON.stringify(
-              {
+            iframe.contentWindow.handleEvent({
+              data: {
                 type: 'json-rpc-response',
                 body: response,
               },
-            ));
+            });
             
             return response;
           });
@@ -85,7 +93,6 @@ export function DockRpcWeb({ onReady }) {
           console.log(...JSON.parse(data.body));
         }
       }
-    }
   }, [])
   return null;
 }
