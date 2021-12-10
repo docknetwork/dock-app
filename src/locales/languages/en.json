@@ -115,7 +115,8 @@
   "import_account": {
     "title": "Account name",
     "account_name_input": "Account name",
-    "import_success": "Account successfully imported"
+    "import_success": "Account successfully imported",
+    "existing_account": "This accounts already exists in the wallet"
   },
   "import_account_from_mnemonic": {
     "title": "Account recovery phrase",
