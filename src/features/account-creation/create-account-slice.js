@@ -144,6 +144,16 @@ export const createAccountOperations = {
         return;
       }
 
+      const address = await KeyringRpc.addressFromUri({
+        phrase,
+        type: form.keypairType || 'sr25519',
+        derivePath: form.derivationPath || '',
+      });
+
+      if (await dispatch(createAccountOperations.checkExistingAccount(address))) {
+        return;
+      }
+
       dispatch(accountActions.setAccountToBackup(null));
       dispatch(
         createAccountActions.setForm({
