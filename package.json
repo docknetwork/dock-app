@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
+    "@docknetwork/wallet-sdk-core": "file:/home/maycon/dev/dock/react-native-sdk/packages/core",
     "@docknetwork/react-native-sdk": "https://github.com/docknetwork/react-native-sdk#9d13731a9e1dfdb6fb30eeeb38803c7ab7f460ba",
     "@react-native-async-storage/async-storage": "^1.15.9",
     "@react-native-community/clipboard": "^1.5.1",

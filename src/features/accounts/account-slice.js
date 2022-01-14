@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {WalletRpc} from '@docknetwork/react-native-sdk/src/client/wallet-rpc';
-import {PolkadotUIRpc} from '@docknetwork/react-native-sdk/src/client/polkadot-ui-rpc';
-import {ApiRpc} from '@docknetwork/react-native-sdk/src/client/api-rpc';
+import {WalletRpc} from '@docknetwork/wallet-sdk-core/lib/client/wallet-rpc';
+import {PolkadotUIRpc} from '@docknetwork/wallet-sdk-core/lib/client/polkadot-ui-rpc';
+import {ApiRpc} from '@docknetwork/wallet-sdk-core/lib/client/api-rpc';
 import {showToast, withErrorToast} from '../../core/toast';
 import {navigate} from '../../core/navigation';
 import {Routes} from '../../core/routes';

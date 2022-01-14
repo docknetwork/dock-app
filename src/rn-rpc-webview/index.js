@@ -3,7 +3,7 @@ import WebView from 'react-native-webview';
 import {
   getRpcClient,
   initRpcClient,
-} from '@docknetwork/react-native-sdk/src/rpc-client';
+} from '@docknetwork/wallet-sdk-core/lib/rpc-client';
 import rpcServer from './server';
 import {Platform} from 'react-native';
 import {showToast} from 'src/core/toast';
