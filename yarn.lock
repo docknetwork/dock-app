@@ -1108,7 +1108,7 @@
     "@babel/node" "^7.16.0"
     babel-node "^0.0.1-security"
 
-"@docknetwork/wallet-sdk-core@file:../react-native-sdk/packages/core":
+"@docknetwork/wallet-sdk-core@file:../wallet-sdk/packages/core":
   version "0.1.0"
   dependencies:
     "@polkadot/keyring" "^7.2.1"

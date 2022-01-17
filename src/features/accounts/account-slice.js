@@ -1,7 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
+// TODO: Remove usage
 import {WalletRpc} from '@docknetwork/wallet-sdk-core/lib/client/wallet-rpc';
 import {PolkadotUIRpc} from '@docknetwork/wallet-sdk-core/lib/client/polkadot-ui-rpc';
 import {ApiRpc} from '@docknetwork/wallet-sdk-core/lib/client/api-rpc';
+
+import {Wallet, WalletEvents} from '@docknetwork/wallet-sdk-core/lib/modules/wallet';
+import {Accounts} from '@docknetwork/wallet-sdk-core/lib/modules/accounts';
 import {showToast, withErrorToast} from '../../core/toast';
 import {navigate} from '../../core/navigation';
 import {Routes} from '../../core/routes';
@@ -91,22 +95,6 @@ export const accountSelectors = {
 let fetchBalanceTimeout;
 
 export const accountOperations = {
-  addTestAccount: () => async (dispatch, getState) => {
-    await WalletRpc.add({
-      '@context': ['https://w3id.org/wallet/v1'],
-      id: '0x774477c4cd54718d32d4df393415796b9bfcb63c',
-      type: 'Account',
-      name: 'cocomelon',
-      balance: 0,
-    });
-
-    dispatch(accountOperations.loadAccounts());
-
-    showToast({
-      message: translate('account_setup.success'),
-    });
-  },
-
   confirmAccountBackup: () =>
     withErrorToast(async (dispatch, getState) => {
       const account = accountSelectors.getAccountToBackup(getState());
@@ -123,16 +111,13 @@ export const accountOperations = {
         },
       };
 
-      // update account meta
-      await WalletRpc.update(updatedAccount);
+      await Accounts.getInstance().update(updatedAccount);
 
       dispatch(accountActions.setAccountToBackup(null));
 
       navigate(Routes.ACCOUNT_DETAILS, {
         id: account.id,
       });
-
-      await dispatch(accountOperations.loadAccounts());
 
       showToast({
         message: translate('create_account_backup.success'),
@@ -143,14 +128,9 @@ export const accountOperations = {
     withErrorToast(async (dispatch, getState) => {
       dispatch(accountActions.setAccountToBackup(account));
 
-      // get mnemonic phrase for the acount
-      const result = await WalletRpc.query({
-        equals: {
-          'content.id': account.correlation[0],
-        },
-      });
-
-      const phrase = result[0].value;
+      const result = await Accounts.getInstance().getAccounts(account.id);      
+      const mnemonicDoc = result.correlations.find(Accounts.DocumentFilters.mnemonicType);
+      const phrase = mnemonicDoc.value;
 
       dispatch(createAccountActions.setMnemonicPhrase(phrase));
       navigate(Routes.CREATE_ACCOUNT_MNEMONIC);
@@ -193,26 +173,9 @@ export const accountOperations = {
         message: translate('account_details.export_success'),
       });
     },
-
   removeAccount: (account: any) => async (dispatch, getState) => {
     try {
-      dispatch(accountActions.removeAccount(account.id));
-
-      await WalletRpc.remove(account.id);
-
-      const realm = getRealm();
-
-      realm.write(() => {
-        const cachedAccount = realm
-          .objects('Account')
-          .filtered('id = $0', account.id)[0];
-
-        if (!cachedAccount) {
-          return;
-        }
-
-        realm.delete(cachedAccount);
-      });
+      Accounts.getInstance().remove(account.id);
 
       dispatch(accountOperations.loadAccounts());
 
@@ -233,97 +196,9 @@ export const accountOperations = {
       return PolkadotUIRpc.getPolkadotSvgIcon(address, isAlternative);
     },
   loadAccounts: () => async (dispatch, getState) => {
-    const realm = getRealm();
-    const cachedAccounts = realm.objects('Account').toJSON();
-    dispatch(accountActions.setAccounts(cachedAccounts));
-
-    await dispatch(appOperations.waitRpcReady());
-
-    Logger.debug('waitRpcReady done');
-
-    await WalletRpc.sync();
-
-    let accounts = await WalletRpc.query({
-      equals: {
-        'content.type': 'Account',
-      },
-    });
-
-    if (!Array.isArray(accounts)) {
-      return;
-    }
-
-    accounts = accounts.map(account => {
-      const cachedAccount = cachedAccounts.find(item => item.id === account.id);
-      const cachedBalance = cachedAccount && cachedAccount.balance;
-
-      return {
-        ...account,
-        ...(account.meta || {}),
-        balance: cachedBalance || account.balance,
-      };
-    });
-
-    realm.write(() => {
-      accounts.forEach((account: any) => {
-        realm.create(
-          'Account',
-          {
-            id: account.id,
-            name: account.name || '',
-            readyOnly: account.meta && account.meta.readOnly,
-          },
-          'modified',
-        );
-      });
-    });
-
+    const accounts = await Accounts.getInstance().load();
     dispatch(accountActions.setAccounts(accounts));
-    dispatch(accountOperations.fetchBalances());
   },
-
-  fetchAccountBalance: accountId => async (dispatch, getState) => {
-    const realm = getRealm();
-    const balance = await ApiRpc.getAccountBalance(accountId);
-
-    realm.write(() => {
-      realm.create(
-        'Account',
-        {
-          id: accountId,
-          balance: `${balance}`,
-        },
-        'modified',
-      );
-    });
-
-    dispatch(
-      accountActions.setAccount({
-        id: accountId,
-        balance,
-      }),
-    );
-  },
-  fetchBalances: () => async (dispatch, getState) => {
-    try {
-      await dispatch(appOperations.waitDockReady());
-
-      const accounts = accountSelectors.getAccounts(getState());
-
-      accounts.forEach(async (account: any) => {
-        await dispatch(accountOperations.fetchAccountBalance(account.id));
-      });
-    } catch (err) {
-      console.error(err);
-    }
-
-    clearTimeout(fetchBalanceTimeout);
-
-    fetchBalanceTimeout = setTimeout(() => {
-      dispatch(accountOperations.fetchBalances());
-    }, 1000 * BALANCE_FETCH_PERIOD);
-  },
-
   watchAccount:
     ({name, address}) =>
     async (dispatch, getState) => {
