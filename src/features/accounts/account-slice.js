@@ -1,8 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-// TODO: Remove usage
 import {PolkadotUIRpc} from '@docknetwork/wallet-sdk-core/lib/client/polkadot-ui-rpc';
-import {WalletRpc} from '@docknetwork/wallet-sdk-core/lib/client/wallet-rpc';
-
 import {Wallet, WalletEvents} from '@docknetwork/wallet-sdk-core/lib/modules/wallet';
 import {Accounts} from '@docknetwork/wallet-sdk-core/lib/modules/accounts';
 import {showToast, withErrorToast} from '../../core/toast';
