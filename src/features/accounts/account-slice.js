@@ -1,8 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 // TODO: Remove usage
-import {WalletRpc} from '@docknetwork/wallet-sdk-core/lib/client/wallet-rpc';
 import {PolkadotUIRpc} from '@docknetwork/wallet-sdk-core/lib/client/polkadot-ui-rpc';
-import {ApiRpc} from '@docknetwork/wallet-sdk-core/lib/client/api-rpc';
+import {WalletRpc} from '@docknetwork/wallet-sdk-core/lib/client/wallet-rpc';
 
 import {Wallet, WalletEvents} from '@docknetwork/wallet-sdk-core/lib/modules/wallet';
 import {Accounts} from '@docknetwork/wallet-sdk-core/lib/modules/accounts';
@@ -25,6 +24,9 @@ const initialState = {
   accounts: [],
   accountToBackup: null,
 };
+
+const walletModule = Wallet.getInstance();
+const accountsModule = Accounts.getInstance();
 
 export const accountReducers = {
   setLoading(state, action) {
@@ -111,7 +113,7 @@ export const accountOperations = {
         },
       };
 
-      await Accounts.getInstance().update(updatedAccount);
+      await accountsModule.update(updatedAccount);
 
       dispatch(accountActions.setAccountToBackup(null));
 
@@ -128,7 +130,7 @@ export const accountOperations = {
     withErrorToast(async (dispatch, getState) => {
       dispatch(accountActions.setAccountToBackup(account));
 
-      const result = await Accounts.getInstance().getAccounts(account.id);      
+      const result = await accountsModule.getAccounts(account.id);      
       const mnemonicDoc = result.correlations.find(Accounts.DocumentFilters.mnemonicType);
       const phrase = mnemonicDoc.value;
 
@@ -142,7 +144,7 @@ export const accountOperations = {
   exportAccountAs:
     ({accountId, method, password}) =>
     async (dispatch, getState) => {
-      const encryptedAccount = await WalletRpc.exportAccount(
+      const encryptedAccount = await accountsModule.exportAccount(
         accountId,
         password,
       );
@@ -175,7 +177,7 @@ export const accountOperations = {
     },
   removeAccount: (account: any) => async (dispatch, getState) => {
     try {
-      Accounts.getInstance().remove(account.id);
+      accountsModule.remove(account.id);
 
       dispatch(accountOperations.loadAccounts());
 
@@ -196,22 +198,18 @@ export const accountOperations = {
       return PolkadotUIRpc.getPolkadotSvgIcon(address, isAlternative);
     },
   loadAccounts: () => async (dispatch, getState) => {
-    const accounts = await Accounts.getInstance().load();
+    const accounts = await accountsModule.load();
     dispatch(accountActions.setAccounts(accounts));
   },
   watchAccount:
     ({name, address}) =>
     async (dispatch, getState) => {
-      Logger.debug('add account', {name, address});
-      await WalletRpc.add({
-        '@context': ['https://w3id.org/wallet/v1'],
+      await walletModule.add({
         id: address,
         type: 'Account',
-        correlation: [],
         meta: {
           name: name,
           readOnly: true,
-          balance: 0,
         },
       });
 
