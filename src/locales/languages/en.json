@@ -192,6 +192,7 @@
     "paste_address": "Paste",
     "scan_qr_code": "Scan QR Code",
     "send_max": "Send Max",
+    "insufficient_balance": "Insufficient balance",
     "calculating_fee": "Calculating fee...",
     "transaction_sent": "Transaction Sent",
     "insufficient_funds": "Insufficient funds",

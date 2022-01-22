@@ -46,6 +46,7 @@
     "console-browserify": "^1.2.0",
     "constants-browserify": "^1.0.0",
     "date-fns": "^2.23.0",
+    "debounce-promise": "^3.1.2",
     "detox": "^18.17.0",
     "dns.js": "^1.0.1",
     "domain-browser": "^1.2.0",

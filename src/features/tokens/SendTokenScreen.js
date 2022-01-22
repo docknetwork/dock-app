@@ -98,7 +98,7 @@ export function EnterTokenAmount({form, onMax, onChange, onBack, onNext}) {
           <Stack direction="row" alignItems="center" justifyContent="center">
             <Typography
               variant="h1"
-              style={{fontSize: 48, lineHeight: '60px'}}
+              style={{fontSize: 48, lineHeight: 60}}
               mr={2}>{`${form.amount || 0}`}</Typography>
             <Typography variant="h1">{form.tokenSymbol}</Typography>
           </Stack>
@@ -117,6 +117,7 @@ export function EnterTokenAmount({form, onMax, onChange, onBack, onNext}) {
               {form._errors.amount}
             </FormControl.ErrorMessage>
           </FormControl>
+          
         </Stack>
         <Stack>
           <Button colorScheme="secondary" mb={2} onPress={onMax}>
@@ -129,7 +130,7 @@ export function EnterTokenAmount({form, onMax, onChange, onBack, onNext}) {
             onChange={onChange('amount')}
             value={form.amount}
           />
-        </Box>
+        </Box> 
         <Stack flex={1} alignContent="flex-end">
           <LoadingButton onPress={onNext} mb={4}>
             {translate('navigation.next')}
@@ -144,6 +145,52 @@ const Steps = {
   sendTo: 1,
   enterAmount: 2,
 };
+
+export function handleFeeUpdate({
+  updateForm,
+  accountDetails,
+  form,
+  fee,
+  setShowConfirmation,
+}) {
+  const accountBalance = formatDockAmount(accountDetails.balance);
+  const amountAndFees = formatDockAmount(
+    getPlainDockAmount(form.amount).plus(fee),
+  );
+
+  if (formatDockAmount(fee) >= accountBalance) {
+    showToast({
+      message: translate('send_token.insufficient_balance'),
+      type: 'error',
+    });
+    return false;
+  }
+
+  const formUpdates = {
+    amountMessage: null,
+  };
+
+  if (amountAndFees > accountBalance) {
+    const newAmount = formatDockAmount(
+      BigNumber(accountDetails.balance).minus(fee),
+    );
+
+    formUpdates.amount = newAmount;
+
+    if (!form.sendMax) {
+      formUpdates.amountMessage = translate('send_token.amount_minus_fees_msg');
+    }
+  }
+
+  updateForm({
+    ...formUpdates,
+    fee,
+  });
+
+  setShowConfirmation(true);
+
+  return true;
+}
 
 export function SendTokenContainer({route}) {
   const dispatch = useDispatch();
@@ -298,34 +345,14 @@ export function SendTokenContainer({route}) {
                 accountAddress: accountDetails.id,
               }),
             ).then(fee => {
-              const accountBalance = formatDockAmount(accountDetails.balance);
-              const amountAndFees = formatDockAmount(
-                getPlainDockAmount(form.amount).plus(fee),
-              );
-              const formUpdates = {
-                amountMessage: null,
-              };
-
-              if (amountAndFees > accountBalance) {
-                const newAmount = formatDockAmount(
-                  BigNumber(accountDetails.balance).minus(fee),
-                );
-
-                formUpdates.amount = newAmount;
-
-                if (!form.sendMax) {
-                  formUpdates.amountMessage = translate(
-                    'send_token.amount_minus_fees_msg',
-                  );
-                }
-              }
-
-              updateForm({
-                ...formUpdates,
+              console.log('tx fee', fee);
+              return handleFeeUpdate({
+                accountDetails,
+                form,
                 fee,
+                updateForm,
+                setShowConfirmation,
               });
-
-              setShowConfirmation(true);
             });
           }}
           onBack={() => {

@@ -94,7 +94,7 @@ export function ReceiveTokenContainer({route}) {
       onCopyAddress={handleCopyAddress}
       onShareAddress={handleShareAddress}
       address={address}
-      accountName={accountDetails.name}
+      accountName={accountDetails && accountDetails.name}
       accountIcon={<PolkadotIcon address={address} size={32} />}
     />
   );
