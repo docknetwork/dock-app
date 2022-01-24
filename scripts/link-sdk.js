@@ -10,6 +10,7 @@ if (!sdkRepoExists) {
   output = execSync(`
     cd ..;
     git clone https://github.com/docknetwork/react-native-sdk wallet-sdk;
+    cd wallet-sdk;
     git checkout feat/wallet-sdk-impl
   `);
   
