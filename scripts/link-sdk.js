@@ -19,7 +19,7 @@ if (!sdkRepoExists) {
 
 console.log('Installing wallet sdk dependencies....')
 output = execSync(`
-    cd ../wallet-sdk
+    cd ../wallet-sdk;
     yarn install;
     yarn link-packages;
   `);
