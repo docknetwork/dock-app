@@ -8,7 +8,7 @@ let output;
 if (!sdkRepoExists) {
   console.log('Clonning wallet sdk repo....')
   output = execSync(`
-    cd ..
+    cd ..;
     git clone https://github.com/docknetwork/react-native-sdk wallet-sdk;
     git checkout feat/wallet-sdk-impl
   `);
