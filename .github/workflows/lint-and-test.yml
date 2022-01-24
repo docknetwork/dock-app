@@ -16,6 +16,7 @@ jobs:
 
       - name: Install and lint
         run: |
+          rm -rf ../wallet-sdk
           node ./scripts/link-sdk
           yarn install
           yarn lint
