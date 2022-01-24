@@ -16,6 +16,7 @@ jobs:
 
       - name: Install and lint
         run: |
+          node ./scripts/link-sdk
           yarn install
           yarn lint
           

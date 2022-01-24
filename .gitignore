@@ -7,6 +7,9 @@
 ./dock.lock
 # Xcode
 #
+/dock
+/dock.management
+/dock.lock 
 google-play.json
 android/app/src/main/assets/app-html/bundle.js
 assets/app-html/bundle.js

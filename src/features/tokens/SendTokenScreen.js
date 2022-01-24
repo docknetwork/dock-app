@@ -117,7 +117,6 @@ export function EnterTokenAmount({form, onMax, onChange, onBack, onNext}) {
               {form._errors.amount}
             </FormControl.ErrorMessage>
           </FormControl>
-          
         </Stack>
         <Stack>
           <Button colorScheme="secondary" mb={2} onPress={onMax}>
@@ -130,7 +129,7 @@ export function EnterTokenAmount({form, onMax, onChange, onBack, onNext}) {
             onChange={onChange('amount')}
             value={form.amount}
           />
-        </Box> 
+        </Box>
         <Stack flex={1} alignContent="flex-end">
           <LoadingButton onPress={onNext} mb={4}>
             {translate('navigation.next')}
@@ -345,7 +344,6 @@ export function SendTokenContainer({route}) {
                 accountAddress: accountDetails.id,
               }),
             ).then(fee => {
-              console.log('tx fee', fee);
               return handleFeeUpdate({
                 accountDetails,
                 form,

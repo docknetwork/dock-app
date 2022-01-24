@@ -36,6 +36,7 @@ module.exports = (async () => {
         vm: require.resolve('vm-browserify'),
         src: path.resolve(__dirname, './src'),
         '@docknetwork/wallet-sdk-core': path.resolve(__dirname, '../wallet-sdk/packages/core'),
+        '@docknetwork/wallet-sdk-transactions': path.resolve(__dirname, '../wallet-sdk/packages/transactions'),
         mrklt: path.resolve(__dirname, "./src/mrklt.js"),
         'credentials-context': path.resolve(__dirname, "./rn-packages/credentials-context.js"),
         'security-context': path.resolve(__dirname, "./rn-packages/security-context.js"),

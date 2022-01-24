@@ -44,15 +44,7 @@ export function RNRpcWebView({onReady}) {
         );
       }}
       onMessage={async event => {
-        let data;
-
-        try {
-          data = JSON.parse(event.nativeEvent.data);
-        } catch (err) {
-          console.log('error to prcess message', event.nativeEvent.data);
-          console.error(err);
-        }
-
+        const data = JSON.parse(event.nativeEvent.data);
         Logger.debug('onMessage', data);
         if (data.type === 'json-rpc-ready') {
           if (DEV_MODE) {

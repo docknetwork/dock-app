@@ -1,20 +1,15 @@
-import {createSlice} from '@reduxjs/toolkit';
 import {PolkadotUIRpc} from '@docknetwork/wallet-sdk-core/lib/client/polkadot-ui-rpc';
-import {Wallet, WalletEvents} from '@docknetwork/wallet-sdk-core/lib/modules/wallet';
 import {Accounts} from '@docknetwork/wallet-sdk-core/lib/modules/accounts';
-import {showToast, withErrorToast} from '../../core/toast';
+import {Wallet} from '@docknetwork/wallet-sdk-core/lib/modules/wallet';
+import {createSlice} from '@reduxjs/toolkit';
+import RNFS from 'react-native-fs';
+import Share from 'react-native-share';
+import {translate} from 'src/locales';
 import {navigate} from '../../core/navigation';
 import {Routes} from '../../core/routes';
+import {showToast, withErrorToast} from '../../core/toast';
 import {createAccountActions} from '../account-creation/create-account-slice';
-import Share from 'react-native-share';
-import RNFS from 'react-native-fs';
-import {translate} from 'src/locales';
-import {getRealm} from 'src/core/realm';
 import {appOperations} from '../app/app-slice';
-import {Logger} from 'src/core/logger';
-
-// Period in seconds
-const BALANCE_FETCH_PERIOD = 30;
 
 const initialState = {
   loading: true,
@@ -91,8 +86,6 @@ export const accountSelectors = {
   getAccountToBackup: state => getRoot(state).accountToBackup,
 };
 
-let fetchBalanceTimeout;
-
 export const accountOperations = {
   confirmAccountBackup: () =>
     withErrorToast(async (dispatch, getState) => {
@@ -127,8 +120,10 @@ export const accountOperations = {
     withErrorToast(async (dispatch, getState) => {
       dispatch(accountActions.setAccountToBackup(account));
 
-      const result = await accountsModule.getAccounts(account.id);      
-      const mnemonicDoc = result.correlations.find(Accounts.DocumentFilters.mnemonicType);
+      const result = await accountsModule.getAccounts(account.id);
+      const mnemonicDoc = result.correlations.find(
+        Accounts.DocumentFilters.mnemonicType,
+      );
       const phrase = mnemonicDoc.value;
 
       dispatch(createAccountActions.setMnemonicPhrase(phrase));
