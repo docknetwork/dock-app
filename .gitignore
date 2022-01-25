@@ -3,6 +3,8 @@
 .DS_Store
 
 
+android/app/src/main/assets/app-html
+assets/app-html
 ./dock
 ./dock.lock
 # Xcode

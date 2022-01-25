@@ -20,12 +20,15 @@
     "release:internal:ios": "cd ./ios && fastlane beta",
     "increment_version:ios": "cd ./ios && fastlane increment_version && cd ..",
     "increment_version:android": "cd ./android && fastlane increment_version && cd ..",
-    "increment_version": "yarn increment_version:ios && yarn increment_version:android"
+    "increment_version": "yarn increment_version:ios && yarn increment_version:android",
+    "link-sdk": "node ./scripts/link-sdk.js",
+    "webview:build-and-copy": "node ./node_modules/@docknetwork/wallet-sdk-bundler/build-and-copy.js"
   },
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
     "@docknetwork/wallet-sdk-core": "https://github.com/docknetwork/react-native-sdk#d5aba02d1187500f653c9fa8e24dbcacd0311cf1",
     "@docknetwork/wallet-sdk-transactions": "https://github.com/docknetwork/react-native-sdk#d5aba02d1187500f653c9fa8e24dbcacd0311cf1",
+    "@docknetwork/wallet-sdk-bundler": "https://github.com/docknetwork/react-native-sdk#d5aba02d1187500f653c9fa8e24dbcacd0311cf1",
     "@docknetwork/react-native-sdk": "https://github.com/docknetwork/react-native-sdk#d5aba02d1187500f653c9fa8e24dbcacd0311cf1",
     "@react-native-async-storage/async-storage": "^1.15.9",
     "@react-native-community/clipboard": "^1.5.1",
