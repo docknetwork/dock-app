@@ -1,4 +1,4 @@
-import {getCoinCapToken, emptyResponse} from './price-service';
+import {getCoinCapToken} from './price-service';
 
 describe('Price service', () => {
   describe('getCoinCapToken', () => {
@@ -24,9 +24,15 @@ describe('Price service', () => {
           status: 400,
         });
 
-      const result = await getCoinCapToken('DOCK');
+      let error;
 
-      expect(result).toBe(emptyResponse);
+      try {
+        await getCoinCapToken('DOCK');
+      } catch (err) {
+        error = err;
+      }
+
+      await expect(error.message).toBe('unable to fetch price');
     });
   });
 });

@@ -2,17 +2,12 @@ import {getRealm} from 'src/core/realm';
 
 const tokenPrices = {};
 
-export const emptyResponse = {
-  priceUsd: 0,
-};
-
 export const getCoinCapToken = tokenSymbol => {
-  return fetch(`https://api.coincap.io/v2/assets/${tokenSymbol}`)
+  return global
+    .fetch(`https://api.coincap.io/v2/assets/${tokenSymbol}`)
     .then(res => {
       if (res.status !== 200) {
-        return {
-          data: emptyResponse,
-        };
+        throw new Error('unable to fetch price');
       }
 
       return res.json();
