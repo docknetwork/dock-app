@@ -12,6 +12,7 @@ const config = {
   "moduleNameMapper": {
     "^src(.*)$": "<rootDir>/src$1"
   },
+  "globalTeardown": './test/test-teardown-globals.js',
   "moduleFileExtensions": [
     "ts",
     "tsx",
