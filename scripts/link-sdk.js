@@ -6,7 +6,7 @@ const sdkRepoExists = fs.existsSync('../wallet-sdk');
 let output;
 
 if (!sdkRepoExists) {
-  console.log('Clonning wallet sdk repo....')
+  console.log('Cloning wallet sdk repo....')
   output = execSync(`
     cd ..;
     git clone https://github.com/docknetwork/react-native-sdk wallet-sdk;
