@@ -13,7 +13,7 @@
     "lint": "eslint './src/**/*.js' --max-warnings=0 --ignore-path=.prettierignore",
     "lint:fix": "eslint './src/**/*.js' --fix --ignore-path=.prettierignore",
     "format": "prettier './src/**/*.{js,json}' --write",
-    "postinstall": "./node_modules/.bin/rn-nodeify --install --hack --yarn && patch-package && jetifier",
+    "postinstall": "./node_modules/.bin/rn-nodeify --install --hack --yarn && patch-package && jetifier && yarn webview:build-and-copy",
     "storybook": "start-storybook -p 7007",
     "build-storybook": "build-storybook",
     "release:internal:android": "cd ./android && fastlane internal",
