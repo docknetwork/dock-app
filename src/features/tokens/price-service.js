@@ -1,4 +1,6 @@
 import {getRealm} from 'src/core/realm';
+import { showToast } from 'src/core/toast';
+import { translate } from 'src/locales';
 
 const tokenPrices = {};
 
@@ -56,5 +58,14 @@ function getTokenPrice(symbol) {
 }
 
 export async function getDockTokenPrice() {
-  return getTokenPrice('DOCK');
+  try {
+    return await getTokenPrice('DOCK')
+  } catch(err) {
+    showToast({
+      type: 'error',
+      message: translate('global.unable_to_fetch_price')
+    });
+  }
+
+  return 0;
 }
