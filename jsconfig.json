@@ -2,7 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@docknetwork/wallet-sdk-core": ["../react-native-sdk/packages/core"],
+      "@docknetwork/wallet-sdk-core": ["../wallet-sdk/packages/core"],
+      "@docknetwork/wallet-sdk-react-native": ["../wallet-sdk/packages/react-native"]
     }
   }
 }

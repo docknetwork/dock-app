@@ -14,17 +14,9 @@ patchRpcServer(rpcServer);
 if (process.env.NODE_ENV !== 'test') {
   [storageService, logger].forEach(service => {
     const rpcService = createRpcService(service);
-
     rpcService.forEach(method => {
-      Logger.debug('RN: Register register method', method);
-
       rpcServer.addMethod(method.name, async params => {
         const result = await method.resolver(params);
-
-        Logger.debug('Resolving rpc request', {
-          method,
-          result,
-        });
         return result || {};
       });
     });

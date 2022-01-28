@@ -31,7 +31,7 @@ console.log('Linking wallet sdk dependencies....')
 output = execSync(`
   yarn link "@docknetwork/wallet-sdk-core";
   yarn link "@docknetwork/wallet-sdk-transactions";
-  yarn link "@docknetwork/wallet-sdk-bundler";
+  yarn link "@docknetwork/wallet-sdk-react-native";
 `);
 
 console.log(output.toString());

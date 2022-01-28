@@ -1,76 +1,41 @@
-import {SENTRY_DSN} from '@env';
-import {init as sentryInit} from '@sentry/react-native';
-import {useToast, View} from 'native-base';
+import {Box, Button, NativeBaseProvider, Text} from 'native-base';
 import React, {useEffect} from 'react';
-import {StyleSheet} from 'react-native';
-import {Provider, useDispatch} from 'react-redux';
+import WebView from 'react-native-webview';
 import './core/setup-env';
-import {ConfirmationModal} from '../src/components/ConfirmationModal';
-import {NavigationRouter} from './core/NavigationRouter';
-import store from './core/redux-store';
-import {setToast} from './core/toast';
-import {ThemeProvider} from './design-system';
-import {appOperations} from './features/app/app-slice';
-import {RNRpcWebView} from './rn-rpc-webview';
+import SlpashScreen from 'react-native-splash-screen';
+import {
+  WalletSDKProvider,
+  useWallet,
+} from '@docknetwork/wallet-sdk-react-native/lib/index';
 
-try {
-  sentryInit({
-    dsn: SENTRY_DSN,
-  });
-} catch (err) {
-  console.error(err);
-}
-
-const styles = StyleSheet.create({
-  globalComponents: {
-    flex: 1,
-  },
-  globalComponentsInner: {
-    height: 0,
-  },
-});
-
-function GlobalComponents() {
-  const dispatch = useDispatch();
-  const toast = useToast();
-
-  useEffect(() => {
-    dispatch(appOperations.initialize());
-  }, [dispatch]);
-
-  useEffect(() => {
-    setToast(toast);
-  }, [toast]);
+const WalletDetails = function () {
+  const {wallet, status, documents} = useWallet();
 
   return (
-    <View style={styles.globalComponents}>
-      <NavigationRouter />
-      <View style={styles.globalComponentsInner}>
-        <RNRpcWebView
-          onReady={() => {
-            dispatch(appOperations.rpcReady());
-          }}
-        />
-      </View>
-      <ConfirmationModal />
-    </View>
-  );
-}
-
-const App = () => {
-  return (
-    <Provider store={store}>
-      <ThemeProvider>
-        <GlobalComponents />
-      </ThemeProvider>
-    </Provider>
+    <Box>
+      <Text>Wallet status: {status}</Text>
+      <Text>Wallet docs: {documents.length}</Text>
+      <Button onPress={() => wallet.accounts.create({name: 'test'})}>
+        <Text>Add document</Text>
+      </Button>
+    </Box>
   );
 };
 
-let exportedApp = App;
+const App = () => {
+  SlpashScreen.hide();
 
-// if (APP_RUNTIME === 'storybook') {
-// exportedApp = require('../storybook').default;
-// }
+  return (
+    <NativeBaseProvider>
+      <WalletSDKProvider onReady={() => SlpashScreen.hide()}>
+        <Box p={8}>
+          <Text>SDK Demo</Text>
+          <Text>Test</Text>
+        </Box>
+        <WalletDetails />
+      </WalletSDKProvider>
+    </NativeBaseProvider>
+  );
+};
 
-export default exportedApp;
+export default App;

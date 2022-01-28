@@ -13,7 +13,7 @@
     "lint": "eslint './src/**/*.js' --max-warnings=0 --ignore-path=.prettierignore",
     "lint:fix": "eslint './src/**/*.js' --fix --ignore-path=.prettierignore",
     "format": "prettier './src/**/*.{js,json}' --write",
-    "postinstall": "./node_modules/.bin/rn-nodeify --install --hack --yarn && patch-package && jetifier && yarn webview:build-and-copy",
+    "postinstall": "./node_modules/.bin/rn-nodeify --install --hack --yarn && patch-package && jetifie",
     "storybook": "start-storybook -p 7007",
     "build-storybook": "build-storybook",
     "release:internal:android": "cd ./android && fastlane internal",
@@ -22,14 +22,14 @@
     "increment_version:android": "cd ./android && fastlane increment_version && cd ..",
     "increment_version": "yarn increment_version:ios && yarn increment_version:android",
     "link-sdk": "node ./scripts/link-sdk.js",
-    "webview:build-and-copy": "node ./node_modules/@docknetwork/wallet-sdk-bundler/build-and-copy.js"
+    "webview:build-and-copy": "node ./node_modules/@docknetwork/wallet-sdk-react-native/bundler/build-and-copy.js"
   },
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
-    "@docknetwork/wallet-sdk-core": "https://github.com/docknetwork/react-native-sdk#d5aba02d1187500f653c9fa8e24dbcacd0311cf1",
-    "@docknetwork/wallet-sdk-transactions": "https://github.com/docknetwork/react-native-sdk#d5aba02d1187500f653c9fa8e24dbcacd0311cf1",
-    "@docknetwork/wallet-sdk-bundler": "https://github.com/docknetwork/react-native-sdk#d5aba02d1187500f653c9fa8e24dbcacd0311cf1",
     "@docknetwork/react-native-sdk": "https://github.com/docknetwork/react-native-sdk#d5aba02d1187500f653c9fa8e24dbcacd0311cf1",
+    "@docknetwork/wallet-sdk-core": "/Users/maycon/dev/dock/wallet-sdk/packages/core",
+    "@docknetwork/wallet-sdk-react-native": "/Users/maycon/dev/dock/wallet-sdk/packages/react-native",
+    "@docknetwork/wallet-sdk-transactions": "https://github.com/docknetwork/react-native-sdk#d5aba02d1187500f653c9fa8e24dbcacd0311cf1",
     "@react-native-async-storage/async-storage": "^1.15.9",
     "@react-native-community/clipboard": "^1.5.1",
     "@react-native-community/masked-view": "^0.1.11",
