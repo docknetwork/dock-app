@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {Keychain} from '../../core/keychain';
 import {navigate, navigateBack} from '../../core/navigation';
-import {WalletRpc} from '@docknetwork/react-native-sdk/src/client/wallet-rpc';
+import {WalletRpc} from '@docknetwork/wallet-sdk-core/lib/client/wallet-rpc';
 import DocumentPicker from 'react-native-document-picker';
 import {Routes} from '../../core/routes';
 import {appSelectors, BiometryType} from '../app/app-slice';

@@ -1,18 +1,21 @@
 import {getRealm} from 'src/core/realm';
+import {showToast} from 'src/core/toast';
+import {translate} from 'src/locales';
 
 const tokenPrices = {};
 
-const getCoinCapToken = tokenSymbol =>
-  fetch(`https://api.coincap.io/v2/assets/${tokenSymbol}`)
-    .then(res => res.json())
-    .then(res => res.data)
-    .catch(err => {
-      console.error(err);
+export const getCoinCapToken = tokenSymbol => {
+  return global
+    .fetch(`https://api.coincap.io/v2/assets/${tokenSymbol}`)
+    .then(res => {
+      if (res.status !== 200) {
+        throw new Error('unable to fetch price');
+      }
 
-      return {
-        priceUsd: 0,
-      };
-    });
+      return res.json();
+    })
+    .then(res => res.data);
+};
 
 function getTokenPrice(symbol) {
   const realm = getRealm();
@@ -55,5 +58,14 @@ function getTokenPrice(symbol) {
 }
 
 export async function getDockTokenPrice() {
-  return getTokenPrice('DOCK');
+  try {
+    return await getTokenPrice('DOCK');
+  } catch (err) {
+    showToast({
+      type: 'error',
+      message: translate('global.unable_to_fetch_price'),
+    });
+  }
+
+  return 0;
 }
