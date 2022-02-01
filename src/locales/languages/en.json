@@ -14,7 +14,8 @@
     "substrate_connection_loading": "Connecting to the remote API...",
     "not_valid_address": "The address is not valid",
     "subscan_unable_to_fetch": "Unable to fetch transaction history",
-    "unexpected_error": "Unexpected error, please try again"
+    "unexpected_error": "Unexpected error, please try again",
+    "unable_to_fetch_price": "Unable to fetch token price"
   },
   "delete_wallet_confirmation": {
     "title": "Remove Wallet?",
@@ -192,6 +193,7 @@
     "paste_address": "Paste",
     "scan_qr_code": "Scan QR Code",
     "send_max": "Send Max",
+    "insufficient_balance": "Insufficient balance",
     "calculating_fee": "Calculating fee...",
     "transaction_sent": "Transaction Sent",
     "insufficient_funds": "Insufficient funds",

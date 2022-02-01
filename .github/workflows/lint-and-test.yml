@@ -12,10 +12,12 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: '15.x'
+          node-version: '16.x'
 
       - name: Install and lint
         run: |
+          rm -rf ../wallet-sdk
+          node ./scripts/link-sdk
           yarn install
           yarn lint
           

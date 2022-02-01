@@ -9,7 +9,7 @@ import {PolkadotIcon} from 'src/components/PolkadotIcon';
 import {navigate, navigateBack} from 'src/core/navigation';
 import {Routes} from 'src/core/routes';
 import {showToast} from 'src/core/toast';
-import {UtilCryptoRpc} from '@docknetwork/react-native-sdk/src/client/util-crypto-rpc';
+import {UtilCryptoRpc} from '@docknetwork/wallet-sdk-core/lib/client/util-crypto-rpc';
 import BigNumber from 'bignumber.js';
 
 import {
@@ -144,6 +144,52 @@ const Steps = {
   sendTo: 1,
   enterAmount: 2,
 };
+
+export function handleFeeUpdate({
+  updateForm,
+  accountDetails,
+  form,
+  fee,
+  setShowConfirmation,
+}) {
+  const accountBalance = formatDockAmount(accountDetails.balance);
+  const amountAndFees = formatDockAmount(
+    getPlainDockAmount(form.amount).plus(fee),
+  );
+
+  if (formatDockAmount(fee) >= accountBalance) {
+    showToast({
+      message: translate('send_token.insufficient_balance'),
+      type: 'error',
+    });
+    return false;
+  }
+
+  const formUpdates = {
+    amountMessage: null,
+  };
+
+  if (amountAndFees > accountBalance) {
+    const newAmount = formatDockAmount(
+      BigNumber(accountDetails.balance).minus(fee),
+    );
+
+    formUpdates.amount = newAmount;
+
+    if (!form.sendMax) {
+      formUpdates.amountMessage = translate('send_token.amount_minus_fees_msg');
+    }
+  }
+
+  updateForm({
+    ...formUpdates,
+    fee,
+  });
+
+  setShowConfirmation(true);
+
+  return true;
+}
 
 const defaultFormState = {
   recipientAddress: '',
@@ -302,34 +348,13 @@ export function SendTokenContainer({route}) {
                 accountAddress: accountDetails.id,
               }),
             ).then(fee => {
-              const accountBalance = formatDockAmount(accountDetails.balance);
-              const amountAndFees = formatDockAmount(
-                getPlainDockAmount(form.amount).plus(fee),
-              );
-              const formUpdates = {
-                amountMessage: null,
-              };
-
-              if (amountAndFees > accountBalance) {
-                const newAmount = formatDockAmount(
-                  BigNumber(accountDetails.balance).minus(fee),
-                );
-
-                formUpdates.amount = newAmount;
-
-                if (!form.sendMax) {
-                  formUpdates.amountMessage = translate(
-                    'send_token.amount_minus_fees_msg',
-                  );
-                }
-              }
-
-              updateForm({
-                ...formUpdates,
+              return handleFeeUpdate({
+                accountDetails,
+                form,
                 fee,
+                updateForm,
+                setShowConfirmation,
               });
-
-              setShowConfirmation(true);
             });
           }}
           onBack={() => {
