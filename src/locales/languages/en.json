@@ -181,7 +181,7 @@
     "passwords_match": "Password confirmation match"
   },
   "receive_token": {
-    "title": "Send DOCK",
+    "title": "Receive DOCK",
     "description": "Share your address",
     "address_copied": "Copied",
     "copy_address": "Copy address",
