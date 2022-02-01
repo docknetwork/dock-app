@@ -1,5 +1,5 @@
 import {Button as NButton, Spinner, Stack, Text} from 'native-base';
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {InteractionManager, Platform, TouchableHighlight} from 'react-native';
 import {translate} from 'src/locales';
 import {Typography} from '.';
@@ -7,6 +7,8 @@ import BackIcon from '../assets/icons/back.svg';
 import {navigateBack} from '../core/navigation';
 import {Box} from './grid';
 import {Theme} from './theme';
+
+export const Group = NButton.Group;
 
 export const runAfterInteractions =
   Platform.OS === 'ios'
@@ -18,15 +20,24 @@ export const runAfterInteractions =
       };
 
 export const useAsyncCallback = func => {
+  const isActive = useRef(true);
   const [loading, setLoading] = useState();
   const callback = () => {
     setLoading(true);
     runAfterInteractions(() => {
       Promise.resolve(func()).finally(() => {
-        setLoading(false);
+        if (isActive.current) {
+          setLoading(false);
+        }
       });
     });
   };
+
+  useEffect(() => {
+    return () => {
+      isActive.current = false;
+    };
+  }, [func]);
 
   return [loading, callback];
 };
@@ -132,3 +143,5 @@ export function Button(props) {
     </NButton>
   );
 }
+
+Button.Group = NButton.Group;

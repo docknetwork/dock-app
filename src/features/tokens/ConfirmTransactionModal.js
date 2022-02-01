@@ -110,13 +110,20 @@ export const ConfirmTransactionModal = withErrorBoundary(
             />
           </Stack>
         </Stack>
-        <Stack px={3}>
-          <Stack>
-            <Button onPress={onConfirm}>{translate('navigation.ok')}</Button>
-          </Stack>
-          <Stack pt={2}>
-            <Button onPress={onClose}>{translate('navigation.cancel')}</Button>
-          </Stack>
+        <Stack px={8}>
+          <Button.Group
+            mx={{
+              base: 'auto',
+              md: 0,
+            }}
+            size="md">
+            <Button colorScheme="dark" onPress={onClose} width="50%">
+              {translate('navigation.cancel')}
+            </Button>
+            <Button onPress={onConfirm} width="50%">
+              {translate('navigation.ok')}
+            </Button>
+          </Button.Group>
         </Stack>
       </Modal>
     );

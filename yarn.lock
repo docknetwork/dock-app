@@ -7334,9 +7334,9 @@ combined-stream@^1.0.6, combined-stream@^1.0.8, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
-"comlinkjs@git://github.com/ronhe/comlink.git#dist":
+"comlinkjs@https://github.com/ronhe/comlink.git#dist":
   version "3.0.1"
-  resolved "git://github.com/ronhe/comlink.git#25305189186e5eb87bb49b4938bc9010f22d4ea8"
+  resolved "https://github.com/ronhe/comlink.git#25305189186e5eb87bb49b4938bc9010f22d4ea8"
 
 comma-separated-tokens@^1.0.0:
   version "1.0.8"
@@ -16236,7 +16236,7 @@ rn-webview-rpc@^2.1.0:
   dependencies:
     "@babel/runtime" "^7.5.5"
     "@babel/runtime-corejs3" "^7.5.5"
-    comlinkjs "git://github.com/ronhe/comlink.git#dist"
+    comlinkjs "https://github.com/ronhe/comlink.git#dist"
     prop-types "^15.7.2"
     proxy-polyfill "^0.3.0"
 
