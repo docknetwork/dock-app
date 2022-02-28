@@ -31,6 +31,7 @@ import {
 import {accountOperations, accountSelectors} from './account-slice';
 import {AccountSettingsModal} from './AccountSettingsModal';
 import {QRCodeModal} from './QRCodeModal';
+import {useAccount} from '../../core/sdk-addons';
 
 const TransactionStatusColor = {
   pending: Theme.colors.transactionPending,
@@ -233,7 +234,7 @@ export function AccountDetailsScreen({
             p="32px"
             borderRadius={8}>
             <PolkadotIcon address={account.id} size={48} />
-            <TokenAmount amount={account.balance}>
+            <TokenAmount address={account.id}>
               {({fiatAmount, fiatSymbol, tokenAmount, tokenSymbol}) => (
                 <>
                   <Typography variant="h1" fontSize="32px" mt={3}>
@@ -335,20 +336,21 @@ export function AccountDetailsScreen({
 }
 
 export function AccountDetailsContainer({route}) {
-  const {id: accountId, qrCodeData} = route.params;
+  const {id: address, qrCodeData} = route.params;
   const dispatch = useDispatch();
-  const account = useSelector(accountSelectors.getAccountById(accountId));
+  const {account} = useAccount(address);
+  //useSelector(accountSelectors.getAccountById(accountId));
   const [isRefreshing, setRefreshing] = useState(false);
 
   const onRefresh = () => {
     setRefreshing(true);
-    dispatch(accountOperations.fetchAccountBalance(account.id)).finally(() => {
-      setRefreshing(false);
-    });
+    // dispatch(accountOperations.fetchAccountBalance(account.id)).finally(() => {
+    // });
+    setRefreshing(false);
   };
 
   useEffect(() => {
-    dispatch(transactionsOperations.loadTransactions());
+    // dispatch(transactionsOperations.loadTransactions());
   }, [dispatch]);
 
   if (!account) {
@@ -358,22 +360,25 @@ export function AccountDetailsContainer({route}) {
   return (
     <AccountDetailsScreen
       onDelete={() => {
-        return dispatch(accountOperations.removeAccount(accountId)).then(
-          navigateBack,
-        );
+        // return dispatch(accountOperations.removeAccount(accountId)).then(
+        //   navigateBack,
+        // );
+        alert('delete account');
       }}
       isRefreshing={isRefreshing}
       onRefresh={onRefresh}
       onBackup={() => {
-        return dispatch(accountOperations.backupAccount(account));
+        // return dispatch(accountOperations.backupAccount(account));
+        alert('backup account');
       }}
       qrCodeData={qrCodeData}
       account={account}
       onExport={method => {
-        navigate(Routes.ACCOUNT_EXPORT_SETUP_PASSWORD, {
-          method,
-          accountId,
-        });
+        // navigate(Routes.ACCOUNT_EXPORT_SETUP_PASSWORD, {
+        //   method,
+        //   accountId: address
+        // });
+        alert('export account');
       }}
     />
   );

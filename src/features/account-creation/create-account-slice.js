@@ -1,6 +1,6 @@
-import {WalletRpc} from '@docknetwork/wallet-sdk-core/lib/client/wallet-rpc';
-import {UtilCryptoRpc} from '@docknetwork/wallet-sdk-core/lib/client/util-crypto-rpc';
-import {KeyringRpc} from '@docknetwork/wallet-sdk-core/lib/client/keyring-rpc';
+import {walletService} from '@docknetwork/wallet-sdk-core/lib/services/wallet/index';
+// import {UtilCryptoRpc} from '@docknetwork/wallet-sdk-core/lib/client/util-crypto-rpc';
+// import {KeyringRpc} from '@docknetwork/wallet-sdk-core/lib/client/keyring-rpc';
 import {createSlice} from '@reduxjs/toolkit';
 import uuid from 'uuid/v4';
 import {navigate} from '../../core/navigation';

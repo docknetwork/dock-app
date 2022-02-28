@@ -1,6 +1,6 @@
-import {PolkadotUIRpc} from '@docknetwork/wallet-sdk-core/lib/client/polkadot-ui-rpc';
-import {Accounts} from '@docknetwork/wallet-sdk-core/lib/modules/accounts';
-import {Wallet} from '@docknetwork/wallet-sdk-core/lib/modules/wallet';
+// import {PolkadotUIRpc} from '@docknetwork/wallet-sdk-core/lib/client/polkadot-ui-rpc';
+// import {Accounts} from '@docknetwork/wallet-sdk-core/lib/modules/accounts';
+// import {Wallet} from '@docknetwork/wallet-sdk-core/lib/modules/wallet';
 import {createSlice} from '@reduxjs/toolkit';
 import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
@@ -17,8 +17,8 @@ const initialState = {
   accountToBackup: null,
 };
 
-const walletModule = Wallet.getInstance();
-const accountsModule = Accounts.getInstance();
+const walletModule = {}; //Wallet.getInstance();
+const accountsModule = {}; //Accounts.getInstance();
 
 export const accountReducers = {
   setLoading(state, action) {
@@ -190,8 +190,8 @@ export const accountOperations = {
       return PolkadotUIRpc.getPolkadotSvgIcon(address, isAlternative);
     },
   loadAccounts: () => async (dispatch, getState) => {
-    const accounts = await accountsModule.load();
-    dispatch(accountActions.setAccounts(accounts));
+    // const accounts = await accountsModule.load();
+    // dispatch(accountActions.setAccounts(accounts));
   },
   watchAccount:
     ({name, address}) =>

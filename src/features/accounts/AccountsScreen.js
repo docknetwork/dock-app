@@ -1,5 +1,5 @@
 import {Menu, Pressable, ScrollView, Stack} from 'native-base';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {Platform, RefreshControl} from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import RNExitApp from 'react-native-exit-app';
@@ -35,6 +35,7 @@ import {TokenAmount} from '../tokens/ConfirmTransactionModal';
 import {accountOperations, accountSelectors} from './account-slice';
 import {AddAccountModal} from './AddAccountModal';
 import {AccountsScreenTestIDs} from './test-ids';
+import {useWallet} from '@docknetwork/wallet-sdk-react-native/lib';
 
 export const AccountsScreen = withErrorBoundary(
   ({
@@ -155,7 +156,7 @@ export const AccountsScreen = withErrorBoundary(
                           </NBox>
                         </Stack>
 
-                        <TokenAmount amount={account.balance}>
+                        <TokenAmount address={account.id}>
                           {({
                             fiatAmount,
                             fiatSymbol,
@@ -241,21 +242,59 @@ export const AccountsScreen = withErrorBoundary(
   },
 );
 
+
+
 export const AccountsContainer = withErrorBoundary(({navigation}) => {
   const dispatch = useDispatch();
-  const accounts = useSelector(accountSelectors.getAccounts);
+  // const [accounts, setAccounts] = useState([]);
+  const wallet = useWallet({syncDocs: true});
+  const {documents} = wallet;
+
+  console.log('wallet documents', wallet.documents);
+
+  // console.log('wallet status', wallet);
+  // const accounts = useSelector(accountSelectors.getAccounts);
   const [isRefreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    dispatch(accountOperations.fetchBalances()).finally(() => {
-      setRefreshing(false);
-    });
+    // dispatch(accountOperations.fetchBalances()).finally(() => {
+    //   setRefreshing(false);
+    // });
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(accountOperations.loadAccounts());
+    // dispatch(accountOperations.loadAccounts());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (wallet.status === 'ready') {
+      // console.log('account create', );
+      // alert('wallet ready');
+      async function createAccount() {
+        try {
+          console.log('trying to create account');
+          // await wallet.wallet.accounts.create({
+          //   name: 'Maycon test',
+          // });
+          console.log('account created');
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      createAccount();
+      // wallet.wallet.accounts.create({
+      //   name: 'test'
+      // });
+    }
+  }, [wallet.status]);
+
+  const accounts = useMemo(() => {
+    return documents.filter(doc => doc.type === 'Address');
+  }, [documents]);
+
+  console.log(accounts);
 
   useEffect(() => {
     if (Platform.OS === 'android') {

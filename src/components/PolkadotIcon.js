@@ -3,6 +3,7 @@ import {Circle, Svg} from 'react-native-svg';
 import {useDispatch} from 'react-redux';
 import {withErrorBoundary} from 'src/core/error-handler';
 import {accountOperations} from 'src/features/accounts/account-slice';
+import {polkadotService} from '@docknetwork/wallet-sdk-core/lib/services/polkadot';
 
 function renderCircle({cx, cy, fill, r}, key) {
   return <Circle cx={cx} cy={cy} fill={fill} r={r} key={key} />;
@@ -23,9 +24,12 @@ function Identicon({
       return;
     }
 
-    dispatch(accountOperations.getPolkadotSvgIcon(address, isAlternative)).then(
-      setSvgData,
-    );
+    polkadotService
+      .getAddressSvg({
+        address,
+        isAlternative,
+      })
+      .then(setSvgData);
   }, [address, isAlternative, dispatch]);
 
   if (!svgData || !svgData.map) {

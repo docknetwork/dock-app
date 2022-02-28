@@ -1,8 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {Keychain} from '../../core/keychain';
 import {navigate, navigateBack} from '../../core/navigation';
-import {WalletRpc} from '@docknetwork/wallet-sdk-core/lib/client/wallet-rpc';
+// import {WalletRpc} from '@docknetwork/wallet-sdk-core/lib/services/wallet';
 import DocumentPicker from 'react-native-document-picker';
+import {Wallet} from '@docknetwork/wallet-sdk-core/lib/modules/wallet';
 import {Routes} from '../../core/routes';
 import {appSelectors, BiometryType} from '../app/app-slice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -192,7 +193,7 @@ export const walletOperations = {
       if (callback) {
         callback();
       } else {
-        dispatch(accountOperations.loadAccounts());
+        // dispatch(accountOperations.loadAccounts());
         navigate(Routes.ACCOUNTS);
       }
     },
@@ -243,7 +244,7 @@ export const walletOperations = {
       dispatch(walletActions.setWalletInfo(walletInfo));
 
       if (!flags.importWalletFlow) {
-        await WalletRpc.create(keychainId);
+        // await WalletRpc.create(keychainId);
       }
 
       dispatch(walletActions.setCreationFlags({}));

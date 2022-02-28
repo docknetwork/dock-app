@@ -11,7 +11,6 @@ if (!sdkRepoExists) {
     cd ..;
     git clone https://github.com/docknetwork/react-native-sdk wallet-sdk;
     cd wallet-sdk;
-    git checkout feat/wallet-sdk-impl
   `);
   
   console.log(output.toString());
@@ -25,14 +24,3 @@ output = execSync(`
   `);
 
 console.log(output.toString());
-
-console.log('Linking wallet sdk dependencies....')
-  
-output = execSync(`
-  yarn link "@docknetwork/wallet-sdk-core";
-  yarn link "@docknetwork/wallet-sdk-transactions";
-  yarn link "@docknetwork/wallet-sdk-bundler";
-`);
-
-console.log(output.toString());
-  

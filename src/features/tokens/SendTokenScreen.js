@@ -9,7 +9,7 @@ import {PolkadotIcon} from 'src/components/PolkadotIcon';
 import {navigate, navigateBack} from 'src/core/navigation';
 import {Routes} from 'src/core/routes';
 import {showToast} from 'src/core/toast';
-import {UtilCryptoRpc} from '@docknetwork/wallet-sdk-core/lib/client/util-crypto-rpc';
+// import {UtilCryptoRpc} from '@docknetwork/wallet-sdk-core/lib/client/util-crypto-rpc';
 import BigNumber from 'bignumber.js';
 
 import {

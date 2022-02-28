@@ -14,6 +14,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		14A66EDF680545BD990CE2A2 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C066FAE6588E4F1697438AC0 /* Montserrat-Thin.ttf */; };
 		184A98B34065424FAF505530 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9EA9EAA3A1F4E7B8DC08FD8 /* Montserrat-LightItalic.ttf */; };
+		1CFEEAC8B2F886C74823692E /* libPods-DockApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9471742AD5E878591BAA4515 /* libPods-DockApp.a */; };
 		2A0EF7E1B6DC4C5082A5B885 /* NunitoSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1EFD481D6A6A49B1B8A64CE0 /* NunitoSans-BoldItalic.ttf */; };
 		2B867F330CE64187BACE06AA /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 180BD2C34BA74E6DA5B23CEC /* Montserrat-Regular.ttf */; };
 		3C56B78B81B44796BC2B0DD5 /* NunitoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 303D1AA0BE3147338F3FCA3E /* NunitoSans-SemiBold.ttf */; };
@@ -39,11 +40,10 @@
 		AE9079E07FC54D5EA22EC8DF /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4441D6F360F44374B352378B /* Montserrat-SemiBold.ttf */; };
 		B5595BE7BD3C4E27B3D1B5AA /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4FBFA852EADC494DAC9F2D5D /* Montserrat-Bold.ttf */; };
 		B9746A24F0234B959B888832 /* NunitoSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A7FF7F66E11402CBC21D5A1 /* NunitoSans-LightItalic.ttf */; };
+		B9ED7ADE0C0B0EC89A4104F0 /* libPods-DockApp-DockAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFD6D8CBAC696ABCD13E956 /* libPods-DockApp-DockAppTests.a */; };
 		C43A47F9E6C446D18DB76862 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F2D6145AA584C0296B76E3B /* Montserrat-MediumItalic.ttf */; };
 		D20DD52D73EE42D08225EEC7 /* NunitoSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7BC7628003B34784A1D0C828 /* NunitoSans-Italic.ttf */; };
 		D5517A1CACA54998A3530D7D /* NunitoSans-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6FED1FD281A946929DF7E994 /* NunitoSans-BlackItalic.ttf */; };
-		DA110114C9EB81C9118E889B /* libPods-DockApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 589EDC2B0137CD92DCF3437C /* libPods-DockApp.a */; };
-		E77DB458ED58BF996A5947EB /* libPods-DockApp-DockAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E39756DE9B1552C4FF77E12C /* libPods-DockApp-DockAppTests.a */; };
 		EBD06499FB294DB0B008BD26 /* NunitoSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC3C8D2C606E490FA68742C2 /* NunitoSans-ExtraLight.ttf */; };
 		ED5C4779BF674FA9BC279074 /* NunitoSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C57865697884F81ACC8033A /* NunitoSans-ExtraBold.ttf */; };
 		F06B187E3C9746988BAB314C /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F427315783BF4E6F9AC664E5 /* Montserrat-BoldItalic.ttf */; };
@@ -87,6 +87,7 @@
 		1EFD481D6A6A49B1B8A64CE0 /* NunitoSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BoldItalic.ttf"; path = "../assets/fonts/NunitoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		2CF68753C3864C109C12AD2C /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		303D1AA0BE3147338F3FCA3E /* NunitoSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBold.ttf"; path = "../assets/fonts/NunitoSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		3AFD6D8CBAC696ABCD13E956 /* libPods-DockApp-DockAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DockApp-DockAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C51834C890B4B3880D01F99 /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
 		42780747EB5C42BF913FB2DC /* NunitoSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Light.ttf"; path = "../assets/fonts/NunitoSans-Light.ttf"; sourceTree = "<group>"; };
 		42F48636C21444C88513DF92 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
@@ -95,9 +96,9 @@
 		4F2D6145AA584C0296B76E3B /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-MediumItalic.ttf"; path = "../assets/fonts/Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
 		4FBFA852EADC494DAC9F2D5D /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		4FD0AEEC49F54119ACB3B293 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		51A309A439C3FDBF1D73A838 /* Pods-DockApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DockApp.release.xcconfig"; path = "Target Support Files/Pods-DockApp/Pods-DockApp.release.xcconfig"; sourceTree = "<group>"; };
 		52DE98C30D934BEFAB0BC8CF /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
 		5846A31A6D04483EB07088AC /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
-		589EDC2B0137CD92DCF3437C /* libPods-DockApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DockApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		58FB8FA885ED46BF8971954E /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/native-base/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		5EE2122D1FB04C688B4DD964 /* NunitoSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBoldItalic.ttf"; path = "../assets/fonts/NunitoSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		69BD3FAB9BA348A1A2C162CC /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BlackItalic.ttf"; path = "../assets/fonts/Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -105,15 +106,16 @@
 		6BB46543AF6D452A9086E71B /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		6E74BE59A31644DCA06A5EF2 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		6FED1FD281A946929DF7E994 /* NunitoSans-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BlackItalic.ttf"; path = "../assets/fonts/NunitoSans-BlackItalic.ttf"; sourceTree = "<group>"; };
+		7701773C4C8C3A68E91A7E39 /* Pods-DockApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DockApp.debug.xcconfig"; path = "Target Support Files/Pods-DockApp/Pods-DockApp.debug.xcconfig"; sourceTree = "<group>"; };
 		7836A1D8D1964A58AE427388 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		7BC7628003B34784A1D0C828 /* NunitoSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Italic.ttf"; path = "../assets/fonts/NunitoSans-Italic.ttf"; sourceTree = "<group>"; };
-		8114FDE8D7F3F6B018EB4BE0 /* Pods-DockApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DockApp.release.xcconfig"; path = "Target Support Files/Pods-DockApp/Pods-DockApp.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = DockApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88C70CD4A9B14F7DBEDC1194 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		8ABF3B909AF2455F9C1E1E4C /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
 		8C48E6B6F0DD450F83E24C40 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		8C57865697884F81ACC8033A /* NunitoSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraBold.ttf"; path = "../assets/fonts/NunitoSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		8F42680876F94F81A570E5AB /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ThinItalic.ttf"; path = "../assets/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
+		9471742AD5E878591BAA4515 /* libPods-DockApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DockApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		947585B890234AD79689946B /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		976065FD2644888900A07BD2 /* app-html */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "app-html"; path = "../assets/app-html"; sourceTree = "<group>"; };
 		977A2B7826778722009530D2 /* splash-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-logo.png"; path = "../src/assets/splash-logo.png"; sourceTree = "<group>"; };
@@ -121,7 +123,6 @@
 		97DB99FA5AE442C3BEB0E813 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		97F6212526973CCA005A3903 /* DockApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = DockApp.entitlements; path = DockApp/DockApp.entitlements; sourceTree = "<group>"; };
 		97F77BCE26120A9F006217A9 /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "DockApp/AppCenter-Config.plist"; sourceTree = "<group>"; };
-		9F5F06043FFEEC2103FCE8C8 /* Pods-DockApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DockApp.debug.xcconfig"; path = "Target Support Files/Pods-DockApp/Pods-DockApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F8D764A9FC64CB68B7A3A28 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		A0064D6B5F7E4DD4BDE6FFF5 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		A0080550763242C08919FD4A /* NunitoSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLightItalic.ttf"; path = "../assets/fonts/NunitoSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -129,9 +130,9 @@
 		AB89074100AF4CB0A5FB0F6E /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		ACD455918F5947EE87F31034 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Italic.ttf"; path = "../assets/fonts/Montserrat-Italic.ttf"; sourceTree = "<group>"; };
 		B01851C641E94A44BAA8A43A /* Montserrat-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Black.ttf"; path = "../assets/fonts/Montserrat-Black.ttf"; sourceTree = "<group>"; };
-		BDC3EBD13F5990BC043FDF99 /* Pods-DockApp-DockAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DockApp-DockAppTests.debug.xcconfig"; path = "Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BF43B4DDF74C4191A75A255A /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		C066FAE6588E4F1697438AC0 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Thin.ttf"; path = "../assets/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
+		C0E47B10EF6F68FB7C57B658 /* Pods-DockApp-DockAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DockApp-DockAppTests.debug.xcconfig"; path = "Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C538B0ED0E3F4AB7BB1C9EA8 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		C8DAE6ADFB0B45B997B2BDCC /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		C9EA9EAA3A1F4E7B8DC08FD8 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-LightItalic.ttf"; path = "../assets/fonts/Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -139,12 +140,11 @@
 		D2EE6FB676CD4B3BA9A76B4F /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLight.ttf"; path = "../assets/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
 		D38FA118BA0A43C5B69CE3E7 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/native-base/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		D4F4423DFAA14404AC85E613 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		D6F075BB63744F4F1C873C7B /* Pods-DockApp-DockAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DockApp-DockAppTests.release.xcconfig"; path = "Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		DD74ECFF87A54A08BC8247FE /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		DE8AE83093C34FB8B89BDE21 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		E0445C02800D46DA9A9F7527 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
-		E39756DE9B1552C4FF77E12C /* libPods-DockApp-DockAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DockApp-DockAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E62E840069A649EAA424FDFA /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		E6EC603DD44116EB0DECF0B6 /* Pods-DockApp-DockAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DockApp-DockAppTests.release.xcconfig"; path = "Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		E89E3E1915F84495A5132055 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		EC3C8D2C606E490FA68742C2 /* NunitoSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLight.ttf"; path = "../assets/fonts/NunitoSans-ExtraLight.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -159,7 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E77DB458ED58BF996A5947EB /* libPods-DockApp-DockAppTests.a in Frameworks */,
+				B9ED7ADE0C0B0EC89A4104F0 /* libPods-DockApp-DockAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,7 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA110114C9EB81C9118E889B /* libPods-DockApp.a in Frameworks */,
+				1CFEEAC8B2F886C74823692E /* libPods-DockApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,8 +213,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				589EDC2B0137CD92DCF3437C /* libPods-DockApp.a */,
-				E39756DE9B1552C4FF77E12C /* libPods-DockApp-DockAppTests.a */,
+				9471742AD5E878591BAA4515 /* libPods-DockApp.a */,
+				3AFD6D8CBAC696ABCD13E956 /* libPods-DockApp-DockAppTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -296,10 +296,10 @@
 		7867B713929B4CB184C40506 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9F5F06043FFEEC2103FCE8C8 /* Pods-DockApp.debug.xcconfig */,
-				8114FDE8D7F3F6B018EB4BE0 /* Pods-DockApp.release.xcconfig */,
-				BDC3EBD13F5990BC043FDF99 /* Pods-DockApp-DockAppTests.debug.xcconfig */,
-				D6F075BB63744F4F1C873C7B /* Pods-DockApp-DockAppTests.release.xcconfig */,
+				7701773C4C8C3A68E91A7E39 /* Pods-DockApp.debug.xcconfig */,
+				51A309A439C3FDBF1D73A838 /* Pods-DockApp.release.xcconfig */,
+				C0E47B10EF6F68FB7C57B658 /* Pods-DockApp-DockAppTests.debug.xcconfig */,
+				E6EC603DD44116EB0DECF0B6 /* Pods-DockApp-DockAppTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -343,12 +343,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "DockAppTests" */;
 			buildPhases = (
-				C265112C2376CEF15412CC4E /* [CP] Check Pods Manifest.lock */,
+				96FE918E970411836EACBD70 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C7B9F4D800013FDAECB36A2C /* [CP] Embed Pods Frameworks */,
-				350FD7A1B75B2FEB44E383F5 /* [CP] Copy Pods Resources */,
+				5015B940837D19BC5FA9A0E1 /* [CP] Embed Pods Frameworks */,
+				F29F519A8F9912F50917C0EC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -364,15 +364,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "DockApp" */;
 			buildPhases = (
-				D698BEEFE8B26B99C874838E /* [CP] Check Pods Manifest.lock */,
+				A5FEDF683764B2FC0AAC2E92 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				AF31D4E26507D8A21E1ADC5F /* [CP] Embed Pods Frameworks */,
-				9B4A99721F14BE4A51938C07 /* [CP] Copy Pods Resources */,
 				9E7497CFF28C4EDA9821F83D /* Upload Debug Symbols to Sentry */,
+				4E1108A46DF407FAE070B606 /* [CP] Embed Pods Frameworks */,
+				882078FB1C47FEFA23894E45 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -489,55 +489,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport EXTRA_PACKAGER_ARGS=\"--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map\"\nset -e\n\nexport NODE_BINARY=node\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		350FD7A1B75B2FEB44E383F5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9B4A99721F14BE4A51938C07 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DockApp/Pods-DockApp-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DockApp/Pods-DockApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DockApp/Pods-DockApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9E7497CFF28C4EDA9821F83D /* Upload Debug Symbols to Sentry */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Upload Debug Symbols to Sentry";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
-		};
-		AF31D4E26507D8A21E1ADC5F /* [CP] Embed Pods Frameworks */ = {
+		4E1108A46DF407FAE070B606 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -554,7 +506,41 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DockApp/Pods-DockApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C265112C2376CEF15412CC4E /* [CP] Check Pods Manifest.lock */ = {
+		5015B940837D19BC5FA9A0E1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		882078FB1C47FEFA23894E45 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DockApp/Pods-DockApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DockApp/Pods-DockApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DockApp/Pods-DockApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96FE918E970411836EACBD70 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -576,24 +562,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C7B9F4D800013FDAECB36A2C /* [CP] Embed Pods Frameworks */ = {
+		9E7497CFF28C4EDA9821F83D /* Upload Debug Symbols to Sentry */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			inputPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			name = "Upload Debug Symbols to Sentry";
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
 		};
-		D698BEEFE8B26B99C874838E /* [CP] Check Pods Manifest.lock */ = {
+		A5FEDF683764B2FC0AAC2E92 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -613,6 +596,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F29F519A8F9912F50917C0EC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DockApp-DockAppTests/Pods-DockApp-DockAppTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -667,7 +667,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BDC3EBD13F5990BC043FDF99 /* Pods-DockApp-DockAppTests.debug.xcconfig */;
+			baseConfigurationReference = C0E47B10EF6F68FB7C57B658 /* Pods-DockApp-DockAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -694,7 +694,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6F075BB63744F4F1C873C7B /* Pods-DockApp-DockAppTests.release.xcconfig */;
+			baseConfigurationReference = E6EC603DD44116EB0DECF0B6 /* Pods-DockApp-DockAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -718,7 +718,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F5F06043FFEEC2103FCE8C8 /* Pods-DockApp.debug.xcconfig */;
+			baseConfigurationReference = 7701773C4C8C3A68E91A7E39 /* Pods-DockApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -750,7 +750,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8114FDE8D7F3F6B018EB4BE0 /* Pods-DockApp.release.xcconfig */;
+			baseConfigurationReference = 51A309A439C3FDBF1D73A838 /* Pods-DockApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -812,7 +812,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -877,7 +877,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

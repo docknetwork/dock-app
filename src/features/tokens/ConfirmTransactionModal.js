@@ -7,22 +7,47 @@ import {translate} from 'src/locales';
 import {Modal} from '../../components/Modal';
 import {Typography} from '../../design-system';
 import {getDockTokenPrice} from './price-service';
+import {useWallet} from '@docknetwork/wallet-sdk-react-native/lib';
+import {walletService} from '@docknetwork/wallet-sdk-core/lib/services/wallet';
 
 export const TokenAmount = withErrorBoundary(
-  ({amount, symbol = 'DOCK', children}) => {
+  ({address, amount, symbol = 'DOCK', children}) => {
     const [fiatAmount, setFiatAmount] = useState(0);
     const fiatSymbol = 'USD';
+    const [balance, setBalance] = useState(amount);
+    const wallet = useWallet();
+
+    useEffect(() => {
+      setBalance(amount);
+    }, [amount]);
+
+    useEffect(() => {
+      const account = wallet.documents.find(
+        item => item.type === 'Address' && item.id === address,
+      );
+      walletService.resolveCorrelations(address).then(correlations => {
+        // console.log('correlations', correlations);
+        const currency = correlations.find(item => item.type === 'Currency');
+
+        if (!currency) {
+          throw new Error(`No currency document found for account ${address}`);
+        }
+
+        setBalance(currency.value);
+      });
+    }, [address, wallet.documents]);
 
     useEffect(() => {
       getDockTokenPrice().then(price =>
-        setFiatAmount(formatDockAmount(amount) * price),
+        setFiatAmount(formatDockAmount(balance) * price),
       );
-    }, [amount]);
+    }, [balance]);
 
     return children({
+      balance,
       fiatAmount,
       fiatSymbol,
-      tokenAmount: formatDockAmount(amount),
+      tokenAmount: formatDockAmount(balance),
       tokenSymbol: symbol,
     });
   },
