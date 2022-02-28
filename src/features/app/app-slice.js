@@ -147,6 +147,9 @@ export const appOperations = {
       }
     }
 
+    dispatch(appActions.setDockReady(true));
+
+
     if (walletCreated) {
       navigate(Routes.UNLOCK_WALLET);
     } else {

@@ -20,9 +20,10 @@ import {
 import {accountOperations} from '../accounts/account-slice';
 import {
   appOperations,
-  appSelectors,
-  SUBSTRATE_NETWORKS,
+  appSelectors
 } from '../app/app-slice';
+
+import {SUBSTRATE_NETWORKS} from '@docknetwork/wallet-sdk-core/lib/modules/network-manager';
 
 export function DevSettingsScreen({onAddAccount, onNetworkChange}) {
   const [showNetworkOptions, setShowNetworkOptions] = useState();
