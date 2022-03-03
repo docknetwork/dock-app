@@ -143,8 +143,15 @@ export function filterTransactionHistory(transactions, accountAddress) {
 
 function TransactionHistory({accountAddress}) {
   const allTransactions = useSelector(transactionsSelectors.getTransactions);
+
+
   const transactions = useMemo(() => {
-    return filterTransactionHistory(allTransactions, accountAddress);
+    const filteredTransactions = filterTransactionHistory(allTransactions, accountAddress);
+    return [...filteredTransactions].sort((a, b)=>{
+      const aDateTime = a.date ? new Date(a.date).getTime(): new Date().getTime()
+      const bDateTime = b.date ?  new Date(b.date).getTime(): new Date().getTime()
+      return bDateTime-aDateTime
+    });
   }, [allTransactions, accountAddress]);
 
   return useMemo(() => {
