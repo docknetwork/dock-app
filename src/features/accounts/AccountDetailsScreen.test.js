@@ -4,6 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import {
   AccountDetailsScreen,
   filterTransactionHistory,
+  sortTransactionHistory
 } from './AccountDetailsScreen';
 
 const mockStore = configureMockStore();
@@ -30,6 +31,41 @@ describe('AccountDetailsScreen', () => {
     expect(wrapper.dive()).toMatchSnapshot();
   });
 
+  describe('expect transactions to be sorted by date in descending order', () => {
+    const address1 = '3C7Hq5jQGxeYzL7LnVASn48tEfr6D7yKtNYSuXcgioQoWWsB';
+    const address2 = '4C7Hq5jQGxeYzL7LnVASn48tEfr6D7yKtNYSuXcgioQoWWsB';
+
+    const txSent = {
+      id: 0,
+      amount: '1',
+      fromAddress: address1,
+      recipientAddress: address2,
+      status: 'complete',
+      date: "2022-03-03T17:52:03.741Z"
+    };
+
+    const txReceived = {
+      id: 2,
+      amount: '1',
+      fromAddress: address2,
+      recipientAddress: address1,
+      status: 'complete',
+      date: "2022-01-03T17:52:03.741Z"
+    };
+
+    const txSent2 = {
+      id: 1,
+      amount: '2',
+      fromAddress: address2,
+      recipientAddress: address1,
+      status: 'complete',
+      date: "2022-02-03T17:52:03.741Z"
+    };
+    const sortedTrans = sortTransactionHistory([txSent,txReceived, txSent2])
+    expect(sortedTrans[0].id).toBe(0);
+    expect(sortedTrans[1].id).toBe(1);
+    expect(sortedTrans[2].id).toBe(2);
+  });
   describe('expect to filter transaction history items', () => {
     const address1 = '3C7Hq5jQGxeYzL7LnVASn48tEfr6D7yKtNYSuXcgioQoWWsB';
     const address2 = '4C7Hq5jQGxeYzL7LnVASn48tEfr6D7yKtNYSuXcgioQoWWsB';

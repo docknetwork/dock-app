@@ -122,6 +122,13 @@ function TransactionHistoryItem({transaction, accountAddress}) {
     </>
   );
 }
+export function sortTransactionHistory(transactions) {
+  return [...transactions].sort((a, b)=>{
+    const aDateTime = a.date ? new Date(a.date).getTime(): new Date().getTime()
+    const bDateTime = b.date ?  new Date(b.date).getTime(): new Date().getTime()
+    return bDateTime-aDateTime
+  });
+}
 
 export function filterTransactionHistory(transactions, accountAddress) {
   return transactions
@@ -147,11 +154,7 @@ function TransactionHistory({accountAddress}) {
 
   const transactions = useMemo(() => {
     const filteredTransactions = filterTransactionHistory(allTransactions, accountAddress);
-    return [...filteredTransactions].sort((a, b)=>{
-      const aDateTime = a.date ? new Date(a.date).getTime(): new Date().getTime()
-      const bDateTime = b.date ?  new Date(b.date).getTime(): new Date().getTime()
-      return bDateTime-aDateTime
-    });
+    return sortTransactionHistory(filteredTransactions)
   }, [allTransactions, accountAddress]);
 
   return useMemo(() => {
