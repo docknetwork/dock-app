@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import {
   AccountDetailsScreen,
   filterTransactionHistory,
-  sortTransactionHistory
+  sortTransactionHistory,
 } from './AccountDetailsScreen';
 
 const mockStore = configureMockStore();
@@ -41,7 +41,7 @@ describe('AccountDetailsScreen', () => {
       fromAddress: address1,
       recipientAddress: address2,
       status: 'complete',
-      date: "2022-03-03T17:52:03.741Z"
+      date: '2022-03-03T17:52:03.741Z',
     };
 
     const txReceived = {
@@ -50,7 +50,7 @@ describe('AccountDetailsScreen', () => {
       fromAddress: address2,
       recipientAddress: address1,
       status: 'complete',
-      date: "2022-01-03T17:52:03.741Z"
+      date: '2022-01-03T17:52:03.741Z',
     };
 
     const txSent2 = {
@@ -59,9 +59,9 @@ describe('AccountDetailsScreen', () => {
       fromAddress: address2,
       recipientAddress: address1,
       status: 'complete',
-      date: "2022-02-03T17:52:03.741Z"
+      date: '2022-02-03T17:52:03.741Z',
     };
-    const sortedTrans = sortTransactionHistory([txSent,txReceived, txSent2])
+    const sortedTrans = sortTransactionHistory([txSent, txReceived, txSent2]);
     expect(sortedTrans[0].id).toBe(0);
     expect(sortedTrans[1].id).toBe(1);
     expect(sortedTrans[2].id).toBe(2);
