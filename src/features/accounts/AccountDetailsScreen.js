@@ -178,6 +178,7 @@ function TransactionHistory({accountAddress}) {
       <NBox>
         {transactions.map(item => (
           <TransactionHistoryItem
+            key={item.id}
             transaction={item}
             accountAddress={accountAddress}
           />
