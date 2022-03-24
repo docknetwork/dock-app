@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {translate} from 'src/locales';
-import {ApiRpc} from '@docknetwork/react-native-sdk/src/client/api-rpc';
+import {ApiRpc} from '@docknetwork/wallet-sdk-core/lib/client/api-rpc';
 import uuid from 'uuid';
 import {getRealm} from 'src/core/realm';
 import {showToast} from 'src/core/toast';

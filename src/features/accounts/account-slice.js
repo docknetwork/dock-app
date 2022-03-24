@@ -1,26 +1,24 @@
+import {PolkadotUIRpc} from '@docknetwork/wallet-sdk-core/lib/client/polkadot-ui-rpc';
+import {Accounts} from '@docknetwork/wallet-sdk-core/lib/modules/accounts';
+import {Wallet} from '@docknetwork/wallet-sdk-core/lib/modules/wallet';
 import {createSlice} from '@reduxjs/toolkit';
-import {WalletRpc} from '@docknetwork/react-native-sdk/src/client/wallet-rpc';
-import {PolkadotUIRpc} from '@docknetwork/react-native-sdk/src/client/polkadot-ui-rpc';
-import {ApiRpc} from '@docknetwork/react-native-sdk/src/client/api-rpc';
-import {showToast, withErrorToast} from '../../core/toast';
+import RNFS from 'react-native-fs';
+import Share from 'react-native-share';
+import {translate} from 'src/locales';
 import {navigate} from '../../core/navigation';
 import {Routes} from '../../core/routes';
+import {showToast, withErrorToast} from '../../core/toast';
 import {createAccountActions} from '../account-creation/create-account-slice';
-import Share from 'react-native-share';
-import RNFS from 'react-native-fs';
-import {translate} from 'src/locales';
-import {getRealm} from 'src/core/realm';
 import {appOperations} from '../app/app-slice';
-import {Logger} from 'src/core/logger';
-
-// Period in seconds
-const BALANCE_FETCH_PERIOD = 30;
 
 const initialState = {
   loading: true,
   accounts: [],
   accountToBackup: null,
 };
+
+const walletModule = Wallet.getInstance();
+const accountsModule = Accounts.getInstance();
 
 export const accountReducers = {
   setLoading(state, action) {
@@ -91,25 +89,7 @@ export const accountSelectors = {
   getAccountToBackup: state => getRoot(state).accountToBackup,
 };
 
-let fetchBalanceTimeout;
-
 export const accountOperations = {
-  addTestAccount: () => async (dispatch, getState) => {
-    await WalletRpc.add({
-      '@context': ['https://w3id.org/wallet/v1'],
-      id: '0x774477c4cd54718d32d4df393415796b9bfcb63c',
-      type: 'Account',
-      name: 'cocomelon',
-      balance: 0,
-    });
-
-    dispatch(accountOperations.loadAccounts());
-
-    showToast({
-      message: translate('account_setup.success'),
-    });
-  },
-
   confirmAccountBackup: () =>
     withErrorToast(async (dispatch, getState) => {
       const account = accountSelectors.getAccountToBackup(getState());
@@ -134,14 +114,11 @@ export const accountOperations = {
         await WalletRpc.load();
         await WalletRpc.update(updatedAccount);
       }
-
       dispatch(accountActions.setAccountToBackup(null));
 
       navigate(Routes.ACCOUNT_DETAILS, {
         id: account.id,
       });
-
-      await dispatch(accountOperations.loadAccounts());
 
       showToast({
         message: translate('create_account_backup.success'),
@@ -152,14 +129,11 @@ export const accountOperations = {
     withErrorToast(async (dispatch, getState) => {
       dispatch(accountActions.setAccountToBackup(account));
 
-      // get mnemonic phrase for the acount
-      const result = await WalletRpc.query({
-        equals: {
-          'content.id': account.correlation[0],
-        },
-      });
-
-      const phrase = result[0].value;
+      const result = await accountsModule.getAccounts(account.id);
+      const mnemonicDoc = result.correlations.find(
+        Accounts.DocumentFilters.mnemonicType,
+      );
+      const phrase = mnemonicDoc.value;
 
       dispatch(createAccountActions.setMnemonicPhrase(phrase));
       navigate(Routes.CREATE_ACCOUNT_MNEMONIC);
@@ -171,7 +145,7 @@ export const accountOperations = {
   exportAccountAs:
     ({accountId, method, password}) =>
     async (dispatch, getState) => {
-      const encryptedAccount = await WalletRpc.exportAccount(
+      const encryptedAccount = await accountsModule.exportAccount(
         accountId,
         password,
       );
@@ -202,9 +176,9 @@ export const accountOperations = {
         message: translate('account_details.export_success'),
       });
     },
-
   removeAccount: (account: any) => async (dispatch, getState) => {
     try {
+<<<<<<< HEAD
       dispatch(accountActions.removeAccount(account.id));
 
       try {
@@ -227,6 +201,9 @@ export const accountOperations = {
 
         realm.delete(cachedAccount);
       });
+=======
+      accountsModule.remove(account.id);
+>>>>>>> 617811ba231a6405b459c8535edf9af40d32443b
 
       showToast({
         message: translate('account_details.account_removed'),
@@ -245,6 +222,7 @@ export const accountOperations = {
       return PolkadotUIRpc.getPolkadotSvgIcon(address, isAlternative);
     },
   loadAccounts: () => async (dispatch, getState) => {
+<<<<<<< HEAD
     const realm = getRealm();
     const cachedAccounts = realm.objects('Account').toJSON();
     dispatch(accountActions.setAccounts(cachedAccounts));
@@ -294,9 +272,12 @@ export const accountOperations = {
       });
     });
 
+=======
+    const accounts = await accountsModule.load();
+>>>>>>> 617811ba231a6405b459c8535edf9af40d32443b
     dispatch(accountActions.setAccounts(accounts));
-    dispatch(accountOperations.fetchBalances());
   },
+<<<<<<< HEAD
 
   fetchAccountBalance: accountId => async (dispatch, getState) => {
     if (!accountId) {
@@ -362,19 +343,17 @@ export const accountOperations = {
     }, 1000 * BALANCE_FETCH_PERIOD);
   },
 
+=======
+>>>>>>> 617811ba231a6405b459c8535edf9af40d32443b
   watchAccount:
     ({name, address}) =>
     async (dispatch, getState) => {
-      Logger.debug('add account', {name, address});
-      await WalletRpc.add({
-        '@context': ['https://w3id.org/wallet/v1'],
+      await walletModule.add({
         id: address,
         type: 'Account',
-        correlation: [],
         meta: {
           name: name,
           readOnly: true,
-          balance: 0,
         },
       });
 
