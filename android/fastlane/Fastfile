@@ -32,8 +32,8 @@ platform :android do
 
 
         aws_s3(
-          access_key:  ENV['S3_ACCESS_KEY'],
-          secret_access_key: ENV['S3_SECRET_ACCESS_KEY'],
+          access_key:  secrets.S3_ACCESS_KEY,
+          secret_access_key: secrets.S3_SECRET_ACCESS_KEY,
           bucket:  'dock-wallet',
           region: 'us-west-1',
           apk: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH].to_s,
