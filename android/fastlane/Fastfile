@@ -24,19 +24,12 @@ platform :android do
 
   desc "Submit a new Beta Build to Google Play"
   lane :internal do
-
-        gradle(
-          task: 'assemble',
-          build_type: 'Release'
-        )
-
-
         aws_s3(
           access_key:  ENV['S3_ACCESS_KEY'],
           secret_access_key: ENV['S3_SECRET_ACCESS_KEY'],
           bucket:  'dock-wallet',
           region: 'us-west-1',
-          apk: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH].to_s,
+          apk: "/home/runner/work/dock-app/dock-app/android/app/build/outputs/apk/release/app-release.apk",
           app_directory: 'android-apks',
           upload_metadata: true,
           acl: 'private',
