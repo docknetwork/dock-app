@@ -40,12 +40,5 @@ jobs:
         run: gem install fastlane
 
       - name: Release
-        env:
-          S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}
-          S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY }}
-          S3_APP_BUCKET: ${{ secrets.S3_APP_BUCKET }}
-          S3_REGION: ${{ secrets.S3_REGION }}
-          S3_ANDROID_APK_DIR: ${{ secrets.S3_ANDROID_APK_DIR }}
-          S3_ACL: ${{ secrets.S3_ACL }}
         run: |
           sudo yarn release:internal:android
