@@ -19,6 +19,13 @@ jobs:
           ruby-version: '2.x'
 
       - name: Install and lint
+        env:
+          S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}
+          S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY }}
+          S3_APP_BUCKET: ${{ secrets.S3_APP_BUCKET }}
+          S3_REGION: ${{ secrets.S3_REGION }}
+          S3_ANDROID_APK_DIR: ${{ secrets.S3_ANDROID_APK_DIR }}
+          S3_ACL: ${{ secrets.S3_ACL }}
         run: |
           git config --global url."https://".insteadOf git://
           echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
@@ -32,13 +39,7 @@ jobs:
           # Pull env variables from certs repo
           # It will inject sentry token in the JS thread
           cp -rf ./certs/.env ./
-          cp -rf ./certs/.env ./.env.default
           rm -rf /tmp/google-play-cert
           cp -rf ./certs/google-play-cert /tmp/google-play-cert
-
-      - name: Install Fastlane
-        run: gem install fastlane
-
-      - name: Release
-        run: |
-          sudo yarn release:internal:android
+          cd ./android
+          fastlane internal
