@@ -41,5 +41,6 @@ jobs:
           cp -rf ./certs/.env ./
           rm -rf /tmp/google-play-cert
           cp -rf ./certs/google-play-cert /tmp/google-play-cert
+          gem install fastlane
           cd ./android
           fastlane internal
