@@ -1,10 +1,5 @@
 name: Android Release
-on:
-  push:
-    branches:
-      - "!*"
-    tags:
-      - "v*"
+on: [push]
 jobs:
   internal_release_android:
     runs-on: ubuntu-latest
@@ -53,5 +48,5 @@ jobs:
           S3_ACL: ${{ secrets.S3_ACL }}
         run: |
           cd ./android
-          fastlane internal
+#          fastlane internal
           fastlane s3_upload

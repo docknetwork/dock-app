@@ -40,6 +40,14 @@ export function TransakIntroView({onPress}) {
       </Typography>
       <Typography variant="description" marginTop={30}>
         {translate('intro_transak.countries_available')}
+        {'\n'}
+        {TRANSAK_PUSHER_API_KEY}
+        {'\n'}
+        {TRANSAK_ENVIRONMENT}
+        {'\n'}
+        {TRANSAK_API_KEY}
+        {'\n'}
+        {TRANSAK_BASE_URL}
       </Typography>
       <NBox flex={1} />
       <Button
