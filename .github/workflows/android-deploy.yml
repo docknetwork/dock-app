@@ -48,5 +48,4 @@ jobs:
           S3_ACL: ${{ secrets.S3_ACL }}
         run: |
           cd ./android
-#          fastlane internal
           fastlane s3_upload
