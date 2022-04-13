@@ -32,7 +32,7 @@ jobs:
           # Pull env variables from certs repo
           # It will inject sentry token in the JS thread
           cp -rf ./certs/.env ./
-          cp -rf ./certs/.env .env.default
+          cp -rf ./certs/.env ./.env.default
           rm -rf /tmp/google-play-cert
           cp -rf ./certs/google-play-cert /tmp/google-play-cert
 
