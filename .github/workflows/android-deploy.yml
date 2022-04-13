@@ -52,4 +52,5 @@ jobs:
           S3_ANDROID_APK_DIR: ${{ secrets.S3_ANDROID_APK_DIR }}
           S3_ACL: ${{ secrets.S3_ACL }}
         run: |
-          sudo yarn release:internal:android
+          cd ./android
+          fastlane internal
