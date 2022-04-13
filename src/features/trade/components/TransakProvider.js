@@ -123,7 +123,7 @@ export default function TransakPaymentProvider({
       );
     }
     if (buyState === BUY_STATES.INITIATED) {
-      return <TransakWebView queryUrl={`${TRANSAK_BASE_URL}?${queryUrl}`} />;
+      return <TransakWebView url={`${TRANSAK_BASE_URL}?${queryUrl}`} />;
     }
     return (
       <NBox mx={7} mt={12}>
