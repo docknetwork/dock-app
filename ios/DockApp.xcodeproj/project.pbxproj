@@ -745,7 +745,7 @@
 				CODE_SIGN_ENTITLEMENTS = DockApp/DockApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 111;
+				CURRENT_PROJECT_VERSION = 112;
 				DEVELOPMENT_TEAM = V6B5KJVN89;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DockApp/Info.plist;
@@ -777,7 +777,7 @@
 				CODE_SIGN_ENTITLEMENTS = DockApp/DockApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 111;
+				CURRENT_PROJECT_VERSION = 112;
 				DEVELOPMENT_TEAM = V6B5KJVN89;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DockApp/Info.plist;
