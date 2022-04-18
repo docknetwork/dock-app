@@ -1,40 +1,58 @@
-name: TestFlight Release (iOS)
-on: [push]
+name: Android Release
+on:
+  push:
+    branches:
+      - "!*"
+    tags:
+      - "v*"
 jobs:
-  internal_release_ios:
-    runs-on: macos-latest
+  internal_release_android:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           persist-credentials: false
+
       - name: Setup node
         uses: actions/setup-node@v1
         with:
           node-version: '15.x'
-      - name: Run fastlane setup
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          CERTS_REPO_URL: ${{ secrets.CERTS_REPO_URL }}
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
-          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD:  ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
-          FASTLANE_APP_IDENTIFIER: ${{ secrets.FASTLANE_APP_IDENTIFIER }}
-          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
-          FASTLANE_APPLE_ID: ${{ secrets.FASTLANE_APPLE_ID }}
-          FASTLANE_ITC_TEAM_ID: ${{ secrets.FASTLANE_ITC_TEAM_ID }}
-          FASTLANE_TEAM_ID: ${{ secrets.FASTLANE_TEAM_ID }}
+
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.x'
+
+      - name: Install and lint
         run: |
           git config --global url."https://".insteadOf git://
-          xcodebuild -version
+          echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
           yarn install
-          git clone "${{ secrets.CERTS_REPO_URL }}" ./certs
+          yarn postinstall
+          rm -rf ./certs
+          git clone "https://${{ secrets.ACCESS_TOKEN }}@github.com/docknetwork/dock-app-certs.git" ./certs
+          mv ./certs/google-play.json ./
+          cp -rf ./certs/google-services.json ./android/app/
+          rm -rf ./android/gradle.properties
+          cp -rf ./certs/gradle.properties ./android/gradle.properties
           # Pull env variables from certs repo
           # It will inject sentry token in the JS thread
           cp -rf ./certs/.env ./
-          cp -rf ./certs/GoogleService-Info.plist ./ios/
-          cd ./ios
-          pod install
-          fastlane setup --verbose
-          fastlane beta --verbose
+          rm -rf /tmp/google-play-cert
+          cp -rf ./certs/google-play-cert /tmp/google-play-cert
 
+      - name: Install Fastlane
+        run: gem install fastlane
+
+      - name: Release
+        env:
+          S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}
+          S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY }}
+          S3_APP_BUCKET: ${{ secrets.S3_APP_BUCKET }}
+          S3_REGION: ${{ secrets.S3_REGION }}
+          S3_ANDROID_APK_DIR: ${{ secrets.S3_ANDROID_APK_DIR }}
+          S3_ACL: ${{ secrets.S3_ACL }}
+        run: |
+          cd ./android
+          fastlane internal
+          fastlane s3_upload
