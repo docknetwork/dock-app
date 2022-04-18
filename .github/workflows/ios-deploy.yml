@@ -2,7 +2,7 @@ name: TestFlight Release (iOS)
 on: [push]
 jobs:
   internal_release_ios:
-    runs-on: macOS-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2

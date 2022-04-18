@@ -1,5 +1,10 @@
 name: Android Release
-on: [push]
+on:
+  push:
+    branches:
+      - "!*"
+    tags:
+      - "v*"
 jobs:
   internal_release_android:
     runs-on: ubuntu-latest
