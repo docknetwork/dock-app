@@ -23,6 +23,22 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Setup keychain for ci
 
+### ios load_asc_api_key
+
+```sh
+[bundle exec] fastlane ios load_asc_api_key
+```
+
+Load ASC API Key information to use in subsequent lanes
+
+### ios prepare_signing
+
+```sh
+[bundle exec] fastlane ios prepare_signing
+```
+
+Check certs and profiles
+
 ### ios increment_version
 
 ```sh
@@ -31,13 +47,29 @@ Setup keychain for ci
 
 Increment ios version
 
-### ios beta
+### ios build_release
 
 ```sh
-[bundle exec] fastlane ios beta
+[bundle exec] fastlane ios build_release
 ```
 
-Push a new beta build to TestFlight
+Build the iOS app for release
+
+### ios upload_release
+
+```sh
+[bundle exec] fastlane ios upload_release
+```
+
+Upload to TestFlight / ASC
+
+### ios build_upload_testflight
+
+```sh
+[bundle exec] fastlane ios build_upload_testflight
+```
+
+Build and upload to TestFlight
 
 ----
 

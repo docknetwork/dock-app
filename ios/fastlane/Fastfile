@@ -1,51 +1,77 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
 
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+
 
 default_platform(:ios)
 
 platform :ios do
+
   desc "Setup keychain for ci"
-  lane :setup do
-    setup_project
-  end
-  
-  private_lane :setup_project do
-    create_keychain(
-      name: "ci_keychain",
-      password: "ci_keychain",
-      default_keychain: true,
-      unlock: true,
-      timeout: 3600,
-      lock_when_sleeps: false
-    )
+    lane :setup do
+       setup_project
+ end
+
+
+ private_lane :setup_project do
+ create_keychain(
+   name: "ci_keychain",
+   password: "ci_keychain",
+   default_keychain: true,
+   unlock: true,
+   timeout: 3600,
+   lock_when_sleeps: false
+ )
+end
+
+
+
+ desc "Load ASC API Key information to use in subsequent lanes"
+ lane :load_asc_api_key do
+   app_store_connect_api_key(
+     key_id: ENV["ASC_KEY_ID"],
+     issuer_id: ENV["ASC_ISSUER_ID"],
+     key_content: ENV["ASC_KEY"],
+     is_key_content_base64: true,
+     in_house: false # detecting this via ASC private key not currently supported
+   )
+ end
+
+
+  desc "Check certs and profiles"
+  lane :prepare_signing do |options|
+      match(
+         type: "appstore",
+         readonly: true,
+         keychain_name: "ci_keychain",
+         keychain_password: "ci_keychain"
+       )
   end
 
   desc "Increment ios version"
-  lane :increment_version do
-    increment_build_number(xcodeproj: "DockApp.xcodeproj")
+    lane :increment_version do
+      increment_build_number(xcodeproj: "DockApp.xcodeproj")
   end
 
-  desc "Push a new beta build to TestFlight"
-  lane :beta do
-    match(
-      type: "appstore",
-      readonly: true,
-      keychain_name: "ci_keychain",
-      keychain_password: "ci_keychain"
-    )
-    build_app(workspace: "DockApp.xcworkspace", scheme: "DockApp")
-    upload_to_testflight
+  desc "Build the iOS app for release"
+  lane :build_release do |options|
+   build_app(workspace: "DockApp.xcworkspace", scheme: "DockApp")
+  end
+
+  desc "Upload to TestFlight / ASC"
+  lane :upload_release do
+   api_key = lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
+
+   upload_to_testflight(
+       api_key: api_key
+   )
+  end
+
+  desc "Build and upload to TestFlight"
+  lane :build_upload_testflight do
+       setup
+       load_asc_api_key
+       prepare_signing
+       increment_version
+       build_release
+       upload_release
   end
 end
