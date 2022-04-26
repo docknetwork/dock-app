@@ -17,7 +17,7 @@ describe('Wallet Slice', () => {
     jest.resetModules();
   });
   it('expect error message to be accurate', () => {
-    expect('Invalid backup file or incorrect password').toBe(
+    expect('Incorrect password').toBe(
       translate('import_wallet.import_error', {
         locale: 'en',
       }),
