@@ -63,6 +63,31 @@ platform :ios do
    )
   end
 
+  desc "Send slack message"
+  lane :send_message do
+    build_number = get_build_number(xcodeproj: "Project.xcodeproj")
+   
+   slack(
+      message: "iOS App successfully deployed!",
+      success: true,        # Optional, defaults to true.
+      payload: {
+        "Build Date" => Time.new.to_s,
+        "Build number" => build_number,
+      },
+      default_payloads: [:git_branch, :git_author], # Optional, lets you specify default payloads to include. Pass an empty array to suppress all the default payloads.
+      # attachment_properties: { # Optional, lets you specify any other properties available for attachments in the slack API (see https://api.slack.com/docs/attachments).
+      #     # This hash is deep merged with the existing properties set using the other properties above. This allows your own fields properties to be appended to the existing fields that were created using the `payload` property for instance.
+      #   thumb_url: "http://example.com/path/to/thumb.png",
+      #   fields: [{
+      #     title: "My Field",
+      #     value: "My Value",
+      #     short: true
+      #   }]
+      # }
+    )
+
+  end
+
   desc "Build and upload to TestFlight"
   lane :build_upload_testflight do
        setup

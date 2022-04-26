@@ -63,6 +63,14 @@ Build the iOS app for release
 
 Upload to TestFlight / ASC
 
+### ios send_message
+
+```sh
+[bundle exec] fastlane ios send_message
+```
+
+Send slack message
+
 ### ios build_upload_testflight
 
 ```sh
