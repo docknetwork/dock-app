@@ -2,7 +2,7 @@ import {translate} from 'src/locales';
 import {
   validateWalletImport,
   importWallet,
-  validateWalletKeys,
+  verifyJSONCredentialFormat,
 } from './wallet-slice';
 jest.mock('@docknetwork/react-native-sdk/src/client/wallet-rpc', () => ({
   __esModule: true,
@@ -118,7 +118,7 @@ describe('Wallet Slice', () => {
         },
       },
     };
-    expect(validateWalletKeys(validWalletData)).toBeTruthy();
+    expect(verifyJSONCredentialFormat(validWalletData)).toBeTruthy();
   });
 
   it('expect false invalid wallet properties', () => {
@@ -133,6 +133,6 @@ describe('Wallet Slice', () => {
       address: '3HVkSiuFQj5dSjuAMX7ghwGz567fwaZhF1fSkhKm9BtHz9Mu',
       meta: {},
     };
-    expect(validateWalletKeys(invalidWalletData)).toBeFalsy();
+    expect(verifyJSONCredentialFormat(invalidWalletData)).toBeFalsy();
   });
 });

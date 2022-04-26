@@ -55,7 +55,7 @@ export const walletSelectors = {
   getCreationFlags: state => getRoot(state).creationFlags || {},
 };
 
-export const validateWalletKeys = walletJSONData => {
+export const verifyJSONCredentialFormat = walletJSONData => {
   const walletDataKeys = Object.keys(walletJSONData);
 
   const mustHaveKeys = [
@@ -78,7 +78,7 @@ export async function validateWalletImport(fileData, password) {
 
   try {
     jsonData = JSON.parse(fileData);
-    if (!validateWalletKeys(jsonData)) {
+    if (!verifyJSONCredentialFormat(jsonData)) {
       throw new Error(translate('import_wallet.invalid_file'));
     }
   } catch (err) {
