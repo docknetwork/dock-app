@@ -69,11 +69,11 @@ export function ScreenContainer({
       {hideGlobalHeader ? null : <AppGlobalHeader />}
       <Box flex={1}>
         <Box flex={1}>{children}</Box>
-        {showTabNavigation ? (
-          <Box flex={1} flexGrow={isAndroid() ? 0.15 : 0.07}>
-            <TabNavigation />
-          </Box>
-        ) : null}
+        {/*{showTabNavigation ? (*/}
+        {/*  <Box flex={1} flexGrow={isAndroid() ? 0.15 : 0.07}>*/}
+        {/*    <TabNavigation />*/}
+        {/*  </Box>*/}
+        {/*) : null}*/}
       </Box>
     </SafeAreaView>
   );

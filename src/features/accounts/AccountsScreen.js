@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {addTestId} from 'src/core/automation-utils';
 import {withErrorBoundary} from 'src/core/error-handler';
 import {formatCurrency} from 'src/core/format-utils';
-import {navigate} from 'src/core/navigation';
+// import {navigate} from 'src/core/navigation';
 import {Routes} from 'src/core/routes';
 import {translate} from 'src/locales';
 import DocumentDownloadIcon from '../../assets/icons/document-download.svg';
@@ -252,6 +252,7 @@ export const AccountsScreen = withErrorBoundary(
 );
 
 export const AccountsContainer = withErrorBoundary(({navigation}) => {
+  const {navigate} = navigation;
   const dispatch = useDispatch();
   const accounts = useSelector(accountSelectors.getAccounts);
   const [isRefreshing, setRefreshing] = useState(false);

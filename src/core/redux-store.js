@@ -11,7 +11,7 @@ let store;
 const middleware = [thunk];
 
 if (NODE_ENV === 'development') {
-  middleware.push(logger);
+  // middleware.push(logger);
 }
 
 if (NODE_ENV === 'test') {

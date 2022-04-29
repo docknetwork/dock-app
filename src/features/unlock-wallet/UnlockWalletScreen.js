@@ -129,6 +129,12 @@ export function UnlockWalletContainer({route}) {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    return () => {
+      setPasscode('');
+    };
+  }, []);
+
   const handlePasscodeChange = async value => {
     if (value.length > DIGITS) {
       return;
@@ -154,10 +160,6 @@ export function UnlockWalletContainer({route}) {
           setFailedAttempts(v => v + 1);
         }
       }
-
-      setTimeout(() => {
-        setPasscode('');
-      }, 100);
     }
   };
 

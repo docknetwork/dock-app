@@ -52,7 +52,7 @@ function GlobalComponents() {
           }}
         />
       </View>
-      <ConfirmationModal />
+      {/*<ConfirmationModal />*/}
     </View>
   );
 }
@@ -67,10 +67,8 @@ const App = () => {
   );
 };
 
-let exportedApp = App;
+export default App;
 
 // if (APP_RUNTIME === 'storybook') {
 // exportedApp = require('../storybook').default;
 // }
-
-export default exportedApp;

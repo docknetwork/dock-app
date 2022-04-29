@@ -18,6 +18,7 @@ import {Logger} from 'src/core/logger';
 import {clearCacheData} from '../../core/realm';
 import Clipboard from '@react-native-community/clipboard';
 import {pickDocuments} from '../../core/storage-utils';
+import {authenticationActions} from '../unlock-wallet/unlock-wallet-slice';
 
 const initialState = {
   loading: true,
@@ -281,7 +282,7 @@ export const walletOperations = {
           });
         }
       }
-
+      dispatch(authenticationActions.setAuth({isLoggedIn: true}));
       if (callback) {
         callback();
       } else {
