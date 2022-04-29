@@ -9,11 +9,10 @@ import {
   Icon,
 } from 'native-base';
 import {Routes} from '../core/routes';
-import {navigate} from '../core/navigation';
 import {Colors} from '../theme/colors';
 import styled from 'styled-components/native';
 import {StyleSheet} from 'react-native';
-
+import {useNavigation} from '@react-navigation/native';
 const TabText = styled(Text)`
   color: ${({active}) => (active ? '#000' : '#013c73')}
   fontSize: 14px
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
 
 export function AppLayout(props) {
   const activeTab = tabs.find(tab => tab.id === props.route.name);
-
+  const {navigate} = useNavigation();
   const renderTabs = () => {
     return (
       <Footer style={styles.footer}>

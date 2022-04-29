@@ -43,7 +43,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {translate} from '../locales';
 import {useSelector} from 'react-redux';
 import {authenticationSelectors} from '../features/unlock-wallet/unlock-wallet-slice';
-import {walletSelectors} from '../features/wallet/wallet-slice';
+import {useFeatures} from '../features/app/feature-flags';
 
 const AppStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -151,7 +151,7 @@ function CredentialStackScreen() {
 }
 function TokensStackScreen() {
   return (
-    <TokenStack.Navigator initialRouteName={Routes.ACCOUNTS}>
+    <TokenStack.Navigator>
       <TokenStack.Screen
         options={{
           ...screenOptions,
@@ -240,11 +240,11 @@ function TokensStackScreen() {
 }
 export function NavigationRouter() {
   const isLoggedIn = useSelector(authenticationSelectors.isLoggedIn);
+  const {features} = useFeatures();
   return (
     <NavigationContainer ref={navigationRef}>
       {isLoggedIn ? (
         <Tab.Navigator
-          backBehavior={'initialRoute'}
           screenOptions={{
             tabBarStyle: {
               backgroundColor: Theme.colors.primaryBackground,
@@ -263,18 +263,21 @@ export function NavigationRouter() {
               },
             })}
           />
-          <Tab.Screen
-            {...getScreenProps({
-              name: Routes.APP_CREDENTIALS,
-              component: CredentialStackScreen,
-              options: {
-                tabBarLabel: translate('app_navigation.credentials'),
-                tabBarIcon: ({color, size}) => (
-                  <MenuCredentialsIcon style={{color: color}} />
-                ),
-              },
-            })}
-          />
+          {features.credentials && (
+            <Tab.Screen
+              {...getScreenProps({
+                name: Routes.APP_CREDENTIALS,
+                component: CredentialStackScreen,
+                options: {
+                  tabBarLabel: translate('app_navigation.credentials'),
+                  tabBarIcon: ({color, size}) => (
+                    <MenuCredentialsIcon style={{color: color}} />
+                  ),
+                },
+              })}
+            />
+          )}
+
           <Tab.Screen
             {...getScreenProps({
               name: Routes.APP_QR_SCANNER,

@@ -11,8 +11,8 @@ import {
 import React, {useContext, useMemo} from 'react';
 import {NavigationContext} from '../core/NavigationContext';
 import {Pressable, Stack, Text} from 'native-base';
-import {navigate} from '../core/navigation';
 import {Theme} from './theme';
+import {useNavigation} from '@react-navigation/native';
 
 const getMenuOptions = (features: FeatureFlags) =>
   [
@@ -46,7 +46,7 @@ export function TabNavigation() {
   const navContext = useContext(NavigationContext);
   const currentTab = navContext.currentTab;
   const {features} = useFeatures();
-
+  const {navigate} = useNavigation();
   const menuOptions = useMemo(() => getMenuOptions(features), [features]);
 
   return (

@@ -22,6 +22,7 @@ import {useCredentials, getObjectFields} from './credentials';
 import {formatDate} from '@docknetwork/wallet-sdk-core/lib/core/format-utils';
 import {Routes} from 'src/core/routes';
 import {withErrorBoundary} from 'src/core/error-handler';
+import {AccountsScreenTestIDs} from '../accounts/test-ids';
 
 function renderObjectAttributes(credential) {
   const objectAttributes = getObjectFields(credential);
@@ -146,28 +147,20 @@ export function CredentialsScreen({credentials, onRemove, onAdd}) {
     <ScreenContainer {...addTestId('CredentialsScreen')} showTabNavigation>
       <Header>
         <Box
-          marginLeft={1}
+          marginLeft={22}
           marginRight={22}
           flexDirection="row"
           alignItems="center">
-          <NBox width={'80px'}>
-            <BackButton onPress={() => navigate(Routes.ACCOUNTS)} />
-          </NBox>
-          <NBox
-            flex={1}
-            width="100%"
-            alignContent="center"
-            alignItems="center"
-            pl={15}>
-            <Typography variant="h3">
+          <Box flex={1}>
+            <Typography fontFamily="Montserrat" fontSize={24} fontWeight="600">
               {translate('credentials.title')}
             </Typography>
-          </NBox>
-          <NBox width="80px" alignItems="flex-end">
+          </Box>
+          <Box row>
             <IconButton onPress={onAdd} col>
               <PlusCircleWhiteIcon />
             </IconButton>
-          </NBox>
+          </Box>
         </Box>
       </Header>
       <Content>

@@ -1,27 +1,23 @@
-import {createRef} from 'react';
+import {createNavigationContainerRef} from '@react-navigation/native';
 
 let history = [];
 
-export const navigationRef = createRef();
+export const navigationRef = createNavigationContainerRef();
 
 export const getNavigationHistory = () => history;
 export const clearNavigationHistory = () => (history = []);
 
 export function navigate(name, params, skipFromHistory) {
-  if (!navigationRef.current) {
-    return;
+  if (navigationRef.isReady()) {
+    navigationRef.navigate(name, params);
+    if (skipFromHistory) {
+      return;
+    }
+    history.push({
+      name,
+      params,
+    });
   }
-
-  navigationRef.current.navigate(name, params);
-
-  if (skipFromHistory) {
-    return;
-  }
-
-  history.push({
-    name,
-    params,
-  });
 }
 
 export function getHistory() {
@@ -35,6 +31,7 @@ export function navigateBack() {
     return;
   }
 
-  const {name, params} = history.pop();
-  navigate(name, params);
+  // const {name, params} = history.pop();
+  navigationRef.goBack();
+  // navigate(name, params);
 }

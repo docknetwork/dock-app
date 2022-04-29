@@ -7,7 +7,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {addTestId} from 'src/core/automation-utils';
 import {withErrorBoundary} from 'src/core/error-handler';
 import {formatCurrency} from 'src/core/format-utils';
-// import {navigate} from 'src/core/navigation';
 import {Routes} from 'src/core/routes';
 import {translate} from 'src/locales';
 import DocumentDownloadIcon from '../../assets/icons/document-download.svg';
@@ -35,7 +34,7 @@ import {accountOperations, accountSelectors} from './account-slice';
 import {AddAccountModal} from './AddAccountModal';
 import {AccountsScreenTestIDs} from './test-ids';
 import {pickDocuments} from '../../core/storage-utils';
-
+import {useNavigation} from '@react-navigation/native';
 export function displayWarning(account) {
   if (
     account.hasBackup === false ||
@@ -58,6 +57,7 @@ export const AccountsScreen = withErrorBoundary(
     const isEmpty = accounts.length === 0;
     const [showAddAccount, setShowAddAccount] = useState();
     const [showImportAccount, setShowImportAccount] = useState();
+    const {navigate} = useNavigation();
 
     return (
       <ScreenContainer testID={AccountsScreenTestIDs.screen} showTabNavigation>

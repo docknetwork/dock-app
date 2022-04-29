@@ -11,6 +11,7 @@ import {
   DownloadIcon,
   TrashIcon,
   ChevronRightIcon,
+  IconButton,
 } from '../../design-system';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppConstants} from './constants';
@@ -21,6 +22,7 @@ import {translate} from 'src/locales';
 import {BuildIdentifier} from './BuildIdentifier';
 import {Stack} from 'native-base';
 import {appActions, appSelectors} from './app-slice';
+import PlusCircleWhiteIcon from '../../assets/icons/plus-circle-white.svg';
 
 const constants = AppConstants.settings;
 
@@ -35,22 +37,16 @@ export function AppSettingsScreen({
     <ScreenContainer testID="AccountDetailsScreen" showTabNavigation>
       <Header>
         <Box
-          marginLeft={1}
+          marginTop={10}
+          marginLeft={22}
           marginRight={22}
           flexDirection="row"
           alignItems="center">
-          <NBox width={'80px'}>
-            <BackButton onPress={() => navigate(Routes.ACCOUNTS)} />
-          </NBox>
-          <NBox
-            flex={1}
-            width="100%"
-            alignContent="center"
-            alignItems="center"
-            pl={15}>
-            <Typography variant="h3">{translate('settings.title')}</Typography>
-          </NBox>
-          <NBox width="80px" alignItems="flex-end" />
+          <Box flex={1}>
+            <Typography fontFamily="Montserrat" fontSize={24} fontWeight="600">
+              {translate('settings.title')}
+            </Typography>
+          </Box>
         </Box>
       </Header>
       <Content>

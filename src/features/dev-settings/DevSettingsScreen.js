@@ -147,7 +147,13 @@ export function DevSettingsScreen({
                 {Object.keys(SUBSTRATE_NETWORKS).map(key => {
                   const networkInfo = SUBSTRATE_NETWORKS[key];
 
-                  return <Select.Item label={networkInfo.name} value={key} />;
+                  return (
+                    <Select.Item
+                      key={key}
+                      label={networkInfo.name}
+                      value={key}
+                    />
+                  );
                 })}
               </Select>
             </Stack>
