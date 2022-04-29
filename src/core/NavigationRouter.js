@@ -1,6 +1,5 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {View} from 'native-base';
 import React from 'react';
 import {Platform, StyleSheet} from 'react-native';
 import {
@@ -228,11 +227,16 @@ function TokensStackScreen() {
           component: ExportAccountPasswordContainer,
         })}
       />
-
       <TokenStack.Screen
         {...getScreenProps({
-          name: Routes.CREATE_WALLET_PROTECT,
-          component: ProtectYourWalletContainer,
+          name: Routes.CREATE_ACCOUNT_MNEMONIC,
+          component: CreateAccountMnemonicContainer,
+        })}
+      />
+      <TokenStack.Screen
+        {...getScreenProps({
+          name: Routes.CREATE_ACCOUNT_VERIFY_PHRASE,
+          component: CreateAccountVerifyPhraseContainer,
         })}
       />
     </TokenStack.Navigator>
@@ -337,6 +341,12 @@ export function NavigationRouter() {
           />
           <AppStack.Screen
             {...getScreenProps({
+              name: Routes.CREATE_WALLET_PROTECT,
+              component: ProtectYourWalletContainer,
+            })}
+          />
+          <AppStack.Screen
+            {...getScreenProps({
               name: Routes.UNLOCK_WALLET,
               component: UnlockWalletContainer,
               options: {
@@ -354,19 +364,6 @@ export function NavigationRouter() {
             {...getScreenProps({
               name: Routes.WALLET_IMPORT_BACKUP_PASSWORD,
               component: ImportWalletPasswordContainer,
-            })}
-          />
-          <AppStack.Screen
-            {...getScreenProps({
-              name: Routes.CREATE_ACCOUNT_MNEMONIC,
-              component: CreateAccountMnemonicContainer,
-            })}
-          />
-
-          <AppStack.Screen
-            {...getScreenProps({
-              name: Routes.CREATE_ACCOUNT_VERIFY_PHRASE,
-              component: CreateAccountVerifyPhraseContainer,
             })}
           />
         </AppStack.Navigator>

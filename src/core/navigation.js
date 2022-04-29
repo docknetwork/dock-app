@@ -31,7 +31,7 @@ export function navigateBack() {
     return;
   }
 
-  // const {name, params} = history.pop();
+  const {name, params} = history.pop();
   navigationRef.goBack();
   // navigate(name, params);
 }

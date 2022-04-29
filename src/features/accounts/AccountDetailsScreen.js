@@ -5,7 +5,6 @@ import {TouchableHighlight} from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
 import {formatCurrency, formatDate} from 'src/core/format-utils';
 import {PolkadotIcon} from '../../components/PolkadotIcon';
-import {navigate, navigateBack} from '../../core/navigation';
 import {Routes} from '../../core/routes';
 import {
   AlertIcon,
@@ -37,6 +36,7 @@ import {appSelectors} from '../app/app-slice';
 import {useFeatures} from '../app/feature-flags';
 import uuid from 'uuid';
 import {displayWarning} from './AccountsScreen';
+import {useNavigation} from '@react-navigation/native';
 
 const TRANSACTION_FILTERS = {
   all: 'all',
@@ -274,6 +274,7 @@ export function AccountDetailsScreen({
     }
   }, [qrCodeData]);
 
+  const {navigate} = useNavigation();
   return (
     <ScreenContainer testID="AccountDetailsScreen">
       <Header>
@@ -283,7 +284,7 @@ export function AccountDetailsScreen({
           flexDirection="row"
           alignItems="center">
           <NBox width={'80px'}>
-            <BackButton onPress={() => navigate(Routes.ACCOUNTS)} />
+            <BackButton />
           </NBox>
           <NBox
             flex={1}
@@ -461,6 +462,8 @@ export function AccountDetailsContainer({route}) {
   const account = useSelector(accountSelectors.getAccountById(accountId));
   const {features} = useFeatures();
 
+  const {navigate, goBack} = useNavigation();
+
   const [isRefreshing, setRefreshing] = useState(false);
 
   const onRefresh = () => {
@@ -482,7 +485,7 @@ export function AccountDetailsContainer({route}) {
     <AccountDetailsScreen
       onDelete={() => {
         return dispatch(accountOperations.removeAccount({id: accountId})).then(
-          navigateBack,
+          goBack,
         );
       }}
       isRefreshing={isRefreshing}

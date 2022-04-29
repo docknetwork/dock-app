@@ -2,7 +2,6 @@ import Clipboard from '@react-native-community/clipboard';
 import {Button} from 'native-base';
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {navigate} from '../../core/navigation';
 import {Routes} from '../../core/routes';
 import {showToast} from '../../core/toast';
 import {
@@ -20,6 +19,7 @@ import {BackButton} from '../../design-system/buttons';
 import {translate} from '../../locales';
 import {createAccountSelectors} from './create-account-slice';
 import {withErrorBoundary} from '../../core/error-handler';
+import {useNavigation} from '@react-navigation/native';
 
 export function CreateAccountMnemonicScreen({phrase, onCopy, onSubmit}) {
   return (
@@ -72,6 +72,7 @@ export function CreateAccountMnemonicScreen({phrase, onCopy, onSubmit}) {
 export const CreateAccountMnemonicContainer = withErrorBoundary(
   () => {
     const phrase = useSelector(createAccountSelectors.getMnemonicPhrase);
+    const {navigate} = useNavigation();
 
     const handleCopy = () => {
       Clipboard.setString(phrase);

@@ -342,7 +342,7 @@ export const walletOperations = {
 
       dispatch(walletActions.setCreationFlags({}));
 
-      navigate(Routes.ACCOUNTS);
+      dispatch(authenticationActions.setAuth({isLoggedIn: true}));
     },
 };
 

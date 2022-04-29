@@ -2,7 +2,6 @@ import {Checkbox} from 'native-base';
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {translate} from 'src/locales';
-import {navigate} from '../../core/navigation';
 import {Routes} from '../../core/routes';
 import {
   Content,
@@ -17,6 +16,7 @@ import {BackButton} from '../../design-system/buttons';
 import {GlobalConstants} from '../constants';
 import {CreateAccountConstants} from './constants';
 import {createAccountOperations} from './create-account-slice';
+import {useNavigation} from '@react-navigation/native';
 
 export function CreateAccountBackupScreen({
   form,
@@ -70,6 +70,7 @@ export function CreateAccountBackupScreen({
 
 export function CreateAccountBackupContainer() {
   const dispatch = useDispatch();
+  const {navigate} = useNavigation();
   const [form, setForm] = useState({
     agreement: false,
     _errors: {},

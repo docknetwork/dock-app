@@ -5,24 +5,20 @@ import {
   ScreenContainer,
   Typography,
   Box,
-  NBox,
-  BackButton,
   OptionList,
   DownloadIcon,
   TrashIcon,
   ChevronRightIcon,
-  IconButton,
 } from '../../design-system';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppConstants} from './constants';
 import {walletOperations} from '../wallet/wallet-slice';
-import {navigate} from '../../core/navigation';
 import {Routes} from '../../core/routes';
 import {translate} from 'src/locales';
 import {BuildIdentifier} from './BuildIdentifier';
 import {Stack} from 'native-base';
 import {appActions, appSelectors} from './app-slice';
-import PlusCircleWhiteIcon from '../../assets/icons/plus-circle-white.svg';
+import {useNavigation} from '@react-navigation/native';
 
 const constants = AppConstants.settings;
 
@@ -37,7 +33,7 @@ export function AppSettingsScreen({
     <ScreenContainer testID="AccountDetailsScreen" showTabNavigation>
       <Header>
         <Box
-          marginTop={10}
+          marginTop={7}
           marginLeft={22}
           marginRight={22}
           flexDirection="row"
@@ -92,7 +88,7 @@ export function AppSettingsScreen({
 export function AppSettingsContainer() {
   const dispatch = useDispatch();
   const devSettingsEnabled = useSelector(appSelectors.getDevSettingsEnabled);
-
+  const {navigate} = useNavigation();
   return (
     <AppSettingsScreen
       devSettingsEnabled={devSettingsEnabled}

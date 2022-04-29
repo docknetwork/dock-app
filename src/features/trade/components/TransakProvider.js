@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import queryString from 'query-string';
 import Pusher from 'pusher-js/react-native';
-import {navigateBack} from '../../../core/navigation';
 import WebView from 'react-native-webview';
 import {Image, NBox, Typography} from '../../../design-system';
 import {translate} from '../../../locales';
@@ -15,6 +14,7 @@ import {
   TRANSAK_API_KEY,
   TRANSAK_BASE_URL,
 } from '@env';
+import {useNavigation} from '@react-navigation/native';
 
 const BUY_STATES = {
   INTRO: 'INTRO',
@@ -68,7 +68,7 @@ export default function TransakPaymentProvider({
   partnerOrderId,
 }) {
   const [buyState, setBuyState] = useState(BUY_STATES.INTRO);
-
+  const {goBack} = useNavigation();
   const queryUrl = useMemo(() => {
     return queryString.stringify({
       partnerOrderId,
@@ -93,9 +93,7 @@ export default function TransakPaymentProvider({
         eventId === BUY_STATES.ORDER_COMPLETED ||
         eventId === BUY_STATES.ORDER_FAILED
       ) {
-        setTimeout(() => {
-          navigateBack();
-        }, 3000);
+        setTimeout(goBack, 3000);
       }
     });
 

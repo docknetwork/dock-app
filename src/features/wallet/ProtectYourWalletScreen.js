@@ -19,6 +19,7 @@ import {BackButton} from '../../design-system/buttons';
 import {appSelectors, BiometryType} from '../app/app-slice';
 import {WalletConstants} from './constants';
 import {walletOperations} from './wallet-slice';
+import {authenticationActions} from '../unlock-wallet/unlock-wallet-slice';
 
 export function ProtectYourWalletScreen({
   onSkip,
@@ -75,7 +76,7 @@ export function ProtectYourWalletContainer() {
   let fingerprint = supportedBiometryType === BiometryType.Fingerprint;
   let faceId = supportedBiometryType === BiometryType.FaceId;
 
-  const handleEnable = () => {
+  const handleEnable = useCallback(() => {
     setLoading(true);
     runAfterInteractions(() => {
       dispatch(walletOperations.createWallet({biometry: true}))
@@ -94,10 +95,12 @@ export function ProtectYourWalletContainer() {
         })
         .finally(() => setLoading(false));
     });
-  };
+  }, [dispatch]);
 
   const handleSkip = useCallback(() => {
-    runAfterInteractions(() => dispatch(walletOperations.createWallet()));
+    runAfterInteractions(() => {
+      dispatch(walletOperations.createWallet()).then(() => {});
+    });
   }, [dispatch]);
 
   useEffect(() => {

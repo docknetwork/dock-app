@@ -4,7 +4,6 @@ import {InteractionManager, Platform, TouchableHighlight} from 'react-native';
 import {translate} from 'src/locales';
 import {Typography} from '.';
 import BackIcon from '../assets/icons/back.svg';
-import {navigateBack} from '../core/navigation';
 import {Box} from './grid';
 import {Theme} from './theme';
 import {addTestId} from '../core/automation-utils';
