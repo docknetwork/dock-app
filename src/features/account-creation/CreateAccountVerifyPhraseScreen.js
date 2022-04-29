@@ -122,7 +122,6 @@ export function CreateAccountVerifyPhraseContainer() {
     const words = phrase.split(' ');
     const word1 = form.word1.toLowerCase();
     const word2 = form.word2.toLowerCase();
-
     if (
       word1 === words[confirmationIndexes[0]] &&
       word2 === words[confirmationIndexes[1]]

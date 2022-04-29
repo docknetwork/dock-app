@@ -52,7 +52,7 @@ function GlobalComponents() {
           }}
         />
       </View>
-      {/*<ConfirmationModal />*/}
+      <ConfirmationModal />
     </View>
   );
 }

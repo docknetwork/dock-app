@@ -235,6 +235,7 @@ export const appOperations = {
       }
     }
 
+    console.log(walletCreated, 'walletCreated');
     if (walletCreated) {
       navigate(Routes.UNLOCK_WALLET);
     } else {

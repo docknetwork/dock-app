@@ -90,18 +90,22 @@ function AppSettingStackScreen() {
   return (
     <AppSettingStack.Navigator>
       <AppSettingStack.Screen
-        name={Routes.APP_SETTINGS}
-        component={AppSettingsContainer}
-        options={{
-          ...screenOptions,
-        }}
+        {...getScreenProps({
+          name: Routes.APP_SETTINGS,
+          component: AppSettingsContainer,
+          options: {
+            gestureEnabled: false,
+          },
+        })}
       />
       <AppSettingStack.Screen
-        name={Routes.WALLET_EXPORT_BACKUP}
-        component={ExportWalletContainer}
-        options={{
-          ...screenOptions,
-        }}
+        {...getScreenProps({
+          name: Routes.WALLET_EXPORT_BACKUP,
+          component: ExportWalletContainer,
+          options: {
+            gestureEnabled: false,
+          },
+        })}
       />
       <AppSettingStack.Screen
         {...getScreenProps({
@@ -152,53 +156,76 @@ function TokensStackScreen() {
   return (
     <TokenStack.Navigator>
       <TokenStack.Screen
-        options={{
-          ...screenOptions,
-        }}
-        name={Routes.ACCOUNTS}
-        component={AccountsContainer}
+        {...getScreenProps({
+          name: Routes.ACCOUNTS,
+          component: AccountsContainer,
+          options: {
+            gestureEnabled: false,
+          },
+        })}
       />
       <TokenStack.Screen
-        name={Routes.ACCOUNT_DETAILS}
-        component={AccountDetailsContainer}
-        options={{
-          ...screenOptions,
-        }}
+        {...getScreenProps({
+          name: Routes.ACCOUNT_DETAILS,
+          component: AccountDetailsContainer,
+          options: {
+            gestureEnabled: false,
+          },
+        })}
       />
       <TokenStack.Screen
-        name={Routes.TOKEN_SEND}
-        component={SendTokenContainer}
-        options={{
-          ...screenOptions,
-        }}
+        {...getScreenProps({
+          name: Routes.TOKEN_SEND,
+          component: SendTokenContainer,
+          options: {
+            gestureEnabled: false,
+          },
+        })}
       />
       <TokenStack.Screen
-        name={Routes.TOKEN_RECEIVE}
-        component={ReceiveTokenContainer}
-        options={{
-          ...screenOptions,
-        }}
+        {...getScreenProps({
+          name: Routes.TOKEN_RECEIVE,
+          component: ReceiveTokenContainer,
+          options: {
+            gestureEnabled: false,
+          },
+        })}
       />
       <TokenStack.Screen
-        name={Routes.TRADE_BUY_DOCK}
-        component={BuyDockScreenContainer}
-        options={{
-          ...screenOptions,
-        }}
+        {...getScreenProps({
+          name: Routes.TRADE_BUY_DOCK,
+          component: BuyDockScreenContainer,
+          options: {
+            gestureEnabled: false,
+          },
+        })}
       />
       <TokenStack.Screen
-        name={Routes.CREATE_ACCOUNT_SETUP}
-        component={CreateAccountSetupContainer}
-        options={{
-          ...screenOptions,
-        }}
+        {...getScreenProps({
+          name: Routes.CREATE_ACCOUNT_SETUP,
+          component: CreateAccountSetupContainer,
+          options: {
+            gestureEnabled: false,
+          },
+        })}
       />
       <TokenStack.Screen
-        name={Routes.CREATE_ACCOUNT_BACKUP}
-        component={CreateAccountBackupContainer}
-        options={{
-          ...screenOptions,
-        }}
+        {...getScreenProps({
+          name: Routes.CREATE_ACCOUNT_BACKUP,
+          component: CreateAccountBackupContainer,
+          options: {
+            gestureEnabled: false,
+          },
+        })}
+      />
+      <TokenStack.Screen
+        {...getScreenProps({
+          name: Routes.APP_QR_SCANNER,
+          component: QRScanScreen,
+          options: {
+            gestureEnabled: false,
+          },
+        })}
       />
 
       <TokenStack.Screen
