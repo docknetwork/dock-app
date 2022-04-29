@@ -8,6 +8,7 @@ import {navigateBack} from '../core/navigation';
 import {Box} from './grid';
 import {Theme} from './theme';
 import {addTestId} from '../core/automation-utils';
+import {useNavigation} from '@react-navigation/native';
 
 export const Group = NButton.Group;
 
@@ -44,7 +45,10 @@ export const useAsyncCallback = func => {
 };
 
 export function BackButton(props) {
-  const [loading, onPress] = useAsyncCallback(props.onPress || navigateBack);
+  const navigation = useNavigation();
+  const [loading, onPress] = useAsyncCallback(
+    props.onPress || navigation.goBack,
+  );
 
   // useEffect(() => {
   //   BackHandler.addEventListener('hardwareBackPress', onPress);

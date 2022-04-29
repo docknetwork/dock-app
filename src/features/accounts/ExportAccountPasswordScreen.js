@@ -4,6 +4,7 @@ import {useDispatch} from 'react-redux';
 import {addTestId} from 'src/core/automation-utils';
 import {translate} from 'src/locales';
 import {showToast} from '../../core/toast';
+import {useNavigation} from '@react-navigation/native';
 import {
   Content,
   Footer,
