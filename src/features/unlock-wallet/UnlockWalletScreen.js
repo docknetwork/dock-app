@@ -11,6 +11,7 @@ import {Logger} from 'src/core/logger';
 import {showToast} from 'src/core/toast';
 import styled from 'styled-components/native';
 import SplashLogo from '../../assets/splash-logo.png';
+import {useIsFocused} from '@react-navigation/native';
 import {
   Box,
   Button,
@@ -127,6 +128,8 @@ export function UnlockWalletContainer({route}) {
   const isAppLocked = useSelector(appSelectors.getAppLocked);
   const [failedAttempts, setFailedAttempts] = useState(0);
 
+  const isScreenFocus = useIsFocused();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -183,12 +186,12 @@ export function UnlockWalletContainer({route}) {
   };
 
   useEffect(() => {
-    if (supportBiometry && biometryEnabled) {
+    if (supportBiometry && biometryEnabled && isScreenFocus) {
       handleBiometricUnlock();
     } else {
       setPasscode('');
     }
-  }, [supportBiometry, biometryEnabled, handleBiometricUnlock]);
+  }, [supportBiometry, biometryEnabled, handleBiometricUnlock, isScreenFocus]);
 
   return (
     <UnlockWalletScreen
