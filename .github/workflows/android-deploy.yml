@@ -1,9 +1,5 @@
 name: Android Release
-on:
-  push:
-    branches:
-      - deploy
-    types: [closed]
+on: [push]
 jobs:
   internal_release_android:
     runs-on: ubuntu-latest
