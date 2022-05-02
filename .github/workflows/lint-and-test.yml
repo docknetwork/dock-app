@@ -1,5 +1,10 @@
 name: Code check
-on: [push]
+on:
+  push:
+    branches:
+      - "!*"
+    tags:
+      - "v*"
 jobs:
   lint:
     runs-on: ubuntu-latest
