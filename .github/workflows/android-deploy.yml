@@ -52,6 +52,8 @@ jobs:
           S3_ACL: ${{ secrets.S3_ACL }}
         run: |
           cd ./android
+          git config --global user.email "deploy@dock.io"
+          git config --global user.name "Deploy"
           fastlane increment_version
           git add . app/build.gradle
           git commit -m "increment android version"
