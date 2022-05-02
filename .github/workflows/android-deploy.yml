@@ -2,12 +2,12 @@ name: Android Release
 on:
   push:
     branches:
-      - "!*"
-    tags:
-      - "v*"
+      - deploy
+    types: [closed]
 jobs:
   internal_release_android:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -54,5 +54,10 @@ jobs:
           S3_ACL: ${{ secrets.S3_ACL }}
         run: |
           cd ./android
-          fastlane internal
-          fastlane s3_upload
+          fastlane increment_version
+  # fastlane internal
+  # fastlane s3_upload
+          git add . app/build.gradle
+          git commit -m "increment android version"
+          git push origin deploy
+          fastlane send_message
