@@ -31,6 +31,14 @@ Increment android version
 
 Submit a new Beta Build to Google Play
 
+### android send_message
+
+```sh
+[bundle exec] fastlane android send_message
+```
+
+Send slack message
+
 ### android s3_upload
 
 ```sh

@@ -63,6 +63,25 @@ platform :ios do
    )
   end
 
+<<<<<<< Updated upstream
+=======
+  desc "Send slack message"
+  lane :send_message do
+    build_number = get_build_number(xcodeproj: "Project.xcodeproj")
+   
+   slack(
+      message: "iOS App successfully deployed!",
+      success: true,
+      payload: {
+        "Build Date" => Time.new.to_s,
+        "Build number" => build_number,
+      },
+      default_payloads: [:git_branch, :git_author]
+    )
+
+  end
+
+>>>>>>> Stashed changes
   desc "Build and upload to TestFlight"
   lane :build_upload_testflight do
        setup
