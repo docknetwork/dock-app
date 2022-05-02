@@ -1,5 +1,7 @@
 name: Android Release
-on: [push]
+on:
+  pull_request:
+      types: [opened, closed]
 jobs:
   internal_release_android:
     runs-on: ubuntu-latest
