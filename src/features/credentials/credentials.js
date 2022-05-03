@@ -5,6 +5,7 @@ import {showToast} from 'src/core/toast';
 import {translate} from 'src/locales';
 import assert from 'assert';
 import {WalletRpc} from '@docknetwork/react-native-sdk/src/client/wallet-rpc';
+import {ANALYTICS_EVENT, logAnalyticsEvent} from '../analytics/analytics-slice';
 
 export const sortByIssuanceDate = (a, b) =>
   getCredentialTimestamp(b.content) - getCredentialTimestamp(a.content);
@@ -59,6 +60,12 @@ Credentials.getInstance().wallet = {
   remove: params => WalletRpc.remove(params),
 };
 
+export function getDIDAddress(did) {
+  assert(!!did, 'did is required');
+
+  return did.replace(/did:\w+:/gi, '');
+}
+
 export function useCredentials({onPickFile = pickJSONFile} = {}) {
   const [items, setItems] = useState([]);
 
@@ -86,10 +93,14 @@ export function useCredentials({onPickFile = pickJSONFile} = {}) {
     try {
       await Credentials.getInstance().add(jsonData);
       await syncCredentials();
+      logAnalyticsEvent(ANALYTICS_EVENT.CREDENTIALS.IMPORT);
     } catch (err) {
       showToast({
         message: translate('credentials.invalid_credential'),
         type: 'error',
+      });
+      logAnalyticsEvent(ANALYTICS_EVENT.FAILURES, {
+        name: ANALYTICS_EVENT.CREDENTIALS.IMPORT,
       });
     }
   };

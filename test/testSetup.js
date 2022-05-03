@@ -116,6 +116,16 @@ jest.mock('react-native/Libraries/Interaction/InteractionManager', () => ({
   setDeadline: jest.fn(),
 }));
 
+jest.mock('@react-native-firebase/analytics', () => {
+  const logEvent = jest.fn(() => Promise.resolve([]));
+  return {
+    __esModule: true,
+    default: jest.fn().mockReturnValue({
+      logEvent,
+    }),
+  };
+});
+
 jest.mock('@docknetwork/react-native-sdk/src/client/wallet-rpc', () => {
   const originalModule = jest.requireActual(
     '@docknetwork/react-native-sdk/src/client/wallet-rpc',

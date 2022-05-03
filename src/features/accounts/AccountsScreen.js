@@ -35,6 +35,7 @@ import {AddAccountModal} from './AddAccountModal';
 import {AccountsScreenTestIDs} from './test-ids';
 import {pickDocuments} from '../../core/storage-utils';
 import {useNavigation} from '@react-navigation/native';
+import {ANALYTICS_EVENT, logAnalyticsEvent} from '../analytics/analytics-slice';
 export function displayWarning(account) {
   if (
     account.hasBackup === false ||
@@ -313,6 +314,9 @@ export const AccountsContainer = withErrorBoundary(({navigation}) => {
 
           dispatch(createAccountOperations.importFromJson(fileData));
         }
+        logAnalyticsEvent(ANALYTICS_EVENT.ACCOUNT.IMPORT, {
+          method,
+        });
       }}
     />
   );

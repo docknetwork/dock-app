@@ -1,6 +1,7 @@
 import React from 'react';
 import {translate} from 'src/locales';
 import {navigate} from '../../core/navigation';
+import {PolkadotIcon} from '../../components/PolkadotIcon';
 import {
   BackButton,
   Box,
@@ -18,7 +19,7 @@ import PlusCircleWhiteIcon from '../../assets/icons/plus-circle-white.svg';
 import {addTestId} from '../../core/automation-utils';
 import {Center, Image, Text, Stack, Menu, Pressable} from 'native-base';
 import {ICenterProps} from 'native-base/lib/typescript/components/composites/Center/types';
-import {useCredentials, getObjectFields} from './credentials';
+import {useCredentials, getObjectFields, getDIDAddress} from './credentials';
 import {formatDate} from '@docknetwork/wallet-sdk-core/lib/core/format-utils';
 import {Routes} from 'src/core/routes';
 import {withErrorBoundary} from 'src/core/error-handler';
@@ -127,15 +128,22 @@ const CredentialListItem = withErrorBoundary(({credential, onRemove}) => {
           </Text>
         </NBox>
         <NBox flex={1} alignItems={'flex-end'}>
-          <Image
-            borderRadius={8}
-            width={50}
-            height={50}
-            alt={''}
-            source={{
-              uri: credential.issuer.logo,
-            }}
-          />
+          {credential.issuer.logo ? (
+            <Image
+              borderRadius={8}
+              width={50}
+              height={50}
+              alt={''}
+              source={{
+                uri: credential.issuer.logo,
+              }}
+            />
+          ) : (
+            <PolkadotIcon
+              address={getDIDAddress(credential.issuer.id)}
+              size={32}
+            />
+          )}
         </NBox>
       </NBox>
     </NBox>

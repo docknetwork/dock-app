@@ -5,6 +5,7 @@ import {BuyDockScreenScreen} from './BuyDockScreen';
 import thunk from 'redux-thunk';
 import {renderAppProviders} from '../../core/test-utils';
 import TransakProvider, {
+  parseTransakConfig,
   TransakIntroView,
   TransakWebView,
 } from './components/TransakProvider';
@@ -57,5 +58,66 @@ describe('BuyDockScreenScreen', () => {
     });
     const wrapper = shallow(<TransakWebView url={queryUrl} />);
     expect(wrapper.dive()).toMatchSnapshot();
+  });
+  it('is correct env selected for production', () => {
+    const TRANSAK_ENVIRONMENT_CONFIG = {
+      mainnet: 'PROD_TRANSAK_ENVIRONMENT',
+      local: 'STAGING_TRANSAK_ENVIRONMENT',
+      testnet: 'STAGING_TRANSAK_ENVIRONMENT',
+    };
+
+    const TRANSAK_API_KEY_CONFIG = {
+      mainnet: 'PROD_TRANSAK_API_KEY',
+      local: 'STAGING_TRANSAK_API_KEY',
+      testnet: 'STAGING_TRANSAK_API_KEY',
+    };
+    const TRANSAK_BASE_URL_CONFIG = {
+      mainnet: 'PROD_TRANSAK_BASE_URL',
+      local: 'STAGING_TRANSAK_BASE_URL',
+      testnet: 'STAGING_TRANSAK_BASE_URL',
+    };
+
+    expect(parseTransakConfig(TRANSAK_ENVIRONMENT_CONFIG, 'mainnet')).toBe(
+      'PROD_TRANSAK_ENVIRONMENT',
+    );
+
+    expect(parseTransakConfig(TRANSAK_API_KEY_CONFIG, 'mainnet')).toBe(
+      'PROD_TRANSAK_API_KEY',
+    );
+
+    expect(parseTransakConfig(TRANSAK_BASE_URL_CONFIG, 'mainnet')).toBe(
+      'PROD_TRANSAK_BASE_URL',
+    );
+  });
+
+  it('is correct env selected for testnet', () => {
+    const TRANSAK_ENVIRONMENT_CONFIG = {
+      mainnet: 'PROD_TRANSAK_ENVIRONMENT',
+      local: 'STAGING_TRANSAK_ENVIRONMENT',
+      testnet: 'STAGING_TRANSAK_ENVIRONMENT',
+    };
+
+    const TRANSAK_API_KEY_CONFIG = {
+      mainnet: 'PROD_TRANSAK_API_KEY',
+      local: 'STAGING_TRANSAK_API_KEY',
+      testnet: 'STAGING_TRANSAK_API_KEY',
+    };
+    const TRANSAK_BASE_URL_CONFIG = {
+      mainnet: 'PROD_TRANSAK_BASE_URL',
+      local: 'STAGING_TRANSAK_BASE_URL',
+      testnet: 'STAGING_TRANSAK_BASE_URL',
+    };
+
+    expect(parseTransakConfig(TRANSAK_ENVIRONMENT_CONFIG, 'testnet')).toBe(
+      'STAGING_TRANSAK_ENVIRONMENT',
+    );
+
+    expect(parseTransakConfig(TRANSAK_API_KEY_CONFIG, 'testnet')).toBe(
+      'STAGING_TRANSAK_API_KEY',
+    );
+
+    expect(parseTransakConfig(TRANSAK_BASE_URL_CONFIG, 'testnet')).toBe(
+      'STAGING_TRANSAK_BASE_URL',
+    );
   });
 });

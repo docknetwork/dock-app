@@ -9,6 +9,7 @@ import {appSelectors} from '../app/app-slice';
 import {fetchTransactions} from '../../core/subscan';
 import {accountSelectors} from '../accounts/account-slice';
 import BigNumber from 'bignumber.js';
+import {ANALYTICS_EVENT, logAnalyticsEvent} from '../analytics/analytics-slice';
 
 export const TransactionStatus = {
   InProgress: 'pending',
@@ -220,6 +221,13 @@ export const transactionsOperations = {
             type: 'success',
             message: translate('confirm_transaction.transaction_complete'),
           });
+          logAnalyticsEvent(ANALYTICS_EVENT.TOKENS.SEND_TOKEN, {
+            id: transaction.id,
+            date: new Date().toISOString(),
+            fromAddress: accountAddress,
+            recipientAddress: recipientAddress,
+            amount: `${parsedAmount}`,
+          });
 
           if (
             prevTransaction &&
@@ -236,6 +244,14 @@ export const transactionsOperations = {
         .catch(err => {
           console.error(err);
 
+          logAnalyticsEvent(ANALYTICS_EVENT.FAILURES, {
+            name: ANALYTICS_EVENT.TOKENS.SEND_TOKEN,
+            id: transaction.id,
+            date: new Date().toISOString(),
+            fromAddress: accountAddress,
+            recipientAddress: recipientAddress,
+            amount: `${parsedAmount}`,
+          });
           showToast({
             type: 'error',
             message: translate('transaction_failed.title'),

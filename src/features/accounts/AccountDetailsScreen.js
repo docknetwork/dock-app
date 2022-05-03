@@ -450,7 +450,12 @@ export function AccountDetailsScreen({
         description={translate('account_details.export_account_description')}
         {...addTestId('ExportAccountDescription')}
         visible={qrCodeModalVisible}
-        onClose={() => setQrCodeModalVisible(false)}
+        onClose={() => {
+          setQrCodeModalVisible(false);
+          navigate(Routes.ACCOUNT_DETAILS, {
+            id: account.id,
+          });
+        }}
       />
     </ScreenContainer>
   );
