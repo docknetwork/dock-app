@@ -164,7 +164,9 @@ export const accountOperations = {
       showToast({
         message: translate('create_account_backup.success'),
       });
-      logAnalyticsEvent(ANALYTICS_EVENT.ACCOUNT.BACKUP, {id: account.id});
+      logAnalyticsEvent(ANALYTICS_EVENT.ACCOUNT.BACKUP, {
+        accountId: account.id,
+      });
     }),
 
   backupAccount: account =>

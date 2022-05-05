@@ -115,7 +115,7 @@ export function BigButton({icon, children, ...props}) {
           <Box>
             <Text
               fontSize={14}
-              fontFamily="Nunito Sans"
+              fontFamily={Theme.fontFamily.default}
               fontWeight="600"
               color="#fff">
               {children}

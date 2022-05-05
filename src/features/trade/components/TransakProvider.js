@@ -137,7 +137,7 @@ export default function TransakPaymentProvider({
       ) {
         if (eventId === BUY_STATES.ORDER_COMPLETED) {
           logAnalyticsEvent(ANALYTICS_EVENT.TOKENS.BUY_TOKEN, {
-            id: partnerOrderId,
+            partnerOrderId,
             walletAddress,
             ...orderData,
           });
@@ -145,7 +145,7 @@ export default function TransakPaymentProvider({
         if (eventId === BUY_STATES.ORDER_FAILED) {
           logAnalyticsEvent(ANALYTICS_EVENT.FAILURES, {
             name: ANALYTICS_EVENT.TOKENS.BUY_TOKEN,
-            id: partnerOrderId,
+            partnerOrderId,
             walletAddress,
             ...orderData,
           });

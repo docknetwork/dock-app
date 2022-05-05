@@ -214,7 +214,10 @@ export const transactionsOperations = {
           dispatch(transactionsActions.updateTransaction(updatedTransation));
 
           realm.write(() => {
-            realm.create('Transaction', updatedTransation, 'modified');
+            const realmTransaction = realm
+              .objects('Transaction')
+              .filtered(`id == "${internalId}"`);
+            realm.delete(realmTransaction);
           });
 
           showToast({
@@ -222,7 +225,7 @@ export const transactionsOperations = {
             message: translate('confirm_transaction.transaction_complete'),
           });
           logAnalyticsEvent(ANALYTICS_EVENT.TOKENS.SEND_TOKEN, {
-            id: transaction.id,
+            transactionId: internalId,
             date: new Date().toISOString(),
             fromAddress: accountAddress,
             recipientAddress: recipientAddress,
@@ -246,7 +249,7 @@ export const transactionsOperations = {
 
           logAnalyticsEvent(ANALYTICS_EVENT.FAILURES, {
             name: ANALYTICS_EVENT.TOKENS.SEND_TOKEN,
-            id: transaction.id,
+            transactionId: internalId,
             date: new Date().toISOString(),
             fromAddress: accountAddress,
             recipientAddress: recipientAddress,

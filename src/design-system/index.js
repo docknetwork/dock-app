@@ -54,7 +54,7 @@ export function AppGlobalHeader() {
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    backgroundColor: Theme.colors.primaryBackground,
+    backgroundColor: Theme.screen.backgroundColor,
   },
 });
 

@@ -282,6 +282,7 @@
     "empty_items": "You’ll see credentials here once you accept them"
   },
   "qr_scanner": {
-    "not_supported_data": "Not supported QR Code"
+    "not_supported_data": "Not supported QR Code",
+    "scan_qr_code": "Scan QR Code"
   }
 }

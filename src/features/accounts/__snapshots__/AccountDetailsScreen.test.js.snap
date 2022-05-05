@@ -4,7 +4,7 @@ exports[`AccountDetailsScreen should render correctly 1`] = `
 <RNCSafeAreaView
   style={
     Object {
-      "backgroundColor": "#18181B",
+      "backgroundColor": "#000",
       "flex": 1,
     }
   }
@@ -95,22 +95,31 @@ exports[`AccountDetailsScreen should render correctly 1`] = `
               <Memo(ForwardRef(Button))
                 accessibilityLabel="SendTokensBtn"
                 flex={1}
-                mr={2}
+                mr={1}
                 onPress={[Function]}
-                size="sm"
+                size="xs"
                 testID="SendTokensBtn"
               >
-                Send
+                <Styled(Component)
+                  color="#fff"
+                >
+                  Send
+                </Styled(Component)>
               </Memo(ForwardRef(Button))>
               <Memo(ForwardRef(Button))
                 accessibilityLabel="ReceiveTokensBtn"
                 flex={1}
-                ml={2}
+                ml={1}
+                mr={1}
                 onPress={[Function]}
-                size="sm"
+                size="xs"
                 testID="ReceiveTokensBtn"
               >
-                Receive
+                <Styled(Component)
+                  color="#fff"
+                >
+                  Receive
+                </Styled(Component)>
               </Memo(ForwardRef(Button))>
             </Memo(ForwardRef(Stack))>
           </Memo(ForwardRef(Stack))>

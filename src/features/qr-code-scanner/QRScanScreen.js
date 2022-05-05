@@ -11,7 +11,6 @@ import {RNCamera} from 'react-native-camera';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {Theme} from 'src/design-system';
 import styled from 'styled-components/native';
-import {navigateBack} from '../../core/navigation';
 import {Colors} from '../../theme/colors';
 import {qrCodeHandler} from './qr-code';
 import {useNavigation} from '@react-navigation/native';
@@ -102,7 +101,9 @@ export function QRScanScreen({route}) {
       </QRCodeContainer>
       <Wrapper>
         <Header>
-          <Title>Scan QR Code</Title>
+          <Title style={styles.headerText}>
+            {translate('qr_scanner.scan_qr_code')}
+          </Title>
           <IconContainer>
             <TouchableWithoutFeedback
               onPress={navigation.goBack}
@@ -202,5 +203,6 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: Theme.colors.textHighlighted,
+    fontFamily: Theme.fontFamily.default,
   },
 });

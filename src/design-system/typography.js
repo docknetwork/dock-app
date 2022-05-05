@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import {Theme} from './theme';
 
 const headerVariantBase = {
-  fontFamily: Theme.fontFamily.montserrat,
+  fontFamily: Theme.fontFamily.default,
   lineHeight: 32,
   fontWeight: '600',
   color: Theme.colors.headerText,
@@ -12,7 +12,7 @@ const headerVariantBase = {
 
 const transactionFilterVariantBase = {
   ...headerVariantBase,
-  fontFamily: Theme.fontFamily.nunitoSans,
+  fontFamily: Theme.fontFamily.default,
   fontSize: 16,
   fontWeight: 600,
   fontStyle: 'normal',
@@ -20,7 +20,7 @@ const transactionFilterVariantBase = {
   color: Theme.colors.textHighlighted,
 };
 const transactionItemMinorDetail = {
-  fontFamily: Theme.fontFamily.nunitoSans,
+  fontFamily: Theme.fontFamily.default,
   fontWeight: 400,
   fontSize: 14,
   fontStyle: 'normal',
@@ -70,7 +70,7 @@ const variantsMap = {
     lineHeight: 22,
   },
   'transaction-type-label': {
-    fontFamily: Theme.fontFamily.nunitoSans,
+    fontFamily: Theme.fontFamily.default,
     fontWeight: 600,
     fontSize: 16,
     fontStyle: 'normal',
@@ -86,7 +86,7 @@ const variantsMap = {
   },
   'fiat-amount': {
     ...headerVariantBase,
-    fontFamily: Theme.fontFamily.nunitoSans,
+    fontFamily: Theme.fontFamily.default,
     fontStyle: 'normal',
     fontSize: 16,
     fontWeight: 400,
@@ -94,12 +94,11 @@ const variantsMap = {
     color: Theme.colors.description,
   },
   'transaction-filter': {
-    fontFamily: Theme.fontFamily.nunitoSans,
+    fontFamily: Theme.fontFamily.default,
     fontStyle: 'normal',
     fontSize: 15,
     fontWeight: 400,
     lineHeight: '20px',
-    color: Theme.colors.textHighlighted,
     textAlign: 'center',
     paddingLeft: '12px',
     paddingRight: '12px',
@@ -137,12 +136,19 @@ const variantsMap = {
   warning: {
     color: Theme.colors.warningText,
   },
+  transactionRetryTxt: {
+    fontFamily: Theme.fontFamily.default,
+    fontWeight: 500,
+    fontSize: 14,
+    lineHeight: 20,
+    color: Theme.colors.primaryBackground,
+  },
 };
 
 export const Typography: ComponentType<TypographyProps> = styled(Text)`
-  font-family: Nunito Sans;
-  line-height: 24px;
-  color: ${Theme.colors.text};
+  font-family: ${Theme.fontFamily.default};
+  line-height: 25px;
+  color: ${props => (props.color ? props.color : Theme.colors.text)};
   ${({variant}) => {
     return variantsMap[variant] || {};
   }}

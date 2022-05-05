@@ -105,7 +105,7 @@ export const AccountsScreen = withErrorBoundary(
                       key={account.id}
                       direction="row"
                       borderRadius={12}
-                      backgroundColor={Theme.colors.secondaryBackground}
+                      backgroundColor={Theme.colors.primaryBackground}
                       space={2}
                       mb={4}
                       py={6}
@@ -126,7 +126,7 @@ export const AccountsScreen = withErrorBoundary(
                                   fontWeight={600}>
                                   {account.name}
                                 </Typography>
-                                <ChevronRightIcon marginTop={1} />
+                                <ChevronRightIcon marginTop={3} />
                               </Stack>
                             </Stack>
                           </Pressable>
@@ -184,8 +184,9 @@ export const AccountsScreen = withErrorBoundary(
                           {
                             <Button
                               width="50%"
-                              size="sm"
+                              size="xs"
                               disabled={account.readOnly}
+                              variant={'whiteButton'}
                               colorScheme="dark"
                               {...addTestId('TokenSend')}
                               onPress={() => {
@@ -193,13 +194,17 @@ export const AccountsScreen = withErrorBoundary(
                                   address: account.id,
                                 });
                               }}>
-                              {translate('account_list.send_token')}
+                              <Typography
+                                color={Theme.colors.primaryBackground}>
+                                {translate('account_list.send_token')}
+                              </Typography>
                             </Button>
                           }
                           <Button
                             width="50%"
-                            size="sm"
+                            size="xs"
                             ml={2}
+                            variant={'whiteButton'}
                             colorScheme="dark"
                             {...addTestId('TokenReceive')}
                             onPress={() => {
@@ -207,7 +212,9 @@ export const AccountsScreen = withErrorBoundary(
                                 address: account.id,
                               });
                             }}>
-                            {translate('account_list.receive_token')}
+                            <Typography color={Theme.colors.primaryBackground}>
+                              {translate('account_list.receive_token')}
+                            </Typography>
                           </Button>
                         </Stack>
                       </Stack>
