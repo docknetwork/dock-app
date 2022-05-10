@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          persist-credentials: false
+          token: "${{ secrets.GIT_ACCESS_TOKEN }}"
       - name: Setup node
         uses: actions/setup-node@v1
         with:
@@ -44,5 +44,9 @@ jobs:
           cp -rf ./certs/GoogleService-Info.plist ./ios/
           cd ./ios
           pod install
-          fastlane build_upload_testflight
+          # fastlane build_upload_testflight
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: (CI) iOS deploy
+          file_pattern: ios/DockApp.xcodeproj/project.pbxproj ios/DockApp/Info.plist ios/DockAppTests/Info.plist
 
