@@ -10,9 +10,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          persist-credentials: false
           token: "${{ secrets.GIT_ACCESS_TOKEN }}"
-
+      - name: Install and lint
+        run: |
+          echo "testing" > test.js
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: increment build number
       # - name: Setup node
       #   uses: actions/setup-node@v1
       #   with:
@@ -60,11 +64,4 @@ jobs:
       #     # git commit -m "increment android version"
       #     # git push origin deploy
       #     # fastlane send_message
-      - name: Install and lint
-        run: |
-          echo "testing" > test.js
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_user_email: maycon.mellos@gmail.com
-          commit_user_name: Maycon Mellos
-          commit_message: increment build number
+
