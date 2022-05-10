@@ -54,6 +54,7 @@ jobs:
           cd ./android
           fastlane increment_version
           # fastlane send_message
+
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: (CI) Android deploy
