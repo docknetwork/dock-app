@@ -4,7 +4,7 @@ on:
     branches:
         - "deploy"
   pull_request:
-      types: [opened, closed]
+      types: [closed]
 jobs:
   internal_release_ios:
     runs-on: macos-latest
@@ -15,10 +15,10 @@ jobs:
         with:
           token: "${{ secrets.GIT_ACCESS_TOKEN }}"
 
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '15.x'
+      # - name: Setup node
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: '15.x'
 
       - name: Run fastlane setup
         env:
@@ -32,23 +32,23 @@ jobs:
           FASTLANE_APPLE_ID: ${{ secrets.FASTLANE_APPLE_ID }}
           FASTLANE_ITC_TEAM_ID: ${{ secrets.FASTLANE_ITC_TEAM_ID }}
           FASTLANE_TEAM_ID: ${{ secrets.FASTLANE_TEAM_ID }}
-
           ASC_KEY: ${{ secrets.ASC_KEY }}
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
         run: |
-          git config --global url."https://".insteadOf git://
-          xcodebuild -version
-          yarn install
-          git clone "${{ secrets.CERTS_REPO_URL }}" ./certs
-          # Pull env variables from certs repo
-          # It will inject sentry token in the JS thread
-          cp -rf ./certs/.env ./
-          cp -rf ./certs/GoogleService-Info.plist ./ios/
-          cd ./ios
-          pod install
-          fastlane increment_version
-          # fastlane build_upload_testflight
+          echo "PR: ${{ github.event.number  }}" > test.plist
+          # git config --global url."https://".insteadOf git://
+          # xcodebuild -version
+          # yarn install
+          # git clone "${{ secrets.CERTS_REPO_URL }}" ./certs
+          # # Pull env variables from certs repo
+          # # It will inject sentry token in the JS thread
+          # cp -rf ./certs/.env ./
+          # cp -rf ./certs/GoogleService-Info.plist ./ios/
+          # cd ./ios
+          # pod install
+          # fastlane increment_version
+          # # fastlane build_upload_testflight
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
