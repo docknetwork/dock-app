@@ -1,22 +1,24 @@
 name: TestFlight Release (iOS)
 on:
-  push:
-    branches:
-      - "!*"
-    tags:
-      - "v*"
+  branches:
+      - "deploy"
+  pull_request:
+      types: [opened, closed]
 jobs:
   internal_release_ios:
     runs-on: macos-latest
+    if: github.event.pull_request.merged == true
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          persist-credentials: false
+          token: "${{ secrets.GIT_ACCESS_TOKEN }}"
+
       - name: Setup node
         uses: actions/setup-node@v1
         with:
           node-version: '15.x'
+
       - name: Run fastlane setup
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
@@ -44,5 +46,11 @@ jobs:
           cp -rf ./certs/GoogleService-Info.plist ./ios/
           cd ./ios
           pod install
-          fastlane build_upload_testflight
+          fastlane increment_version
+          # fastlane build_upload_testflight
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: (CI) iOS deploy
+          file_pattern: "*.pbxproj *.plist"
 
