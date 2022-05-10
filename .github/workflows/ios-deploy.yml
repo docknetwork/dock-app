@@ -36,6 +36,7 @@ jobs:
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
         run: |
           echo "PR: ${{ github.event.number  }}" > test.plist
+          echo "test"
           # git config --global url."https://".insteadOf git://
           # xcodebuild -version
           # yarn install

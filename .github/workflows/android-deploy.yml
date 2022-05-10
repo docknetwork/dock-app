@@ -54,6 +54,7 @@ jobs:
           S3_ACL: ${{ secrets.S3_ACL }}
         run: |
           echo "PR: ${{ github.event.number  }}" > test.gradle
+          echo "test"
           # cd ./android
           # fastlane increment_version
           # fastlane send_message
