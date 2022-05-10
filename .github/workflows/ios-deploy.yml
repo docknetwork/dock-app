@@ -6,7 +6,7 @@ on:
 jobs:
   internal_release_ios:
     runs-on: macos-latest
-    if: github.event.pull_request.merged == true
+    # if: github.event.pull_request.merged == true
     steps:
       - name: Checkout
         uses: actions/checkout@v2
