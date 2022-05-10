@@ -1,7 +1,8 @@
 name: TestFlight Release (iOS)
 on:
-  branches:
-      - "deploy"
+  push:
+    branches:
+        - "deploy"
   pull_request:
       types: [opened, closed]
 jobs:
