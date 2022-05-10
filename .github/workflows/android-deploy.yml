@@ -67,6 +67,5 @@ jobs:
           commit_author_email: maycon.mellos@gmail.com
           commit_author_name: Maycon Mellos
           commit_message: increment build number
-          branch: commit-from-ci
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
