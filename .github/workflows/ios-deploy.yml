@@ -54,4 +54,4 @@ jobs:
         with:
           commit_message: (CI) iOS deploy
           file_pattern: "*.pbxproj *.plist"
-
+          branch: deploy
