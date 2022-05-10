@@ -1,12 +1,13 @@
 name: TestFlight Release (iOS)
 on:
-  push:
+  pull_request:
     branches:
-      - "deploy"
+      - deploy
+    types: [closed]
 jobs:
   internal_release_ios:
     runs-on: macos-latest
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     steps:
       - name: Checkout
         uses: actions/checkout@v2
