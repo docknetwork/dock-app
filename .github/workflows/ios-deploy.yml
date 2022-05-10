@@ -1,57 +1,144 @@
-name: TestFlight Release (iOS)
+name: Deployment
 on:
   pull_request:
     branches:
       - deploy
     types: [closed]
 jobs:
-  internal_release_ios:
+  increment_version:
+    name: "Increment app version"
     runs-on: macos-latest
-    if: github.event.pull_request.merged == true
     steps:
+      if: github.event.pull_request.merged == true
       - name: Checkout
         uses: actions/checkout@v2
         with:
           token: "${{ secrets.GIT_ACCESS_TOKEN }}"
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '15.x'
+
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.x'
+
+      - name: Increment app version
+        run: |
+          yarn increment_version:android
+          yarn increment_version:ios
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: (CI) iOS deploy
+          file_pattern: "*.pbxproj *.plist *.gradle"
+          branch: deploy
+  # internal_release_android:
+  #   name: "Android deploy"
+  #   needs: increment_version
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #       with:
+  #         token: "${{ secrets.GIT_ACCESS_TOKEN }}"
 
       # - name: Setup node
       #   uses: actions/setup-node@v1
       #   with:
       #     node-version: '15.x'
 
-      - name: Run fastlane setup
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          CERTS_REPO_URL: ${{ secrets.CERTS_REPO_URL }}
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
-          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD:  ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
-          FASTLANE_APP_IDENTIFIER: ${{ secrets.FASTLANE_APP_IDENTIFIER }}
-          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
-          FASTLANE_APPLE_ID: ${{ secrets.FASTLANE_APPLE_ID }}
-          FASTLANE_ITC_TEAM_ID: ${{ secrets.FASTLANE_ITC_TEAM_ID }}
-          FASTLANE_TEAM_ID: ${{ secrets.FASTLANE_TEAM_ID }}
-          ASC_KEY: ${{ secrets.ASC_KEY }}
-          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
-          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
-        run: |
-          echo "PR: ${{ github.event.number  }}" > test.plist
-          echo "test"
-          # git config --global url."https://".insteadOf git://
-          # xcodebuild -version
-          # yarn install
-          # git clone "${{ secrets.CERTS_REPO_URL }}" ./certs
-          # # Pull env variables from certs repo
-          # # It will inject sentry token in the JS thread
-          # cp -rf ./certs/.env ./
-          # cp -rf ./certs/GoogleService-Info.plist ./ios/
-          # cd ./ios
-          # pod install
-          # fastlane increment_version
-          # # fastlane build_upload_testflight
+      # - uses: actions/setup-ruby@v1
+      #   with:
+      #     ruby-version: '2.x'
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: (CI) iOS deploy
-          file_pattern: "*.pbxproj *.plist"
-          branch: deploy
+      # - name: Install and lint
+      #   run: |
+      #     git config --global url."https://".insteadOf git://
+      #     echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+      #     yarn install
+      #     yarn postinstall
+      #     rm -rf ./certs
+      #     git clone "https://${{ secrets.ACCESS_TOKEN }}@github.com/docknetwork/dock-app-certs.git" ./certs
+      #     mv ./certs/google-play.json ./
+      #     cp -rf ./certs/google-services.json ./android/app/
+      #     rm -rf ./android/gradle.properties
+      #     cp -rf ./certs/gradle.properties ./android/gradle.properties
+      #     # Pull env variables from certs repo
+      #     # It will inject sentry token in the JS thread
+      #     cp -rf ./certs/.env ./
+      #     rm -rf /tmp/google-play-cert
+      #     cp -rf ./certs/google-play-cert /tmp/google-play-cert
+
+      # - name: Install Fastlane
+      #   run: gem install fastlane
+
+      # - name: Release
+      #   env:
+      #     S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}
+      #     S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY }}
+      #     S3_APP_BUCKET: ${{ secrets.S3_APP_BUCKET }}
+      #     S3_REGION: ${{ secrets.S3_REGION }}
+      #     S3_ANDROID_APK_DIR: ${{ secrets.S3_ANDROID_APK_DIR }}
+      #     S3_ACL: ${{ secrets.S3_ACL }}
+      #   run: |
+      #     echo "PR: ${{ github.event.number  }}" > test.gradle
+      #     echo "test"
+      #     # cd ./android
+      #     # fastlane increment_version
+      #     # fastlane send_message
+
+      # - uses: stefanzweifel/git-auto-commit-action@v4
+      #   with:
+      #     commit_message: (CI) Android deploy
+      #     file_pattern: "*.gradle"
+      #     branch: deploy
+
+  # internal_release_ios:
+  #   name: "iOS deploy"
+  #   needs: increment-version
+  #   runs-on: macos-latest
+  #   if: github.event.pull_request.merged == true
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #       with:
+  #         token: "${{ secrets.GIT_ACCESS_TOKEN }}"
+
+      # - name: Setup node
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: '15.x'
+
+      # - name: Run fastlane setup
+      #   env:
+      #     ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      #     CERTS_REPO_URL: ${{ secrets.CERTS_REPO_URL }}
+      #     MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+      #     FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
+      #     FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD:  ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+      #     FASTLANE_APP_IDENTIFIER: ${{ secrets.FASTLANE_APP_IDENTIFIER }}
+      #     FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+      #     FASTLANE_APPLE_ID: ${{ secrets.FASTLANE_APPLE_ID }}
+      #     FASTLANE_ITC_TEAM_ID: ${{ secrets.FASTLANE_ITC_TEAM_ID }}
+      #     FASTLANE_TEAM_ID: ${{ secrets.FASTLANE_TEAM_ID }}
+      #     ASC_KEY: ${{ secrets.ASC_KEY }}
+      #     ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      #     ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      #   run: |
+      #     echo "PR: ${{ github.event.number  }}" > test.plist
+      #     echo "test"
+      #     # git config --global url."https://".insteadOf git://
+      #     # xcodebuild -version
+      #     # yarn install
+      #     # git clone "${{ secrets.CERTS_REPO_URL }}" ./certs
+      #     # # Pull env variables from certs repo
+      #     # # It will inject sentry token in the JS thread
+      #     # cp -rf ./certs/.env ./
+      #     # cp -rf ./certs/GoogleService-Info.plist ./ios/
+      #     # cd ./ios
+      #     # pod install
+      #     # fastlane increment_version
+      #     # # fastlane build_upload_testflight
+
