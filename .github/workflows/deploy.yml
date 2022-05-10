@@ -3,7 +3,7 @@ on:
   pull_request:
     branches:
       - deploy
-    types: [close]
+    types: [closed]
 jobs:
   increment_version:
     runs-on: macos-latest
