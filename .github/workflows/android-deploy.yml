@@ -1,10 +1,9 @@
 name: Android Release
 on:
-  push:
-    branches:
-        - "deploy"
   pull_request:
-      types: [closed]
+    types: [closed]
+    branches:
+      - "deploy"
 jobs:
   internal_release_android:
     runs-on: ubuntu-latest
