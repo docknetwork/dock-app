@@ -63,3 +63,4 @@ jobs:
         with:
           commit_message: (CI) Android deploy
           file_pattern: "*.gradle"
+          branch: deploy
