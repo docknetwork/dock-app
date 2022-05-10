@@ -1,14 +1,14 @@
 name: Deployment
 on:
   pull_request:
-    branches:
-      - deploy
-    types: [closed]
+    # branches:
+    #   - deploy
+    types: [open]
 jobs:
   increment_version:
     runs-on: macos-latest
     name: "Increment app version"
-    if: github.event.pull_request.merged == true
+    # if: github.event.pull_request.merged == true
     steps:
       - name: Checkout
         uses: actions/checkout@v2
