@@ -58,4 +58,4 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: (CI) Android deploy
-           file_pattern: ./app/build.gradle
+          file_pattern: ./app/build.gradle
