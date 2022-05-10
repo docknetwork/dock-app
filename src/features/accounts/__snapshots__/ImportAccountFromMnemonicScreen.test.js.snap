@@ -5,7 +5,7 @@ exports[`ImportAccountFromMnemonicScreen should render correctly 1`] = `
   accessibilityLabel="ImportAccountScreen"
   style={
     Object {
-      "backgroundColor": "#18181B",
+      "backgroundColor": "#000",
       "flex": 1,
     }
   }

@@ -18,6 +18,7 @@ import {
   createAccountOperations,
   createAccountSelectors,
 } from './create-account-slice';
+import {ANALYTICS_EVENT, logAnalyticsEvent} from '../analytics/analytics-slice';
 
 export function CreateAccountVerifyPhraseScreen({
   form,
@@ -119,6 +120,7 @@ export function CreateAccountVerifyPhraseContainer() {
   };
 
   const handleSubmit = () => {
+    logAnalyticsEvent(ANALYTICS_EVENT.ACCOUNT.BACKUP);
     const words = phrase.split(' ');
     const word1 = form.word1.toLowerCase();
     const word2 = form.word2.toLowerCase();

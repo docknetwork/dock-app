@@ -35,6 +35,7 @@ import {accountOperations, accountSelectors} from './account-slice';
 import {AddAccountModal} from './AddAccountModal';
 import {AccountsScreenTestIDs} from './test-ids';
 import {pickDocuments} from '../../core/storage-utils';
+import {ANALYTICS_EVENT, logAnalyticsEvent} from '../analytics/analytics-slice';
 
 export function displayWarning(account) {
   if (
@@ -104,7 +105,7 @@ export const AccountsScreen = withErrorBoundary(
                       key={account.id}
                       direction="row"
                       borderRadius={12}
-                      backgroundColor={Theme.colors.secondaryBackground}
+                      backgroundColor={Theme.colors.primaryBackground}
                       space={2}
                       mb={4}
                       py={6}
@@ -125,7 +126,7 @@ export const AccountsScreen = withErrorBoundary(
                                   fontWeight={600}>
                                   {account.name}
                                 </Typography>
-                                <ChevronRightIcon marginTop={1} />
+                                <ChevronRightIcon marginTop={3} />
                               </Stack>
                             </Stack>
                           </Pressable>
@@ -183,8 +184,9 @@ export const AccountsScreen = withErrorBoundary(
                           {
                             <Button
                               width="50%"
-                              size="sm"
+                              size="xs"
                               disabled={account.readOnly}
+                              variant={'whiteButton'}
                               colorScheme="dark"
                               {...addTestId('TokenSend')}
                               onPress={() => {
@@ -192,13 +194,17 @@ export const AccountsScreen = withErrorBoundary(
                                   address: account.id,
                                 });
                               }}>
-                              {translate('account_list.send_token')}
+                              <Typography
+                                color={Theme.colors.primaryBackground}>
+                                {translate('account_list.send_token')}
+                              </Typography>
                             </Button>
                           }
                           <Button
                             width="50%"
-                            size="sm"
+                            size="xs"
                             ml={2}
+                            variant={'whiteButton'}
                             colorScheme="dark"
                             {...addTestId('TokenReceive')}
                             onPress={() => {
@@ -206,7 +212,9 @@ export const AccountsScreen = withErrorBoundary(
                                 address: account.id,
                               });
                             }}>
-                            {translate('account_list.receive_token')}
+                            <Typography color={Theme.colors.primaryBackground}>
+                              {translate('account_list.receive_token')}
+                            </Typography>
                           </Button>
                         </Stack>
                       </Stack>
@@ -312,6 +320,9 @@ export const AccountsContainer = withErrorBoundary(({navigation}) => {
 
           dispatch(createAccountOperations.importFromJson(fileData));
         }
+        logAnalyticsEvent(ANALYTICS_EVENT.ACCOUNT.IMPORT, {
+          method,
+        });
       }}
     />
   );

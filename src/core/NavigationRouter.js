@@ -18,7 +18,7 @@ import {ImportAccountPasswordContainer} from '../features/accounts/ImportAccount
 import {ImportAccountSetupContainer} from '../features/accounts/ImportAccountSetupScreen';
 import {AppSettingsContainer} from '../features/app/AppSettingsScreen';
 import {SplashScreen} from '../features/app/SplashScreen';
-import {QRScanScreen} from '../features/qr-code-scanner/QRScanScreen';
+import {QRScanContainer} from '../features/qr-code-scanner/QRScanScreen';
 import {UnlockWalletContainer} from '../features/unlock-wallet/UnlockWalletScreen';
 import {CreatePasscodeContainer} from '../features/wallet/CreatePasscodeScreen';
 import {CreateWalletScreen} from '../features/wallet/CreateWalletScreen';
@@ -188,7 +188,7 @@ function AppStackScreen() {
       <AppStack.Screen
         {...getScreenProps({
           name: Routes.APP_QR_SCANNER,
-          component: QRScanScreen,
+          component: QRScanContainer,
         })}
       />
 

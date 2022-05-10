@@ -5,7 +5,7 @@ exports[`SetupPasscodeScreen should render correctly 1`] = `
   accessibilityLabel="SetupPasscodeScreen"
   style={
     Object {
-      "backgroundColor": "#18181B",
+      "backgroundColor": "#000",
       "flex": 1,
     }
   }

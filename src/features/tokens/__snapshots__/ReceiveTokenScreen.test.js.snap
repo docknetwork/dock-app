@@ -5,7 +5,7 @@ exports[`ReceiveTokensScreen should render correctly 1`] = `
   accessibilityLabel="ReceiveTokenScreen"
   style={
     Object {
-      "backgroundColor": "#18181B",
+      "backgroundColor": "#000",
       "flex": 1,
     }
   }

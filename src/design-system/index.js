@@ -54,7 +54,7 @@ export function AppGlobalHeader() {
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    backgroundColor: Theme.colors.primaryBackground,
+    backgroundColor: Theme.screen.backgroundColor,
   },
 });
 
@@ -70,7 +70,7 @@ export function ScreenContainer({
       <Box flex={1}>
         <Box flex={1}>{children}</Box>
         {showTabNavigation ? (
-          <Box flex={1} flexGrow={isAndroid() ? 0.15 : 0.07}>
+          <Box flex={1} flexGrow={isAndroid() ? 0.15 : 0.11}>
             <TabNavigation />
           </Box>
         ) : null}

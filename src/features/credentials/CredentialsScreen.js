@@ -1,8 +1,7 @@
 import React from 'react';
 import {translate} from 'src/locales';
-import {navigate} from '../../core/navigation';
+import {PolkadotIcon} from '../../components/PolkadotIcon';
 import {
-  BackButton,
   Box,
   Content,
   EmptyCredentialIcon,
@@ -17,10 +16,8 @@ import {
 import PlusCircleWhiteIcon from '../../assets/icons/plus-circle-white.svg';
 import {addTestId} from '../../core/automation-utils';
 import {Center, Image, Text, Stack, Menu, Pressable} from 'native-base';
-import {ICenterProps} from 'native-base/lib/typescript/components/composites/Center/types';
-import {useCredentials, getObjectFields} from './credentials';
+import {useCredentials, getObjectFields, getDIDAddress} from './credentials';
 import {formatDate} from '@docknetwork/wallet-sdk-core/lib/core/format-utils';
-import {Routes} from 'src/core/routes';
 import {withErrorBoundary} from 'src/core/error-handler';
 
 function renderObjectAttributes(credential) {
@@ -51,7 +48,7 @@ function renderObjectAttributes(credential) {
   );
 }
 
-function EmptyCredentials(props: ICenterProps) {
+function EmptyCredentials(props) {
   return (
     <Center {...props}>
       <Box borderRadius={72} width={72} height={72} backgroundColor={'#27272A'}>
@@ -63,7 +60,7 @@ function EmptyCredentials(props: ICenterProps) {
         fontSize={14}
         pt={2}
         fontWeight={400}
-        fontFamily={Theme.fontFamily.nunitoSans}>
+        fontFamily={Theme.fontFamily.default}>
         {translate('credentials.empty_items')}
       </Text>
     </Center>
@@ -101,6 +98,7 @@ const CredentialListItem = withErrorBoundary(({credential, onRemove}) => {
             trigger={triggerProps => {
               return (
                 <Pressable
+                  p={2}
                   {...triggerProps}
                   _pressed={{
                     opacity: Theme.touchOpacity,
@@ -126,15 +124,22 @@ const CredentialListItem = withErrorBoundary(({credential, onRemove}) => {
           </Text>
         </NBox>
         <NBox flex={1} alignItems={'flex-end'}>
-          <Image
-            borderRadius={8}
-            width={50}
-            height={50}
-            alt={''}
-            source={{
-              uri: credential.issuer.logo,
-            }}
-          />
+          {credential.issuer.logo ? (
+            <Image
+              borderRadius={8}
+              width={50}
+              height={50}
+              alt={''}
+              source={{
+                uri: credential.issuer.logo,
+              }}
+            />
+          ) : (
+            <PolkadotIcon
+              address={getDIDAddress(credential.issuer.id)}
+              size={32}
+            />
+          )}
         </NBox>
       </NBox>
     </NBox>
@@ -146,34 +151,27 @@ export function CredentialsScreen({credentials, onRemove, onAdd}) {
     <ScreenContainer {...addTestId('CredentialsScreen')} showTabNavigation>
       <Header>
         <Box
-          marginLeft={1}
+          marginLeft={22}
           marginRight={22}
           flexDirection="row"
           alignItems="center">
-          <NBox width={'80px'}>
-            <BackButton onPress={() => navigate(Routes.ACCOUNTS)} />
-          </NBox>
-          <NBox
-            flex={1}
-            width="100%"
-            alignContent="center"
-            alignItems="center"
-            pl={15}>
-            <Typography variant="h3">
+          <Box flex={1}>
+            <Typography fontFamily="Montserrat" fontSize={24} fontWeight="600">
               {translate('credentials.title')}
             </Typography>
-          </NBox>
-          <NBox width="80px" alignItems="flex-end">
+          </Box>
+          <Box row>
             <IconButton onPress={onAdd} col>
               <PlusCircleWhiteIcon />
             </IconButton>
-          </NBox>
+          </Box>
         </Box>
       </Header>
       <Content>
         {credentials.length ? (
           credentials.map(item => (
             <CredentialListItem
+              key={item.id}
               credential={item.content}
               onRemove={() => onRemove(item)}
             />

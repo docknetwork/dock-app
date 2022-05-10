@@ -1,0 +1,434 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QRScanScreen should render correctly when isScreenFocus=false 1`] = `
+<StyledNativeComponent
+  forwardedComponent={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "inlineStyle": InlineStyle {
+        "rules": Array [
+          "
+  flex: 1;
+  background-color: ",
+          "#013c73",
+          ";
+",
+        ],
+      },
+      "render": [Function],
+      "shouldForwardProp": undefined,
+      "styledComponentId": "StyledNativeComponent",
+      "target": [Function],
+      "withComponent": [Function],
+    }
+  }
+  forwardedRef={null}
+>
+  <Styled(View) />
+  <Styled(Component)>
+    <Styled(View)>
+      <Styled(Text)
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "Satoshi",
+          }
+        }
+      >
+        Scan QR Code
+      </Styled(Text)>
+      <Styled(View)>
+        <TouchableWithoutFeedback
+          onPress={[Function]}
+          style={
+            Object {
+              "padding": 20,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontFamily": "Satoshi",
+              }
+            }
+          >
+            Back
+          </Text>
+        </TouchableWithoutFeedback>
+      </Styled(View)>
+    </Styled(View)>
+    <Styled(View)>
+      <View
+        style={
+          Object {
+            "height": 230,
+            "width": 240,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#00C0D9",
+                "borderStyle": "solid",
+                "height": 60,
+                "position": "absolute",
+                "width": 60,
+              },
+              Object {
+                "borderLeftWidth": 12,
+                "borderTopWidth": 12,
+                "left": 0,
+                "top": 0,
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#00C0D9",
+                "borderStyle": "solid",
+                "height": 60,
+                "position": "absolute",
+                "width": 60,
+              },
+              Object {
+                "borderRightWidth": 12,
+                "borderTopWidth": 12,
+                "right": 0,
+                "top": 0,
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#00C0D9",
+                "borderStyle": "solid",
+                "height": 60,
+                "position": "absolute",
+                "width": 60,
+              },
+              Object {
+                "borderBottomWidth": 12,
+                "borderLeftWidth": 12,
+                "bottom": 0,
+                "left": 0,
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#00C0D9",
+                "borderStyle": "solid",
+                "height": 60,
+                "position": "absolute",
+                "width": 60,
+              },
+              Object {
+                "borderBottomWidth": 12,
+                "borderRightWidth": 12,
+                "bottom": 0,
+                "right": 0,
+              },
+            ]
+          }
+        />
+      </View>
+    </Styled(View)>
+    <TouchableWithoutFeedback
+      onPress={[Function]}
+    >
+      <Styled(View)>
+        <Styled(Text)>
+          Scan the QR Code
+        </Styled(Text)>
+        <Styled(Text)>
+          Place the code inside the box
+        </Styled(Text)>
+      </Styled(View)>
+    </TouchableWithoutFeedback>
+  </Styled(Component)>
+</StyledNativeComponent>
+`;
+
+exports[`QRScanScreen should render correctly when isScreenFocus=true 1`] = `
+<StyledNativeComponent
+  forwardedComponent={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "inlineStyle": InlineStyle {
+        "rules": Array [
+          "
+  flex: 1;
+  background-color: ",
+          "#013c73",
+          ";
+",
+        ],
+      },
+      "render": [Function],
+      "shouldForwardProp": undefined,
+      "styledComponentId": "StyledNativeComponent",
+      "target": [Function],
+      "withComponent": [Function],
+    }
+  }
+  forwardedRef={null}
+>
+  <Styled(View)>
+    <QRCodeScanner
+      bottomViewStyle={
+        Object {
+          "flex": 0,
+          "height": 0,
+        }
+      }
+      buttonPositive="OK"
+      cameraProps={Object {}}
+      cameraStyle={
+        Object {
+          "height": 1334,
+        }
+      }
+      cameraTimeout={0}
+      cameraTimeoutView={
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "black",
+              "flex": 0,
+              "height": 1334,
+              "justifyContent": "center",
+              "width": 750,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "white",
+              }
+            }
+          >
+            Tap to activate camera
+          </Text>
+        </View>
+      }
+      cameraType="back"
+      checkAndroid6Permissions={false}
+      fadeIn={true}
+      flashMode={1}
+      notAuthorizedView={
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "fontSize": 16,
+                "textAlign": "center",
+              }
+            }
+          >
+            Camera not authorized
+          </Text>
+        </View>
+      }
+      onRead={[Function]}
+      pendingAuthorizationView={
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "fontSize": 16,
+                "textAlign": "center",
+              }
+            }
+          >
+            ...
+          </Text>
+        </View>
+      }
+      permissionDialogMessage="Need camera permission"
+      permissionDialogTitle="Info"
+      reactivate={true}
+      reactivateTimeout={10000}
+      showMarker={false}
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+      topViewStyle={
+        Object {
+          "flex": 0,
+          "height": 0,
+        }
+      }
+      vibrate={true}
+    />
+  </Styled(View)>
+  <Styled(Component)>
+    <Styled(View)>
+      <Styled(Text)
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "Satoshi",
+          }
+        }
+      >
+        Scan QR Code
+      </Styled(Text)>
+      <Styled(View)>
+        <TouchableWithoutFeedback
+          onPress={[Function]}
+          style={
+            Object {
+              "padding": 20,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontFamily": "Satoshi",
+              }
+            }
+          >
+            Back
+          </Text>
+        </TouchableWithoutFeedback>
+      </Styled(View)>
+    </Styled(View)>
+    <Styled(View)>
+      <View
+        style={
+          Object {
+            "height": 230,
+            "width": 240,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#00C0D9",
+                "borderStyle": "solid",
+                "height": 60,
+                "position": "absolute",
+                "width": 60,
+              },
+              Object {
+                "borderLeftWidth": 12,
+                "borderTopWidth": 12,
+                "left": 0,
+                "top": 0,
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#00C0D9",
+                "borderStyle": "solid",
+                "height": 60,
+                "position": "absolute",
+                "width": 60,
+              },
+              Object {
+                "borderRightWidth": 12,
+                "borderTopWidth": 12,
+                "right": 0,
+                "top": 0,
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#00C0D9",
+                "borderStyle": "solid",
+                "height": 60,
+                "position": "absolute",
+                "width": 60,
+              },
+              Object {
+                "borderBottomWidth": 12,
+                "borderLeftWidth": 12,
+                "bottom": 0,
+                "left": 0,
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#00C0D9",
+                "borderStyle": "solid",
+                "height": 60,
+                "position": "absolute",
+                "width": 60,
+              },
+              Object {
+                "borderBottomWidth": 12,
+                "borderRightWidth": 12,
+                "bottom": 0,
+                "right": 0,
+              },
+            ]
+          }
+        />
+      </View>
+    </Styled(View)>
+    <TouchableWithoutFeedback
+      onPress={[Function]}
+    >
+      <Styled(View)>
+        <Styled(Text)>
+          Scan the QR Code
+        </Styled(Text)>
+        <Styled(Text)>
+          Place the code inside the box
+        </Styled(Text)>
+      </Styled(View)>
+    </TouchableWithoutFeedback>
+  </Styled(Component)>
+</StyledNativeComponent>
+`;

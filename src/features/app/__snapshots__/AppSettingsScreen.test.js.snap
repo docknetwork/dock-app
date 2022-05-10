@@ -4,7 +4,7 @@ exports[`AppSettingsScreen should render correctly 1`] = `
 <RNCSafeAreaView
   style={
     Object {
-      "backgroundColor": "#18181B",
+      "backgroundColor": "#000",
       "flex": 1,
     }
   }
@@ -21,32 +21,22 @@ exports[`AppSettingsScreen should render correctly 1`] = `
         <Box
           alignItems="center"
           flexDirection="row"
-          marginLeft={1}
+          marginLeft={22}
           marginRight={22}
         >
-          <Memo(ForwardRef(Box))
-            width="80px"
-          >
-            <BackButton
-              onPress={[Function]}
-            />
-          </Memo(ForwardRef(Box))>
-          <Memo(ForwardRef(Box))
-            alignContent="center"
-            alignItems="center"
+          <Box
             flex={1}
-            pl={15}
-            width="100%"
           >
             <Styled(Component)
-              variant="h3"
+              fontFamily="Montserrat"
+              fontSize={24}
+              fontWeight="600"
             >
               Settings
             </Styled(Component)>
-          </Memo(ForwardRef(Box))>
-          <Memo(ForwardRef(Box))
-            alignItems="flex-end"
-            width="80px"
+          </Box>
+          <Box
+            row={true}
           />
         </Box>
       </Styled(View)>
@@ -85,7 +75,7 @@ exports[`AppSettingsScreen should render correctly 1`] = `
     </Memo(ForwardRef(Box))>
     <Memo(ForwardRef(Box))
       flex={1}
-      flexGrow={0.07}
+      flexGrow={0.11}
     >
       <TabNavigation />
     </Memo(ForwardRef(Box))>

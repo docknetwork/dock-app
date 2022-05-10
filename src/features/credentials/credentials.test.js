@@ -4,6 +4,7 @@ import {
   getCredentialTimestamp,
   useCredentials,
   getObjectFields,
+  getDIDAddress,
 } from './credentials';
 import {Credentials} from '@docknetwork/wallet-sdk-credentials/lib';
 
@@ -62,6 +63,23 @@ describe('Credentials helpers', () => {
 
       result.forEach((item, idx) => expect(item.id).toEqual(idx));
     });
+  });
+
+  it('getDIDAddress', () => {
+    expect(() => getDIDAddress(null)).toThrowError();
+    expect(
+      getDIDAddress(
+        'did:dock:5CNyqnHYmrbSE9nmQnpyhdZHi1TavExi3kFWbfrRh1WxQw6A',
+      ),
+    ).toBe('5CNyqnHYmrbSE9nmQnpyhdZHi1TavExi3kFWbfrRh1WxQw6A');
+    expect(
+      getDIDAddress(
+        'did:other:5CNyqnHYmrbSE9nmQnpyhdZHi1TavExi3kFWbfrRh1WxQw6A',
+      ),
+    ).toBe('5CNyqnHYmrbSE9nmQnpyhdZHi1TavExi3kFWbfrRh1WxQw6A');
+    expect(
+      getDIDAddress('5CNyqnHYmrbSE9nmQnpyhdZHi1TavExi3kFWbfrRh1WxQw6A'),
+    ).toBe('5CNyqnHYmrbSE9nmQnpyhdZHi1TavExi3kFWbfrRh1WxQw6A');
   });
 
   describe('useCredentials', () => {

@@ -5,7 +5,7 @@ exports[`UnlockWalletScreen should render correctly 1`] = `
   accessibilityLabel="unlockWalletScreen"
   style={
     Object {
-      "backgroundColor": "#18181B",
+      "backgroundColor": "#000",
       "flex": 1,
     }
   }

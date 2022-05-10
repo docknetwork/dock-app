@@ -14,6 +14,8 @@ import styled from 'styled-components/native';
 import {navigateBack} from '../../core/navigation';
 import {Colors} from '../../theme/colors';
 import {qrCodeHandler} from './qr-code';
+import {translate} from '../../locales';
+import {useIsFocused} from '@react-navigation/native';
 
 const Container = styled.View`
   flex: 1;
@@ -81,31 +83,35 @@ const QRCodeContainer = styled.View`
   height: 100%;
 `;
 
-export function QRScanScreen({route}) {
-  const {onData = qrCodeHandler} = route.params || {};
-
+export function QRScanScreen({onData, isScreenFocus}) {
   return (
     <Container>
       <QRCodeContainer>
-        <QRCodeScanner
-          style={styles.scanner}
-          reactivate={true}
-          reactivateTimeout={10000}
-          flashMode={RNCamera.Constants.FlashMode.off}
-          cameraStyle={{height: Dimensions.get('window').height}}
-          topViewStyle={styles.scannerTopView}
-          bottomViewStyle={styles.scannerBottomView}
-          onRead={event => onData(event.data)}
-        />
+        {Boolean(isScreenFocus) && (
+          <QRCodeScanner
+            style={styles.scanner}
+            reactivate={true}
+            reactivateTimeout={10000}
+            flashMode={RNCamera.Constants.FlashMode.off}
+            cameraStyle={{height: Dimensions.get('window').height}}
+            topViewStyle={styles.scannerTopView}
+            bottomViewStyle={styles.scannerBottomView}
+            onRead={event => onData(event.data)}
+          />
+        )}
       </QRCodeContainer>
       <Wrapper>
         <Header>
-          <Title>Scan QR Code</Title>
+          <Title style={styles.headerText}>
+            {translate('qr_scanner.scan_qr_code')}
+          </Title>
           <IconContainer>
             <TouchableWithoutFeedback
               onPress={navigateBack}
               style={styles.headerIcon}>
-              <Text style={styles.headerText}>Back</Text>
+              <Text style={styles.headerText}>
+                {translate('navigation.back')}
+              </Text>
             </TouchableWithoutFeedback>
           </IconContainer>
         </Header>
@@ -131,7 +137,12 @@ export function QRScanScreen({route}) {
     </Container>
   );
 }
+export function QRScanContainer({route}) {
+  const {onData = qrCodeHandler} = route.params || {};
+  const isScreenFocus = useIsFocused();
 
+  return <QRScanScreen onData={onData} isScreenFocus={isScreenFocus} />;
+}
 const styles = StyleSheet.create({
   centerText: {
     flex: 1,
@@ -198,5 +209,6 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: Theme.colors.textHighlighted,
+    fontFamily: Theme.fontFamily.default,
   },
 });

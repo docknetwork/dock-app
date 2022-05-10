@@ -6,6 +6,8 @@ export const Theme = {
   fontFamily: {
     nunitoSans: 'Nunito Sans',
     montserrat: 'Montserrat',
+    satoshi: 'Satoshi',
+    default: 'Satoshi',
   },
   borderRadius: 6,
   colors: {
@@ -33,13 +35,19 @@ export const Theme = {
     transactionPending: '#FBBF24',
     qrCodeBackground: '#fff',
     credentialCardBg: '#000',
+
+    primaryBlue: '#0063F7',
+
+    inactiveText: '#fff',
+    activeText: '#18181B',
   },
   screen: {
-    backgroundColor: '#18181B',
+    backgroundColor: '#000',
   },
   button: {
-    backgroundColor: '#1E75C5',
+    backgroundColor: '#0063F7',
     textColor: '#fff',
+    btnWhiteBackground: '#F4F4F5',
   },
   touchOpacity: 0.2,
 };
@@ -58,7 +66,7 @@ const nBaseTheme = extendTheme({
       // 200: '#A2D4EC',
       // 300: '#ccc',
 
-      400: Theme.colors.info2,
+      400: Theme.colors.primaryBlue,
 
       // 500: '#0088CC',
       // 600: '#007AB8',
@@ -74,12 +82,19 @@ const nBaseTheme = extendTheme({
     },
   },
   components: {
+    Select: {
+      baseStyle: props => ({
+        ...props,
+        fontFamily: Theme.fontFamily.default,
+      }),
+    },
     Input: {
       baseStyle: {
         background: 'black',
         borderColor: Theme.colors.secondaryBackground,
         backgroundColor: Theme.colors.secondaryBackground,
         fontSize: '19px',
+        fontFamily: Theme.fontFamily.default,
         _hover: {
           borderColor: Theme.colors.secondaryBackground,
         },
@@ -100,17 +115,19 @@ const nBaseTheme = extendTheme({
     },
     Text: {
       baseStyle: props => ({
-        fontFamily: !props.montserrat ? 'Nunito Sans' : 'Montserrat',
+        fontFamily: Theme.fontFamily.default,
       }),
     },
     Button: {
       variants: {
+        whiteButton: props => ({
+          bg: Theme.button.btnWhiteBackground,
+        }),
         transactionFilter: ({isActive}) => {
           return {
             bg: isActive
-              ? Theme.button.backgroundColor
+              ? Theme.button.btnWhiteBackground
               : Theme.colors.secondaryBackground,
-            rounded: 'full',
             mr: 1,
             role: 'button',
             paddingBottom: 0,
@@ -119,7 +136,7 @@ const nBaseTheme = extendTheme({
         },
         transactionRetry: ({}) => {
           return {
-            bg: Theme.colors.secondaryBackground,
+            bg: Theme.button.btnWhiteBackground,
             role: 'button',
             mt: 3,
             borderRadius: 7,
@@ -127,6 +144,7 @@ const nBaseTheme = extendTheme({
         },
       },
       baseStyle: props => ({
+        rounded: 'full',
         _stack: {
           my: 1,
         },

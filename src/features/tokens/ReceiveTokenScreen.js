@@ -20,6 +20,7 @@ import {
 } from '../../design-system';
 import {translate} from '../../locales';
 import {accountSelectors} from '../accounts/account-slice';
+import {ANALYTICS_EVENT, logAnalyticsEvent} from '../analytics/analytics-slice';
 
 export function ReceiveTokenScreen({
   address,
@@ -96,12 +97,19 @@ export function ReceiveTokenContainer({route}) {
     showToast({
       message: translate('receive_token.address_copied'),
     });
+    logAnalyticsEvent(ANALYTICS_EVENT.TOKENS.RECEIVE_TOKEN, {
+      address,
+    });
   };
 
-  const handleShareAddress = () =>
+  const handleShareAddress = () => {
     Share.open({
       message: address,
     });
+    logAnalyticsEvent(ANALYTICS_EVENT.TOKENS.RECEIVE_TOKEN, {
+      address,
+    });
+  };
 
   return (
     <ReceiveTokenScreen

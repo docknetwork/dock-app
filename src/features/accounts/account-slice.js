@@ -12,6 +12,7 @@ import {translate} from 'src/locales';
 import {getRealm} from 'src/core/realm';
 import {appOperations} from '../app/app-slice';
 import {Logger} from 'src/core/logger';
+import {ANALYTICS_EVENT, logAnalyticsEvent} from '../analytics/analytics-slice';
 
 // Period in seconds
 const BALANCE_FETCH_PERIOD = 30;
@@ -77,6 +78,19 @@ export function exportFile({path, mimeType, errorMessage}) {
         message: errorMessage,
         type: 'error',
       });
+      logAnalyticsEvent(ANALYTICS_EVENT.FAILURES, {
+        name: ANALYTICS_EVENT.WALLET.BACKUP,
+        path,
+        mimeType,
+        errorMessage: err.message,
+      });
+    })
+    .then(() => {
+      logAnalyticsEvent(ANALYTICS_EVENT.WALLET.BACKUP, {
+        path,
+        mimeType,
+        errorMessage,
+      });
     })
     .finally(() => {
       RNFS.unlink(path);
@@ -133,6 +147,10 @@ export const accountOperations = {
         console.log(err);
         await WalletRpc.load();
         await WalletRpc.update(updatedAccount);
+        logAnalyticsEvent(ANALYTICS_EVENT.FAILURES, {
+          message: err.message,
+          name: ANALYTICS_EVENT.ACCOUNT.BACKUP,
+        });
       }
 
       dispatch(accountActions.setAccountToBackup(null));
@@ -145,6 +163,9 @@ export const accountOperations = {
 
       showToast({
         message: translate('create_account_backup.success'),
+      });
+      logAnalyticsEvent(ANALYTICS_EVENT.ACCOUNT.BACKUP, {
+        accountId: account.id,
       });
     }),
 
@@ -162,6 +183,7 @@ export const accountOperations = {
       const phrase = result[0].value;
 
       dispatch(createAccountActions.setMnemonicPhrase(phrase));
+
       navigate(Routes.CREATE_ACCOUNT_MNEMONIC);
     }),
   addAccountFlow: () => async (dispatch, getState) => {
@@ -200,6 +222,10 @@ export const accountOperations = {
 
       showToast({
         message: translate('account_details.export_success'),
+      });
+      logAnalyticsEvent(ANALYTICS_EVENT.ACCOUNT.EXPORT, {
+        method,
+        accountId,
       });
     },
 

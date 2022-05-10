@@ -18,6 +18,7 @@ import {Logger} from 'src/core/logger';
 import {clearCacheData} from '../../core/realm';
 import Clipboard from '@react-native-community/clipboard';
 import {pickDocuments} from '../../core/storage-utils';
+import {ANALYTICS_EVENT, logAnalyticsEvent} from '../analytics/analytics-slice';
 
 const initialState = {
   loading: true,
@@ -168,11 +169,15 @@ export const walletOperations = {
           type: 'error',
           duration: 5000,
         });
-
+        logAnalyticsEvent(ANALYTICS_EVENT.FAILURES, {
+          message: err.message,
+          fileUri,
+          name: ANALYTICS_EVENT.WALLET.IMPORT,
+        });
         navigate(Routes.CREATE_WALLET);
         return;
       }
-
+      logAnalyticsEvent(ANALYTICS_EVENT.WALLET.IMPORT);
       dispatch(
         walletActions.setCreationFlags({
           importWalletFlow: true,
