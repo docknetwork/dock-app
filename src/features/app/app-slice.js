@@ -48,8 +48,13 @@ function getNetworkInfo(networkId) {
   return networkInfo;
 }
 
-function initKeyring(networkId) {
+async function initKeyring(networkId) {
   const addressPrefix = getNetworkInfo(networkId).addressPrefix;
+
+  const result = await KeyringRpc.createNewKeypair({ type: `some-type`});
+
+  debugger;
+
 
   return KeyringRpc.initialize({
     ss58Format: addressPrefix,
