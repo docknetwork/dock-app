@@ -43,3 +43,7 @@ const dateFormat = new Intl.DateTimeFormat(['en-US'], {
 export function formatDate(date) {
   return dateFormat.format(typeof date === 'string' ? new Date(date) : date);
 }
+
+export function isValidDate(strDate) {
+  return isNaN(Date.parse(strDate)) === false;
+}

@@ -17,8 +17,8 @@ import PlusCircleWhiteIcon from '../../assets/icons/plus-circle-white.svg';
 import {addTestId} from '../../core/automation-utils';
 import {Center, Image, Text, Stack, Menu, Pressable} from 'native-base';
 import {useCredentials, getObjectFields, getDIDAddress} from './credentials';
-import {formatDate} from '@docknetwork/wallet-sdk-core/lib/core/format-utils';
 import {withErrorBoundary} from 'src/core/error-handler';
+import {formatDate, isValidDate} from '../../core/format-utils';
 
 function renderObjectAttributes(credential) {
   const objectAttributes = getObjectFields(credential);
@@ -39,7 +39,11 @@ function renderObjectAttributes(credential) {
             {Object.keys(attr).map(attrKey => {
               const item = attr[attrKey];
 
-              return <Text fontSize={'12px'}>{item}</Text>;
+              return (
+                <Text fontSize={'12px'}>
+                  {isValidDate(item) ? formatDate(item) : item}
+                </Text>
+              );
             })}
           </Stack>
         );

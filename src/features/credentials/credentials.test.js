@@ -8,6 +8,7 @@ import {
   processCredential,
 } from './credentials';
 import {Credentials} from '@docknetwork/wallet-sdk-credentials/lib';
+import {isValidDate} from '../../core/format-utils';
 
 const mockCreds = [
   {
@@ -145,6 +146,10 @@ describe('Credentials helpers', () => {
   });
 
   describe('getObjectFields', () => {
+    it('Is Date valid', () => {
+      expect(isValidDate('2020-01-01')).toBeTruthy();
+      expect(isValidDate('abc')).toBeFalsy();
+    });
     it('expect to validate credential', () => {
       expect(() => getObjectFields(null)).toThrowError();
     });
