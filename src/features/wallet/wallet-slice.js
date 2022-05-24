@@ -56,11 +56,32 @@ export const walletSelectors = {
   getCreationFlags: state => getRoot(state).creationFlags || {},
 };
 
+export const verifyJSONCredentialFormat = walletJSONData => {
+  const walletDataKeys = Object.keys(walletJSONData);
+
+  const mustHaveKeys = [
+    '@context',
+    'type',
+    'credentialSubject',
+    'issuer',
+    'issuanceDate',
+  ];
+  for (const singleMustKey of mustHaveKeys) {
+    if (!walletDataKeys.includes(singleMustKey)) {
+      return false;
+    }
+  }
+  return true;
+};
+
 export async function validateWalletImport(fileData, password) {
   let jsonData;
 
   try {
     jsonData = JSON.parse(fileData);
+    if (!verifyJSONCredentialFormat(jsonData)) {
+      throw new Error(translate('import_wallet.invalid_file'));
+    }
   } catch (err) {
     console.error(err);
     throw new Error(translate('import_wallet.invalid_file'));

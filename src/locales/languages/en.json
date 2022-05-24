@@ -63,7 +63,7 @@
     "successMessage": "Wallet imported",
     "submit": "Import wallet",
     "invalid_file": "Invalid backup file",
-    "import_error": "Invalid backup file or incorrect password"
+    "import_error": "Incorrect password"
   },
   "create_wallet": {
     "create_new": "Create a new wallet",
