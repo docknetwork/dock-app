@@ -18,7 +18,7 @@ import {addTestId} from '../../core/automation-utils';
 import {Center, Image, Text, Stack, Menu, Pressable} from 'native-base';
 import {useCredentials, getObjectFields, getDIDAddress} from './credentials';
 import {withErrorBoundary} from 'src/core/error-handler';
-import {formatDate, isValidDate} from '../../core/format-utils';
+import {formatDate} from '../../core/format-utils';
 
 function renderObjectAttributes(credential) {
   const objectAttributes = getObjectFields(credential);
