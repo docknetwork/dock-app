@@ -39,11 +39,7 @@ function renderObjectAttributes(credential) {
             {Object.keys(attr).map(attrKey => {
               const item = attr[attrKey];
 
-              return (
-                <Text fontSize={'12px'}>
-                  {isValidDate(item) ? formatDate(item) : item}
-                </Text>
-              );
+              return <Text fontSize={'12px'}>{item}</Text>;
             })}
           </Stack>
         );
