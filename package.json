@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
-    "@docknetwork/react-native-sdk": "github:docknetwork/react-native-sdk#9d13731a9e1dfdb6fb30eeeb38803c7ab7f460ba",
+    "@docknetwork/react-native-sdk": "github:docknetwork/react-native-sdk#master",
     "@docknetwork/wallet-sdk-core": "^0.2.3",
     "@docknetwork/wallet-sdk-credentials": "^0.2.3",
     "@docknetwork/wallet-sdk-react-native": "^0.2.3",
