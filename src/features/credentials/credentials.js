@@ -8,10 +8,11 @@ import assert from 'assert';
 import {credentialServiceRPC} from '@docknetwork/wallet-sdk-core/lib/services/credential';
 import {Wallet} from '@docknetwork/wallet-sdk-core/lib/modules/wallet';
 import queryString from 'query-string';
-const wallet = Wallet.getInstance();
 import {ANALYTICS_EVENT, logAnalyticsEvent} from '../analytics/analytics-slice';
 import {captureException} from '@sentry/react-native';
 import {walletService} from '@docknetwork/wallet-sdk-core/lib/services/wallet';
+
+const wallet = Wallet.getInstance();
 
 export const sortByIssuanceDate = (a, b) =>
   getCredentialTimestamp(b.content) - getCredentialTimestamp(a.content);
@@ -82,6 +83,9 @@ export async function processCredential(credential) {
   };
 }
 
+export function doesCredentialExist(allCredentials, credentialToAdd) {
+  return !!allCredentials.find(item => item.content.id === credentialToAdd.id);
+}
 export function useCredentials({onPickFile = pickJSONFile} = {}) {
   const [items, setItems] = useState([]);
 
@@ -112,7 +116,7 @@ export function useCredentials({onPickFile = pickJSONFile} = {}) {
     }
 
     try {
-      if (items.find(item => item.content.id === item.id)) {
+      if (doesCredentialExist(items, jsonData)) {
         showToast({
           message: translate('credentials.existing_credential'),
           type: 'error',
@@ -145,36 +149,77 @@ export function getParamsFromUrl(url, param) {
   const parsed = queryString.parse(url.substring(startOfQueryParams));
   return parsed[param] ? parsed[param] : '';
 }
-export async function onScanAuthQRCode(url) {
+
+export async function getOwnedDIDs() {
   try {
     const didResolutionDocuments = await wallet.query({
       type: 'DIDResolutionResponse',
     });
 
-    if (didResolutionDocuments.length > 0) {
-      const correlationDocs = await walletService.resolveCorrelations(
-        didResolutionDocuments[0].id,
-      );
-      const keyDoc = correlationDocs.find(
-        document => document.type === 'Ed25519VerificationKey2018',
-      );
-      const subject = {
-        state: getParamsFromUrl(url, 'id'),
-      };
-      const verifiableCredential =
-        await credentialServiceRPC.generateCredential({
-          subject,
-        });
-      if (keyDoc) {
-        return credentialServiceRPC.signCredential({
-          vcJson: verifiableCredential,
-          keyDoc,
-        });
-      }
-    }
-    throw new Error(translate('qr_scanner.no_key_doc'));
+    const keyPairs = await Promise.all(
+      didResolutionDocuments.map(async didDoc => {
+        const correlationDocs = await walletService.resolveCorrelations(
+          didResolutionDocuments[0].id,
+        );
+        const keyDoc = correlationDocs.find(
+          document => document.type.indexOf('VerificationKey') !== -1,
+        );
+        return (
+          keyDoc && {
+            didDoc,
+            keyDoc,
+          }
+        );
+      }),
+    );
+
+    return keyPairs.filter(r => !!r);
   } catch (e) {
+    console.error(e);
     captureException(e);
     throw new Error(e.message);
+  }
+}
+
+function generateAuthVC(credentialSubject) {
+  const AUTHCRED_EXPIRY_MINS = 10;
+  const expirationDate = new Date(
+    new Date().getTime() + AUTHCRED_EXPIRY_MINS * 60000,
+  );
+  return {
+    '@context': [
+      'https://www.w3.org/2018/credentials/v1',
+      {
+        dk: 'https://ld.dock.io/credentials#',
+        DockAuthCredential: 'dk:DockAuthCredential',
+        name: 'dk:name',
+        email: 'dk:email',
+        state: 'dk:state',
+      },
+    ],
+    id: `didauth:${credentialSubject.state}`,
+    type: ['VerifiableCredential', 'DockAuthCredential'],
+    credentialSubject,
+    expirationDate: expirationDate.toISOString(),
+  };
+}
+
+export async function onScanAuthQRCode(url, keyDoc, profile) {
+  if (keyDoc) {
+    try {
+      const verifiableCredential = generateAuthVC({
+        ...profile,
+        state: getParamsFromUrl(url, 'id'),
+      });
+      return credentialServiceRPC.signCredential({
+        vcJson: verifiableCredential,
+        keyDoc,
+      });
+    } catch (e) {
+      captureException(e);
+      throw new Error(e.message);
+    }
+  } else {
+    throw new Error(translate('qr_scanner.no_key_doc'));
   }
 }

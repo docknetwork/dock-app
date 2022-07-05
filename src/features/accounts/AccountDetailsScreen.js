@@ -568,8 +568,6 @@ export function AccountDetailsContainer({route}) {
     dispatch(accountOperations.fetchAccountBalance(account.address));
   }, [dispatch, account]);
 
-  console.log('account details', account);
-
   if (!account) {
     return <LoadingScreen />;
   }

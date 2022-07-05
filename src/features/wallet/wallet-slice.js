@@ -20,7 +20,7 @@ import {clearCacheData} from '../../core/realm';
 import Clipboard from '@react-native-community/clipboard';
 import {pickDocuments} from '../../core/storage-utils';
 import {ANALYTICS_EVENT, logAnalyticsEvent} from '../analytics/analytics-slice';
-
+import {authenticationActions} from '../unlock-wallet/unlock-wallet-slice';
 const initialState = {
   loading: true,
   passcode: null,
@@ -249,7 +249,7 @@ export const walletOperations = {
           });
         }
       }
-
+      dispatch(authenticationActions.setAuth({isLoggedIn: true}));
       if (callback) {
         callback();
       } else {

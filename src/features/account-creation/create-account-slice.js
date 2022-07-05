@@ -114,7 +114,10 @@ export const createAccountOperations = {
     }, translate('import_account.invalid_account_data')),
   unlockJson: password => async (dispatch, getState) => {
     const form = createAccountSelectors.getForm(getState());
-
+    await keyringService.addFromJson({
+      jsonData: form.data,
+      password,
+    });
     dispatch(
       createAccountActions.setForm({
         ...form,

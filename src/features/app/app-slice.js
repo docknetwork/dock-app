@@ -145,9 +145,11 @@ export const appOperations = {
     return;
   },
   initialize: () => async (dispatch, getState) => {
-    SplashScreen.hide();
-
     const wallet = Wallet.getInstance();
+
+    wallet.eventManager.on(WalletEvents.migrated, () => {
+      SplashScreen.hide();
+    });
 
     wallet.eventManager.on(WalletEvents.ready, () => {
       dispatch(appActions.setDockReady(true));

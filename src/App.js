@@ -18,7 +18,7 @@ import {ThemeProvider} from './design-system';
 import {appOperations} from './features/app/app-slice';
 import {didOperations} from './features/didManagement/didManagment-slice';
 
-if (process.env.NODE_ENV !== 'test') {
+if (SENTRY_DSN && process.env.NODE_ENV !== 'test') {
   try {
     sentryInit({
       dsn: SENTRY_DSN,
@@ -78,7 +78,6 @@ const App = () => {
       <ThemeProvider>
         <WalletSDKProvider>
           <GlobalComponents />
-          {/* <AppIntegrationTest /> */}
         </WalletSDKProvider>
       </ThemeProvider>
     </Provider>

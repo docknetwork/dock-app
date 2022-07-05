@@ -7,6 +7,7 @@ import {addTestId} from 'src/core/automation-utils';
 function KeyboardButton({onPress, value, testID}) {
   return (
     <TouchableOpacity
+      hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
       onPress={() => value !== null && onPress(value)}
       style={{flex: 1}}
       {...addTestId(testID)}>
@@ -118,7 +119,9 @@ export function NumericKeyboard({
           marginBottom={24}>
           {[allowDecimal ? '.' : null, 0].map(renderDigit)}
           <Box flex alignItems="center" paddingTop={5}>
-            <TouchableOpacity onPress={handleDelete}>
+            <TouchableOpacity
+              hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
+              onPress={handleDelete}>
               <KeyboardDeleteIcon />
             </TouchableOpacity>
           </Box>

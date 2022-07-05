@@ -1,6 +1,8 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {ScreenContainer} from '../../design-system';
 import TransakPaymentProvider from './components/TransakProvider';
+import {BackHandler} from 'react-native';
+import {navigateBack} from '../../core/navigation';
 
 export function BuyDockScreenScreen({walletAddress, orderId}) {
   const getPaymentProvider = useCallback(() => {
@@ -21,6 +23,19 @@ export function BuyDockScreenScreen({walletAddress, orderId}) {
 }
 
 export function BuyDockScreenContainer({route}) {
+  useEffect(() => {
+    const backAction = () => {
+      navigateBack();
+      return true;
+    };
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
   const {id, orderId} = route.params;
 
   return <BuyDockScreenScreen walletAddress={id} orderId={orderId} />;

@@ -64,13 +64,7 @@ export function ReceiveTokenScreen({
         </Stack>
       </Content>
       <Stack direction="row" width="100%" mb={7}>
-        <Button
-          mr={1}
-          flex={1}
-          size="sm"
-          onPress={onCopyAddress}
-          colorScheme="tertiary"
-          ml={5}>
+        <Button mr={1} flex={1} size="sm" onPress={onCopyAddress} ml={5}>
           {translate('receive_token.copy_address')}
         </Button>
         <Button
@@ -78,7 +72,6 @@ export function ReceiveTokenScreen({
           flex={1}
           size="sm"
           onPress={onShareAddress}
-          colorScheme="tertiary"
           {...addTestId('ReceiveTokenShareAddress')}
           mr={5}>
           {translate('receive_token.share_address')}

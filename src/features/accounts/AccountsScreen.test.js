@@ -25,7 +25,7 @@ describe('AccountsScreen', () => {
   });
 
   it('should show warning symbol', () => {
-    expect(false).toEqual(
+    expect(true).toEqual(
       displayWarning({
         id: 'test',
         name: 'Account name',

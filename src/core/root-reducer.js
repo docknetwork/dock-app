@@ -5,6 +5,7 @@ import {appReducer} from '../features/app/app-slice';
 import {walletReducer} from '../features/wallet/wallet-slice';
 import {accountReducer} from '../features/accounts/account-slice';
 import {createAccountReducer} from '../features/account-creation/create-account-slice';
+import {authenticationReducer} from '../features/unlock-wallet/unlock-wallet-slice';
 
 export const rootReducer = combineReducers({
   app: appReducer,
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
   createAccount: createAccountReducer,
   qrCode: qrCodeReducer,
   transactions: transactionsReducer,
+  authentication: authenticationReducer,
 });

@@ -14,12 +14,23 @@ import {Credentials} from '@docknetwork/wallet-sdk-credentials/lib';
 import testCredentialData from '@docknetwork/wallet-sdk-credentials/fixtures/test-credential.json';
 import {setToast} from '../../core/toast';
 import {getParamsFromUrl, onScanAuthQRCode} from '../credentials/credentials';
-import {didOperations} from '../didManagement/didManagment-slice';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import {credentialServiceRPC} from '@docknetwork/wallet-sdk-core/lib/services/credential';
 import {translate} from 'src/locales';
-const mockStore = configureMockStore([thunk]);
+
+const keyDoc = {
+  '@context': ['https://w3id.org/wallet/v1'],
+  id: 'urn:uuid:e8fc7810-9524-11ea-bb37-0242ac130002',
+  name: 'My Test Key 2',
+  image: 'https://via.placeholder.com/150',
+  description: 'For testing only, totally compromised.',
+  tags: ['professional', 'organization', 'compromised'],
+  correlation: ['4058a72a-9523-11ea-bb37-0242ac130002'],
+  controller: 'did:key:z6MkjjCpsoQrwnEmqHzLdxWowXk5gjbwor4urC1RPDmGeV8r',
+  type: 'Ed25519VerificationKey2018',
+  privateKeyBase58:
+    '3CQCBKF3Mf1tU5q1FLpHpbxYrNYxLiZk4adDtfyPEfc39Wk6gsTb2qoc1ZtpqzJYdM1rG4gpaD3ZVKdkiDrkLF1p',
+  publicKeyBase58: '6GwnHZARcEkJio9dxPYy6SC5sAL6PxpZAB6VYwoFjGMU',
+};
 
 describe('qr-code', () => {
   it('executeHandlers', async () => {
@@ -245,52 +256,50 @@ describe('qr-code', () => {
       expect(result).toBeFalsy();
     });
 
-    it('expect to onScanAuth0QRCode to generate credential', async () => {
-      const url =
-        'https://auth-server-i78ydv67d-docklabs.vercel.app/verify?id=dockstagingtestHsBR-jkCCPl4sBOh3f3_n66r9X1uIKgW&scope=public email';
-      await expect(onScanAuthQRCode(url)).rejects.toThrow(
+    it('expect to onScanAuth0QRCode to error with no keydoc', async () => {
+      await expect(
+        onScanAuthQRCode('https://url.com', null, {}),
+      ).rejects.toThrow(
         translate('qr_scanner.no_key_doc', {
           locale: 'en',
         }),
       );
-      const store = mockStore({});
-      await store.dispatch(didOperations.initializeDID());
-      await onScanAuthQRCode(url);
+    });
 
-      const subject = {
-        state: 'dockstagingtestHsBR-jkCCPl4sBOh3f3_n66r9X1uIKgW',
-      };
+    it('expect to onScanAuth0QRCode to generate credential', async () => {
+      const url =
+        'https://auth.dock.io/verify?id=dockstagingtestHsBR-jkCCPl4sBOh3f3_n66r9X1uIKgW&scope=public email';
 
-      expect(credentialServiceRPC.generateCredential).toBeCalledWith({subject});
-      await credentialServiceRPC.generateCredential({});
+      await onScanAuthQRCode(url, keyDoc, {});
+
       expect(credentialServiceRPC.signCredential).toBeCalled();
     });
 
     it('is Auth QRCode scanned', () => {
       const res = onAuthQRScanned(
-        'dockwallet://didauth?url=https://auth-server-i78ydv67d-docklabs.vercel.app/verify?id=dockstagingtestRgMV0IwPQELYDbVkGXUfMQnOb912660w&scope=public email',
+        'dockwallet://didauth?url=https://auth.dock.io/verify?id=dockstagingtestRgMV0IwPQELYDbVkGXUfMQnOb912660w&scope=public email',
       );
       expect(res).toBeTruthy();
       const isValid1 = onAuthQRScanned(
-        'dockwallet://didauth?ul=https://auth-server-i78ydv67d-docklabs.vercel.app/verify?id=dockstagingtestRgMV0IwPQELYDbVkGXUfMQnOb912660w&scope=public email',
+        'dockwallet://didauth?ul=https://auth.dock.io/verify?id=dockstagingtestRgMV0IwPQELYDbVkGXUfMQnOb912660w&scope=public email',
       );
       expect(isValid1).toBeFalsy();
     });
 
     it('Is did auth URL', () => {
       const isValid = isDidAuthUrl(
-        'dockwallet://didauth?url=https://auth-server-i78ydv67d-docklabs.vercel.app/verify?id=dockstagingtestRgMV0IwPQELYDbVkGXUfMQnOb912660w&scope=public email',
+        'dockwallet://didauth?url=https://auth.dock.io/verify?id=dockstagingtestRgMV0IwPQELYDbVkGXUfMQnOb912660w&scope=public email',
       );
       expect(isValid).toBeTruthy();
       const isValid1 = isDidAuthUrl(
-        'dockwallet://didauth?ul=https://auth-server-i78ydv67d-docklabs.vercel.app/verify?id=dockstagingtestRgMV0IwPQELYDbVkGXUfMQnOb912660w&scope=public email',
+        'dockwallet://didauth?ul=https://auth.dock.io/verify?id=dockstagingtestRgMV0IwPQELYDbVkGXUfMQnOb912660w&scope=public email',
       );
       expect(isValid1).toBeFalsy();
     });
 
     it('Get param from url', () => {
       const url =
-        'https://auth-server-i78ydv67d-docklabs.vercel.app/verify?id=dockstagingtestHsBR-jkCCPl4sBOh3f3_n66r9X1uIKgW&scope=public email';
+        'https://auth.dock.io/verify?id=dockstagingtestHsBR-jkCCPl4sBOh3f3_n66r9X1uIKgW&scope=public email';
       const id = getParamsFromUrl(url, 'id');
       expect(id).toBe('dockstagingtestHsBR-jkCCPl4sBOh3f3_n66r9X1uIKgW');
     });
@@ -298,6 +307,7 @@ describe('qr-code', () => {
     it('expect authHandler to sign and upload vc', async () => {
       await authHandler(
         'dockwallet://didauth?url=https%3A%2F%2Fauth.dock.io%2Fverify%3Fid%3Dqi0hkXbZQzpuAVgzM6Zkq905w0LnegROzDrsvy0W%26scope%3Dpublic%20email',
+        keyDoc,
       );
       expect(fetch).toHaveBeenCalledWith(
         'https://auth.dock.io/verify?id=qi0hkXbZQzpuAVgzM6Zkq905w0LnegROzDrsvy0W&scope=public email',
@@ -306,46 +316,7 @@ describe('qr-code', () => {
           headers: {
             'content-type': 'application/json',
           },
-          body: JSON.stringify({
-            vc: {
-              '@context': [
-                'https://www.w3.org/2018/credentials/v1',
-                {
-                  dk: 'https://ld.dock.io/credentials#',
-                  DockAuthCredential: 'dk:DockAuthCredential',
-                  name: 'dk:name',
-                  email: 'dk:email',
-                  state: 'dk:state',
-                  description: 'dk:description',
-                  logo: 'dk:logo',
-                },
-              ],
-              id: 'didauth:dock:clientid',
-              type: ['VerifiableCredential', 'DockAuthCredential'],
-              credentialSubject: {
-                name: 'John Doe',
-                email: 'test@dock.io',
-                state: 'debugstate',
-              },
-              issuanceDate: '2022-04-01T18:26:21.637Z',
-              expirationDate: '2023-04-01T18:26:21.637Z',
-              proof: {
-                type: 'Ed25519Signature2018',
-                created: '2022-05-13T17:57:12Z',
-                verificationMethod:
-                  'did:dock:5FbQXJULrLt8kymWe4ScrM2MyRWAweYXCQ79EpL7ADUV2H8Y#keys-1',
-                proofPurpose: 'assertionMethod',
-                proofValue:
-                  'z4ndjdQcqyypWAdtmRcz8KRh6cMzQCuDrQfq4fwa7WdANtxjsXje8UN7Pc16w1DDYNWdrWuV75bWvd6H2VDYfG1qB',
-              },
-              issuer: {
-                name: 'Auth Test',
-                description: 'test',
-                logo: '',
-                id: 'did:dock:5FbQXJULrLt8kymWe4ScrM2MyRWAweYXCQ79EpL7ADUV2H8Y',
-              },
-            },
-          }),
+          body: expect.any(String),
         },
       );
     });

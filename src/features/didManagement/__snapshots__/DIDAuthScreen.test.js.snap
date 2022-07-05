@@ -32,7 +32,7 @@ exports[`QRScanScreen should render correctly when isScreenFocus=true 1`] = `
               fontSize={24}
               fontWeight="600"
             >
-              DID Authorization
+              Web3 ID Authorization
             </Styled(Component)>
           </Box>
         </Box>

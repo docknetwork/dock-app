@@ -89,7 +89,6 @@ exports[`ReceiveTokensScreen should render correctly 1`] = `
         width="100%"
       >
         <Button
-          colorScheme="tertiary"
           flex={1}
           ml={5}
           mr={1}
@@ -99,7 +98,6 @@ exports[`ReceiveTokensScreen should render correctly 1`] = `
         </Button>
         <Button
           accessibilityLabel="ReceiveTokenShareAddress"
-          colorScheme="tertiary"
           flex={1}
           ml={1}
           mr={5}

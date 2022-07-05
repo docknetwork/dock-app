@@ -5,6 +5,7 @@ import {
   useCredentials,
   getDIDAddress,
   processCredential,
+  doesCredentialExist,
 } from './credentials';
 import {Credentials} from '@docknetwork/wallet-sdk-credentials/lib';
 
@@ -146,6 +147,20 @@ describe('Credentials helpers', () => {
 
       expect(Credentials.getInstance().add).toBeCalled();
       expect(Credentials.getInstance().query).toBeCalled();
+    });
+
+    it('expect not to add duplicated credential', () => {
+      const allCredentials = mockCreds.map(m => {
+        return {
+          content: m,
+        };
+      });
+      expect(doesCredentialExist(allCredentials, mockCreds[0])).toBeTruthy();
+      expect(
+        doesCredentialExist(allCredentials, {
+          id: '10a2ed6eae550f6e1b456777de5ed27fdadd2e6ef1f6081e981918735e1d8f92',
+        }),
+      ).toBeFalsy();
     });
   });
 });

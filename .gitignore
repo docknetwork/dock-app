@@ -31,7 +31,6 @@ DerivedData
 
 # Android/IntelliJ
 #
-build/
 .idea
 .gradle
 local.properties
@@ -70,6 +69,4 @@ buck-out/
 
 
 dock_unit_test*
-
-android/app/google-services.json
 ios/GoogleService-Info.plist

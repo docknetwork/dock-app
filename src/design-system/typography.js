@@ -69,6 +69,14 @@ const variantsMap = {
     fontWeight: 400,
     lineHeight: 22,
   },
+  'field-label': {
+    fontFamily: Theme.fontFamily.default,
+    color: Theme.colors.description,
+    fontWeight: 600,
+    fontSize: 16,
+    fontStyle: 'normal',
+    lineHeight: '24px',
+  },
   'transaction-type-label': {
     fontFamily: Theme.fontFamily.default,
     fontWeight: 600,

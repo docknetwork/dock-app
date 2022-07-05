@@ -6,7 +6,6 @@ import mockAsyncStorage from '../node_modules/@react-native-async-storage/async-
 import mockRNPermissions from '../node_modules/react-native-permissions/mock';
 import '../src/core/setup-env';
 import {DebugConstants} from '../src/features/constants';
-import {Wallet} from '@docknetwork/wallet-sdk-core/lib/modules/wallet';
 jest.mock('../src/core/realm', () => {
   const realmFunctions = {
     write: jest.fn(callback => {
@@ -380,6 +379,20 @@ jest.mock('@docknetwork/wallet-sdk-core/lib/services/wallet', () => {
   return {
     ...originalModule,
     walletService: mockFunctions,
+  };
+});
+
+jest.mock('@docknetwork/wallet-sdk-core/lib/services/keyring', () => {
+  const originalModule = jest.requireActual(
+    '@docknetwork/wallet-sdk-core/lib/services/keyring',
+  );
+  const mockFunctions = {
+    addFromJson: jest.fn(() => {}),
+  };
+
+  return {
+    ...originalModule,
+    keyringService: mockFunctions,
   };
 });
 global.fetch = jest.fn(() =>

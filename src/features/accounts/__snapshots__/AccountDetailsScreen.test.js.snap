@@ -124,6 +124,48 @@ exports[`AccountDetailsScreen should render correctly 1`] = `
             </Memo(ForwardRef(Stack))>
           </Memo(ForwardRef(Stack))>
           <Memo(ForwardRef(Stack))
+            backgroundColor="rgba(120, 53, 15, 0.3)"
+            mt={5}
+            p="16px"
+          >
+            <Memo(ForwardRef(Stack))
+              direction="row"
+            >
+              <Memo(ForwardRef(Box))
+                mr={3}
+                mt="3px"
+              >
+                <SvgFile />
+              </Memo(ForwardRef(Box))>
+              <Styled(Component)
+                fontSize={17}
+                ml={2}
+                variant="h3"
+              >
+                Account not backed up
+              </Styled(Component)>
+            </Memo(ForwardRef(Stack))>
+            <Memo(ForwardRef(Box))
+              mt={2}
+            >
+              <Styled(Component)
+                color="rgba(254, 243, 199, 1)"
+              >
+                This phrase allows you to recover your account if your phone is lost or you change your device.
+              </Styled(Component)>
+            </Memo(ForwardRef(Box))>
+            <Memo(ForwardRef(Button))
+              accessibilityLabel="BackupBtn"
+              alignSelf="flex-start"
+              backgroundColor="rgba(120, 53, 15, 1)"
+              mt={4}
+              size="sm"
+              testID="BackupBtn"
+            >
+              Back up now
+            </Memo(ForwardRef(Button))>
+          </Memo(ForwardRef(Stack))>
+          <Memo(ForwardRef(Stack))
             mt={3}
           >
             <Memo(ForwardRef(Box))

@@ -33,9 +33,8 @@ export const withErrorToast =
     try {
       await fn(...params);
     } catch (err) {
-      console.error(err);
       captureException(err);
-      showUnexpectedErrorToast(message);
+      showUnexpectedErrorToast(message || getErrorMessageFromErrorObject(err));
       throw err;
     }
   };
@@ -48,7 +47,17 @@ export function showUnexpectedErrorToast(
     type: 'error',
   });
 }
-
+export function getErrorMessageFromErrorObject(err) {
+  if (typeof err === 'string') {
+    if (err.indexOf('AssertionError') > -1) {
+      return err.substring(16, err.length - 1).trim();
+    }
+    return err.trim();
+  } else if (err?.message && typeof err.message === 'string') {
+    return getErrorMessageFromErrorObject(err.message);
+  }
+  return translate('global.unexpected_error');
+}
 export function showToast({message, type = 'success', duration = 2000}) {
   if (!toast) {
     return;

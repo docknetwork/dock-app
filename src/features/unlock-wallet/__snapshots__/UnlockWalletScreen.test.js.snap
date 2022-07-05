@@ -98,3 +98,143 @@ exports[`UnlockWalletScreen should render correctly 1`] = `
   </Memo(ForwardRef(Box))>
 </RNCSafeAreaView>
 `;
+
+exports[`UnlockWalletScreen should render keypad correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "marginTop": 50,
+    }
+  }
+>
+  <Box
+    autoSize={true}
+    flexDirection="row"
+    justifyContent="center"
+    marginBottom={24}
+    row={true}
+  >
+    <KeyboardButton
+      accessibilityLabel="keyboardNumber1"
+      key="1"
+      onPress={[Function]}
+      testID="keyboardNumber1"
+      value={1}
+    />
+    <KeyboardButton
+      accessibilityLabel="keyboardNumber2"
+      key="2"
+      onPress={[Function]}
+      testID="keyboardNumber2"
+      value={2}
+    />
+    <KeyboardButton
+      accessibilityLabel="keyboardNumber3"
+      key="3"
+      onPress={[Function]}
+      testID="keyboardNumber3"
+      value={3}
+    />
+  </Box>
+  <Box
+    autoSize={true}
+    flexDirection="row"
+    justifyContent="center"
+    marginBottom={24}
+    row={true}
+  >
+    <KeyboardButton
+      accessibilityLabel="keyboardNumber4"
+      key="4"
+      onPress={[Function]}
+      testID="keyboardNumber4"
+      value={4}
+    />
+    <KeyboardButton
+      accessibilityLabel="keyboardNumber5"
+      key="5"
+      onPress={[Function]}
+      testID="keyboardNumber5"
+      value={5}
+    />
+    <KeyboardButton
+      accessibilityLabel="keyboardNumber6"
+      key="6"
+      onPress={[Function]}
+      testID="keyboardNumber6"
+      value={6}
+    />
+  </Box>
+  <Box
+    autoSize={true}
+    flexDirection="row"
+    justifyContent="center"
+    marginBottom={24}
+    row={true}
+  >
+    <KeyboardButton
+      accessibilityLabel="keyboardNumber7"
+      key="7"
+      onPress={[Function]}
+      testID="keyboardNumber7"
+      value={7}
+    />
+    <KeyboardButton
+      accessibilityLabel="keyboardNumber8"
+      key="8"
+      onPress={[Function]}
+      testID="keyboardNumber8"
+      value={8}
+    />
+    <KeyboardButton
+      accessibilityLabel="keyboardNumber9"
+      key="9"
+      onPress={[Function]}
+      testID="keyboardNumber9"
+      value={9}
+    />
+  </Box>
+  <Box
+    autoSize={true}
+    flexDirection="row"
+    justifyContent="center"
+    marginBottom={24}
+    row={true}
+  >
+    <KeyboardButton
+      accessibilityLabel="keyboardNumbernull"
+      key="null"
+      onPress={[Function]}
+      testID="keyboardNumbernull"
+      value={null}
+    />
+    <KeyboardButton
+      accessibilityLabel="keyboardNumber0"
+      key="0"
+      onPress={[Function]}
+      testID="keyboardNumber0"
+      value={0}
+    />
+    <Box
+      alignItems="center"
+      flex={true}
+      paddingTop={5}
+    >
+      <TouchableOpacity
+        hitSlop={
+          Object {
+            "bottom": 10,
+            "left": 10,
+            "right": 10,
+            "top": 10,
+          }
+        }
+        onPress={[Function]}
+      >
+        <SvgFile />
+      </TouchableOpacity>
+    </Box>
+  </Box>
+</View>
+`;

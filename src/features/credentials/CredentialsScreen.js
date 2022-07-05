@@ -19,6 +19,7 @@ import {Center, Image, Text, Stack, Menu, Pressable} from 'native-base';
 import {useCredentials, getDIDAddress} from './credentials';
 import {formatDate} from '@docknetwork/wallet-sdk-core/lib/core/format-utils';
 import {withErrorBoundary} from 'src/core/error-handler';
+import {View} from 'react-native';
 
 function shouldRenderAttr(attr) {
   return attr.property !== 'id' && attr.property !== 'title';
@@ -78,13 +79,29 @@ const CredentialListItem = withErrorBoundary(
         key={`${credential.id}`}>
         <Stack direction="row">
           <Stack>
-            <Text
-              mb={4}
-              fontSize={'16px'}
-              fontWeight={600}
-              fontFamily={Theme.fontFamily.montserrat}>
-              {title}
-            </Text>
+            <View
+              style={{
+                width: '98%',
+              }}>
+              <Text
+                mb={4}
+                fontSize={'16px'}
+                fontWeight={600}
+                fontFamily={Theme.fontFamily.montserrat}>
+                {title}
+              </Text>
+            </View>
+            {formattedData.humanizedType && (
+              <Text
+                mt={1}
+                mb={2}
+                fontSize={'12px'}
+                fontWeight={500}
+                fontFamily={Theme.fontFamily.montserrat}>
+                {formattedData.humanizedType}
+              </Text>
+            )}
+
             {renderObjectAttributes(formattedData)}
           </Stack>
           <NBox flex={1} alignItems="flex-end">
@@ -118,16 +135,25 @@ const CredentialListItem = withErrorBoundary(
             </Text>
           </NBox>
           <NBox flex={1} alignItems={'flex-end'}>
-            {credential.issuer.logo ? (
-              <Image
-                borderRadius={8}
-                width={50}
-                height={50}
-                alt={''}
-                source={{
-                  uri: credential.issuer.logo,
-                }}
-              />
+            {formattedData.image ? (
+              <View
+                style={{
+                  width: 50,
+                  height: 50,
+                }}>
+                <Image
+                  borderRadius={8}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    resizeMode: 'contain',
+                  }}
+                  alt={title}
+                  source={{
+                    uri: formattedData.image,
+                  }}
+                />
+              </View>
             ) : (
               <PolkadotIcon
                 address={getDIDAddress(credential.issuer.id)}

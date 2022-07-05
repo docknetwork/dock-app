@@ -37,6 +37,8 @@ import DeepLinking from 'react-native-deep-linking';
 import {isDidAuthUrl} from '../features/qr-code-scanner/qr-code';
 import {navigate} from './navigation';
 import {DIDAuthScreenContainer} from '../features/didManagement/DIDAuthScreen';
+import {authenticationSelectors} from '../features/unlock-wallet/unlock-wallet-slice';
+import {useSelector} from 'react-redux';
 
 const AppStack = createStackNavigator();
 const RootStack = createStackNavigator();
@@ -295,25 +297,45 @@ function AppStackScreen() {
 }
 
 export function NavigationRouter() {
+  const isLoggedIn = useSelector(authenticationSelectors.isLoggedIn);
+
+  const navigateToDIDAuthScreen = useCallback(
+    url => {
+      if (isLoggedIn) {
+        navigate(Routes.APP_DID_AUTH, {
+          dockWalletAuthDeepLink: url,
+        });
+      } else {
+        navigate(Routes.UNLOCK_WALLET, {
+          callback: () => {
+            navigate(Routes.APP_DID_AUTH, {
+              dockWalletAuthDeepLink: url,
+            });
+          },
+        });
+      }
+    },
+    [isLoggedIn],
+  );
   useEffect(() => {
     const getAsyncURL = async () => {
       const initialUrl = await Linking.getInitialURL();
       if (initialUrl !== undefined && initialUrl != null) {
-        navigate(Routes.APP_DID_AUTH, {
-          dockWalletAuthDeepLink: initialUrl,
-        });
+        navigateToDIDAuthScreen(initialUrl);
       }
     };
 
     getAsyncURL();
-  }, []);
-  const handleUrl = useCallback(({url}) => {
-    if (isDidAuthUrl(url)) {
-      navigate(Routes.APP_DID_AUTH, {
-        dockWalletAuthDeepLink: url,
-      });
-    }
-  }, []);
+  }, [navigateToDIDAuthScreen]);
+
+  const handleUrl = useCallback(
+    ({url}) => {
+      if (isDidAuthUrl(url)) {
+        navigateToDIDAuthScreen(url);
+      }
+    },
+    [navigateToDIDAuthScreen],
+  );
   useEffect(() => {
     DeepLinking.addScheme('dockwallet://');
     Linking.addEventListener('url', handleUrl);

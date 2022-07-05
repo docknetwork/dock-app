@@ -88,7 +88,7 @@ export function onAuthQRScanned(data) {
   }
   return false;
 }
-export async function authHandler(data) {
+export async function authHandler(data, keyDoc, profile = {}) {
   try {
     const authLinkPrefix = 'dockwallet://didauth?url=';
     const isAuthLink = isDidAuthUrl(data);
@@ -99,7 +99,7 @@ export async function authHandler(data) {
       });
       const url = decodeURIComponent(data.substr(authLinkPrefix.length));
 
-      const vc = await onScanAuthQRCode(url);
+      const vc = await onScanAuthQRCode(url, keyDoc, profile);
       const req = await fetch(url, {
         method: 'POST',
         headers: {

@@ -115,21 +115,15 @@ export const accountOperations = {
         return;
       }
 
-      const updatedAccount = {
-        ...account,
-        meta: {
-          ...(account.meta || {}),
-          hasBackup: true,
-        },
-      };
+      const document = await walletService.getDocumentById(account.address);
 
-      // update account meta
       try {
-        await walletService.update(updatedAccount);
+        await walletService.update({
+          ...document,
+          hasBackup: true,
+        });
       } catch (err) {
         console.log(err);
-        await walletService.load();
-        await walletService.update(updatedAccount);
         logAnalyticsEvent(ANALYTICS_EVENT.FAILURES, {
           message: err.message,
           name: ANALYTICS_EVENT.ACCOUNT.BACKUP,
@@ -139,7 +133,7 @@ export const accountOperations = {
       dispatch(accountActions.setAccountToBackup(null));
 
       navigate(Routes.ACCOUNT_DETAILS, {
-        id: account.id,
+        id: account.address,
       });
 
       await dispatch(accountOperations.loadAccounts());
@@ -154,21 +148,11 @@ export const accountOperations = {
 
   backupAccount: account =>
     withErrorToast(async (dispatch, getState) => {
-      dispatch(accountActions.setAccountToBackup(account));
-
-      // get mnemonic phrase for the acount
-      const result = await walletService.query({
-        equals: {
-          'content.id': account.correlation[0],
-        },
-      });
-
-      const phrase = result[0].value;
-
-      dispatch(createAccountActions.setMnemonicPhrase(phrase));
-
+      await dispatch(accountActions.setAccountToBackup(account));
+      dispatch(createAccountActions.setMnemonicPhrase(account.mnemonic));
       navigate(Routes.CREATE_ACCOUNT_MNEMONIC);
     }),
+
   addAccountFlow: () => async (dispatch, getState) => {
     navigate(Routes.CREATE_ACCOUNT_SETUP);
   },
