@@ -19,7 +19,9 @@ import {
   createAccountSelectors,
 } from './create-account-slice';
 import {ANALYTICS_EVENT, logAnalyticsEvent} from '../analytics/analytics-slice';
+import {KeyboardAvoidingView, Platform} from 'react-native';
 
+const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0;
 export function CreateAccountVerifyPhraseScreen({
   form,
   onChange,
@@ -153,12 +155,17 @@ export function CreateAccountVerifyPhraseContainer() {
   const submitDisabled = !(form.word1 && form.word2);
 
   return (
-    <CreateAccountVerifyPhraseScreen
-      form={form}
-      confirmationIndexes={confirmationIndexes}
-      submitDisabled={submitDisabled}
-      onChange={handleChange}
-      onSubmit={handleSubmit}
-    />
+    <KeyboardAvoidingView
+      keyboardVerticalOffset={keyboardVerticalOffset}
+      behavior="padding"
+      style={{flex: 1}}>
+      <CreateAccountVerifyPhraseScreen
+        form={form}
+        confirmationIndexes={confirmationIndexes}
+        submitDisabled={submitDisabled}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+      />
+    </KeyboardAvoidingView>
   );
 }
