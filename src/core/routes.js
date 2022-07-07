@@ -37,4 +37,5 @@ export const Routes = {
   BACKUP_CREATE: 'backup/create',
   BACKUP_LOAD: 'backup/load',
   DID_MANAGEMENT_LIST: 'didManagement/list',
+  DID_MANAGEMENT_NEW_DID: 'didManagement/createNewDid',
 };

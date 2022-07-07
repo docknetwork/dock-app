@@ -37,6 +37,7 @@ import DeepLinking from 'react-native-deep-linking';
 import {isDidAuthUrl} from '../features/qr-code-scanner/qr-code';
 import {navigate} from './navigation';
 import {DIDAuthScreenContainer} from '../features/didManagement/DIDAuthScreen';
+import {CreateNewDIDScreenContainer} from '../features/didManagement/CreateNewDIDScreen';
 import {authenticationSelectors} from '../features/unlock-wallet/unlock-wallet-slice';
 import {useSelector} from 'react-redux';
 import {DIDListScreenContainer} from '../features/didManagement/DIDListScreen';
@@ -298,6 +299,16 @@ function AppStackScreen() {
           name: Routes.DID_MANAGEMENT_LIST,
           component: DIDListScreenContainer,
           tab: 'did-management',
+        })}
+      />
+
+      <AppStack.Screen
+        {...getScreenProps({
+          name: Routes.DID_MANAGEMENT_NEW_DID,
+          component: CreateNewDIDScreenContainer,
+          options: {
+            gestureEnabled: false,
+          },
         })}
       />
     </AppStack.Navigator>

@@ -35,7 +35,7 @@ const getMenuOptions = (features: FeatureFlags) =>
       name: translate('app_navigation.scan'),
       Icon: MenuScanQRIcon,
     },
-    {
+    features.didManagement && {
       id: 'did-management',
       route: Routes.DID_MANAGEMENT_LIST,
       name: translate('app_navigation.did_management'),

@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateNewDIDScreen should render correctly  1`] = `
+<RNCSafeAreaView
+  style={
+    Object {
+      "backgroundColor": "#000",
+      "flex": 1,
+    }
+  }
+  testID="CreateNewDIDScreen"
+>
+  <AppGlobalHeader />
+  <Memo(ForwardRef(Box))
+    flex={1}
+  >
+    <Memo(ForwardRef(Box))
+      flex={1}
+    >
+      <Styled(View)>
+        <Box
+          alignItems="center"
+          flexDirection="row"
+          marginLeft={1}
+          marginRight={22}
+        >
+          <Memo(ForwardRef(Box))
+            width="80px"
+          >
+            <BackButton
+              onPress={[Function]}
+            />
+          </Memo(ForwardRef(Box))>
+          <Memo(ForwardRef(Box))
+            alignContent="center"
+            alignItems="center"
+            flex={1}
+            pl={15}
+            width="100%"
+          >
+            <Styled(Component)
+              variant="h3"
+            >
+              Create New DID
+            </Styled(Component)>
+          </Memo(ForwardRef(Box))>
+          <Memo(ForwardRef(Box))
+            alignItems="flex-end"
+            width="80px"
+          />
+        </Box>
+      </Styled(View)>
+      <ForwardRef
+        marginLeft={5}
+        marginRight={5}
+      >
+        <Memo(ForwardRef(FormControl))>
+          <Memo(ForwardRef(Stack))
+            mt={7}
+          >
+            <Memo(ForwardRef(FormControlLabel))>
+              DID Name
+            </Memo(ForwardRef(FormControlLabel))>
+            <Memo(ForwardRef(Input))
+              autoCapitalize="none"
+              value=""
+            />
+            <Memo(ForwardRef(FormControlHelperText))>
+              This will just be used for easy reference
+            </Memo(ForwardRef(FormControlHelperText))>
+          </Memo(ForwardRef(Stack))>
+        </Memo(ForwardRef(FormControl))>
+        <Memo(ForwardRef(FormControl))>
+          <Memo(ForwardRef(Stack))
+            mt={7}
+          >
+            <Memo(ForwardRef(FormControlLabel))>
+              DID Type
+            </Memo(ForwardRef(FormControlLabel))>
+            <Memo(ForwardRef(Select))>
+              <Memo(ForwardRef(Item))
+                label="did:key"
+                value="didkey"
+              />
+              <Memo(ForwardRef(Item))
+                label="did:dock"
+                value="diddock"
+              />
+            </Memo(ForwardRef(Select))>
+          </Memo(ForwardRef(Stack))>
+        </Memo(ForwardRef(FormControl))>
+        <Memo(ForwardRef(VStack))
+          mt={7}
+          px={5}
+          py={5}
+          style={
+            Object {
+              "backgroundColor": "#00174D",
+              "borderRadius": 6,
+            }
+          }
+        >
+          <Memo(ForwardRef(HStack))>
+            <Memo(ForwardRef(HStack))
+              style={
+                Object {
+                  "flexGrow": 1,
+                }
+              }
+            >
+              <Memo(ForwardRef(Icon))
+                as={[Function]}
+                name="information-circle-outline"
+              />
+              <Styled(Component)
+                ml={1}
+                variant="h3"
+              >
+                 Quick Info
+              </Styled(Component)>
+            </Memo(ForwardRef(HStack))>
+            <Memo(ForwardRef(Icon))
+              as={[Function]}
+              name="close-outline"
+            />
+          </Memo(ForwardRef(HStack))>
+          <Styled(Component)
+            mt={3}
+            textAlign="left"
+            variant="didDescription"
+          >
+            did:dock requires DOCK token to create. This is used for the transaction fee required to create the DID and have a record on the blockchain.
+          </Styled(Component)>
+          <Styled(Component)
+            color="#fff"
+            my={2}
+          >
+            Learn More 
+            <Memo(ForwardRef(Icon))
+              as={[Function]}
+              name="open-outline"
+              size="xs"
+            />
+          </Styled(Component)>
+        </Memo(ForwardRef(VStack))>
+        <DIDAdvancedOptions
+          form={Object {}}
+          onChange={[Function]}
+        />
+        <LoadingButton
+          full={true}
+          isDisabled={false}
+          mt={70}
+          onPress={null}
+          testID="next-btn"
+        >
+          Create
+        </LoadingButton>
+      </ForwardRef>
+    </Memo(ForwardRef(Box))>
+    <Memo(ForwardRef(Box))
+      flex={1}
+      flexGrow={0.11}
+    >
+      <TabNavigation />
+    </Memo(ForwardRef(Box))>
+  </Memo(ForwardRef(Box))>
+</RNCSafeAreaView>
+`;

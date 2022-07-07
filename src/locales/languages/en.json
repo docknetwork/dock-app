@@ -107,7 +107,8 @@
     "hide_testnet_transaction": "Hide testnet Transactions",
     "switch_network_success": "Network switch successful",
     "switch_network_error": "Network switch failed",
-    "activate_transak": "Activate Transak"
+    "activate_transak": "Activate Transak",
+    "show_did_management": "Show DID Management"
   },
   "account_setup": {
     "title": "Account Name",
@@ -308,6 +309,12 @@
     "did_definition": "Decentralized Identifiers (DIDs) are a new type of identifier that enables a decentralized digital identity and allows you to accept verifiable credentials.",
     "learn_more": "Learn More",
     "create_new_did": "Create New DID",
-    "import_existing_did": "Import existing DID"
+    "import_existing_did": "Import existing DID",
+    "did_name": "DID Name",
+    "did_name_input_hint": "This will just be used for easy reference",
+    "did_type": "DID Type",
+    "quick_info": "Quick Info",
+    "create": "Create",
+    "did_dock_info": "did:dock requires DOCK token to create. This is used for the transaction fee required to create the DID and have a record on the blockchain."
   }
 }

@@ -19,6 +19,8 @@ import {Ionicons} from '@native-base/icons';
 import {Icon, VStack} from 'native-base';
 import PlusCircleIcon from '../../assets/icons/plus-circle.svg';
 import DocumentDownloadIcon from '../../assets/icons/document-download.svg';
+import {navigate} from '../../core/navigation';
+import {Routes} from '../../core/routes';
 
 export function DIDListScreen() {
   return (
@@ -38,7 +40,9 @@ export function DIDListScreen() {
             <IconButton
               col
               {...addTestId('DIDListScreen_Add_DID')}
-              onPress={null}>
+              onPress={() => {
+                navigate(Routes.DID_MANAGEMENT_NEW_DID);
+              }}>
               <PlusCircleWhiteIcon />
             </IconButton>
           </Box>

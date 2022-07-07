@@ -41,7 +41,7 @@ exports[`DIDListScreen should render correctly  1`] = `
             <IconButton
               accessibilityLabel="DIDListScreen_Add_DID"
               col={true}
-              onPress={null}
+              onPress={[Function]}
               testID="DIDListScreen_Add_DID"
             >
               <SvgFile />

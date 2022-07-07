@@ -35,6 +35,7 @@ export const Theme = {
     transactionPending: '#FBBF24',
     qrCodeBackground: '#fff',
     credentialCardBg: '#000',
+    bgBlue: '#00174D',
 
     primaryBlue: '#0063F7',
 

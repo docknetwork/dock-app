@@ -13,6 +13,10 @@ export const Features = {
     id: 'credentials',
     title: translate('dev_settings.show_credentials'),
   },
+  didManagement: {
+    id: 'didManagement',
+    title: translate('dev_settings.show_did_management'),
+  },
   transak: {
     id: 'activate_transak',
     title: translate('dev_settings.activate_transak'),
