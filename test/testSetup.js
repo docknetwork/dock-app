@@ -27,7 +27,18 @@ jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 jest.mock('react-native-device-info', () => 'DeviceInfo');
 jest.mock('react-native-permissions', () => mockRNPermissions);
 
-jest.mock('react-native-share', () => 'RNShare');
+jest.mock('react-native-share', () => {
+  const open = jest.fn(() => Promise.resolve([]));
+  return {
+    __esModule: true,
+    default: {
+      open,
+    },
+  };
+  // return {
+  //   open: jest.fn(),
+  // };
+});
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -40,7 +51,7 @@ jest.mock('react-native-keyboard-aware-scroll-view', () => {
 
 jest.mock('react-native-fs', () => ({
   CachesDirectoryPath: jest.fn(),
-  DocumentDirectoryPath: jest.fn(),
+  DocumentDirectoryPath: 'DocumentDirectoryPath',
   ExternalDirectoryPath: jest.fn(),
   ExternalStorageDirectoryPath: jest.fn(),
   LibraryDirectoryPath: jest.fn(),
@@ -459,6 +470,12 @@ jest.mock('@docknetwork/wallet-sdk-react-native/lib', () => {
         return Promise.resolve();
       }
       return Promise.reject('Document ID is not set');
+    }),
+    exportDID: jest.fn(({id, password}) => {
+      if (id) {
+        return Promise.resolve({});
+      }
+      return Promise.reject('DID Document not found');
     }),
     didList: [],
   };

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ExportDIDScreen should render correctly  1`] = `
+exports[`ExportDIDScreen should render correctly when form invalid 1`] = `
 <RNCSafeAreaView
   accessibilityLabel="ExportDIDScreen"
   style={
@@ -50,7 +50,6 @@ exports[`ExportDIDScreen should render correctly  1`] = `
               <Memo(ForwardRef(Input))
                 accessibilityLabel="Password"
                 autoCapitalize="none"
-                onChangeText={[Function]}
                 placeholder="Password"
                 secureTextEntry={true}
                 testID="Password"
@@ -72,7 +71,6 @@ exports[`ExportDIDScreen should render correctly  1`] = `
               <Memo(ForwardRef(Input))
                 accessibilityLabel="ConfirmPassword"
                 autoCapitalize="none"
-                onChangeText={[Function]}
                 placeholder="Confirm password"
                 secureTextEntry={true}
                 testID="ConfirmPassword"
@@ -87,9 +85,7 @@ exports[`ExportDIDScreen should render correctly  1`] = `
           <Memo(ForwardRef(Stack))
             direction="row"
           >
-            <CheckCircle
-              checked={true}
-            />
+            <CheckCircle />
             <Styled(Component)>
               Must include at least 8 characters
             </Styled(Component)>
@@ -98,9 +94,7 @@ exports[`ExportDIDScreen should render correctly  1`] = `
             direction="row"
             marginTop={3}
           >
-            <CheckCircle
-              checked={false}
-            />
+            <CheckCircle />
             <Styled(Component)>
               Must include digits
             </Styled(Component)>
@@ -109,9 +103,7 @@ exports[`ExportDIDScreen should render correctly  1`] = `
             direction="row"
             marginTop={3}
           >
-            <CheckCircle
-              checked={true}
-            />
+            <CheckCircle />
             <Styled(Component)>
               Must include uppercase and lowercase letters
             </Styled(Component)>
@@ -120,9 +112,7 @@ exports[`ExportDIDScreen should render correctly  1`] = `
             direction="row"
             marginTop={3}
           >
-            <CheckCircle
-              checked={false}
-            />
+            <CheckCircle />
             <Styled(Component)>
               Must include special characters
             </Styled(Component)>
@@ -131,9 +121,155 @@ exports[`ExportDIDScreen should render correctly  1`] = `
             direction="row"
             marginTop={3}
           >
-            <CheckCircle
-              checked={true}
-            />
+            <CheckCircle />
+            <Styled(Component)>
+              Password confirmation match
+            </Styled(Component)>
+          </Memo(ForwardRef(Stack))>
+        </Memo(ForwardRef(Stack))>
+      </Styled(ScrollView)>
+      <Styled(Component)
+        marginBottom={10}
+        marginLeft={26}
+        marginRight={26}
+      >
+        <LoadingButton
+          accessibilityLabel="NextBtn"
+          full={true}
+          isDisabled={true}
+          onPress={[MockFunction]}
+          testID="NextBtn"
+        >
+          Next
+        </LoadingButton>
+      </Styled(Component)>
+    </Memo(ForwardRef(Box))>
+  </Memo(ForwardRef(Box))>
+</RNCSafeAreaView>
+`;
+
+exports[`ExportDIDScreen should render correctly when form valid 1`] = `
+<RNCSafeAreaView
+  accessibilityLabel="ExportDIDScreen"
+  style={
+    Object {
+      "backgroundColor": "#000",
+      "flex": 1,
+    }
+  }
+  testID="ExportDIDScreen"
+>
+  <AppGlobalHeader />
+  <Memo(ForwardRef(Box))
+    flex={1}
+  >
+    <Memo(ForwardRef(Box))
+      flex={1}
+    >
+      <Styled(View)>
+        <BackButton
+          accessibilityLabel="BackButton"
+          testID="BackButton"
+        />
+      </Styled(View)>
+      <Styled(ScrollView)
+        marginLeft={26}
+        marginRight={26}
+      >
+        <Styled(Component)
+          marginTop={52}
+          variant="h1"
+        >
+          Create a password
+        </Styled(Component)>
+        <Styled(Component)
+          marginTop={3}
+        >
+          This will be used to import your DID to a new device
+        </Styled(Component)>
+        <Memo(ForwardRef(Box))>
+          <Memo(ForwardRef(FormControl))>
+            <Memo(ForwardRef(Stack))
+              mt={7}
+            >
+              <Memo(ForwardRef(FormControlLabel))>
+                Enter Password
+              </Memo(ForwardRef(FormControlLabel))>
+              <Memo(ForwardRef(Input))
+                accessibilityLabel="Password"
+                autoCapitalize="none"
+                placeholder="Password"
+                secureTextEntry={true}
+                testID="Password"
+                value=""
+              />
+            </Memo(ForwardRef(Stack))>
+          </Memo(ForwardRef(FormControl))>
+        </Memo(ForwardRef(Box))>
+        <Memo(ForwardRef(Box))
+          mb={7}
+        >
+          <Memo(ForwardRef(FormControl))>
+            <Memo(ForwardRef(Stack))
+              mt={7}
+            >
+              <Memo(ForwardRef(FormControlLabel))>
+                Confirm Password
+              </Memo(ForwardRef(FormControlLabel))>
+              <Memo(ForwardRef(Input))
+                accessibilityLabel="ConfirmPassword"
+                autoCapitalize="none"
+                placeholder="Confirm password"
+                secureTextEntry={true}
+                testID="ConfirmPassword"
+                value=""
+              />
+            </Memo(ForwardRef(Stack))>
+          </Memo(ForwardRef(FormControl))>
+        </Memo(ForwardRef(Box))>
+        <Memo(ForwardRef(Stack))
+          marginTop={4}
+        >
+          <Memo(ForwardRef(Stack))
+            direction="row"
+          >
+            <CheckCircle />
+            <Styled(Component)>
+              Must include at least 8 characters
+            </Styled(Component)>
+          </Memo(ForwardRef(Stack))>
+          <Memo(ForwardRef(Stack))
+            direction="row"
+            marginTop={3}
+          >
+            <CheckCircle />
+            <Styled(Component)>
+              Must include digits
+            </Styled(Component)>
+          </Memo(ForwardRef(Stack))>
+          <Memo(ForwardRef(Stack))
+            direction="row"
+            marginTop={3}
+          >
+            <CheckCircle />
+            <Styled(Component)>
+              Must include uppercase and lowercase letters
+            </Styled(Component)>
+          </Memo(ForwardRef(Stack))>
+          <Memo(ForwardRef(Stack))
+            direction="row"
+            marginTop={3}
+          >
+            <CheckCircle />
+            <Styled(Component)>
+              Must include special characters
+            </Styled(Component)>
+          </Memo(ForwardRef(Stack))>
+          <Memo(ForwardRef(Stack))
+            direction="row"
+            marginTop={3}
+          >
+            <CheckCircle />
             <Styled(Component)>
               Password confirmation match
             </Styled(Component)>
@@ -149,7 +285,7 @@ exports[`ExportDIDScreen should render correctly  1`] = `
           accessibilityLabel="NextBtn"
           full={true}
           isDisabled={false}
-          onPress={[Function]}
+          onPress={[MockFunction]}
           testID="NextBtn"
         >
           Next

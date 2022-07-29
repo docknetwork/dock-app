@@ -53,7 +53,13 @@ export function SingleDIDOptionsModal({
             testID: addTestId('ExportDIDOption').testID,
             title: translate('didManagement.export_did'),
             icon: <DownloadIcon />,
-            onPress: () => {},
+            onPress: () => {
+              if (didDocumentResolution) {
+                navigate(Routes.DID_MANAGEMENT_EXPORT_DID, {
+                  didDocumentResolution,
+                });
+              }
+            },
           },
           {
             testID: addTestId('DeleteDIDOption').testID,

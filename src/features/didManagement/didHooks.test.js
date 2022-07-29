@@ -1,7 +1,8 @@
 import {renderHook, act} from '@testing-library/react-hooks';
 import {useDIDManagementHandlers} from './didHooks';
 import {useDIDManagement} from '@docknetwork/wallet-sdk-react-native/lib';
-
+import Share from 'react-native-share';
+import RNFS from 'react-native-fs';
 describe('DID hooks', () => {
   test('Handle on change', () => {
     const {result} = renderHook(() => useDIDManagementHandlers());
@@ -171,5 +172,32 @@ describe('DID hooks', () => {
     await expect(
       result.current.onImportDID({encryptedJSONWallet, password}),
     ).rejects.toMatch('Incorrect password');
+  });
+
+  test('Export DID', async () => {
+    const {result} = renderHook(() => useDIDManagementHandlers());
+    await result.current.onExportDID({
+      id: 'did:key:z6MkjjCpsoQrwnEmqHzLdxWowXk5gjbwor4urC1RPDmGeV8r',
+      password: 'test',
+    });
+
+    const {result: dIDManagementResult} = renderHook(() => useDIDManagement());
+    expect(dIDManagementResult.current.exportDID).toBeCalledWith({
+      id: 'did:key:z6MkjjCpsoQrwnEmqHzLdxWowXk5gjbwor4urC1RPDmGeV8r',
+      password: 'test',
+    });
+    expect(Share.open).toBeCalled();
+    expect(RNFS.writeFile).toBeCalledWith(
+      'DocumentDirectoryPath/did_did:key:z6MkjjCpsoQrwnEmqHzLdxWowXk5gjbwor4urC1RPDmGeV8r.json',
+      '{}',
+    );
+  });
+  test('Export DID with invalid params', async () => {
+    const {result} = renderHook(() => useDIDManagementHandlers());
+    await expect(
+      result.current.onExportDID({
+        password: 'test',
+      }),
+    ).rejects.toMatch('DID Document not found');
   });
 });

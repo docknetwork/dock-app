@@ -5,9 +5,11 @@ import {ANALYTICS_EVENT, logAnalyticsEvent} from '../analytics/analytics-slice';
 import {navigate} from '../../core/navigation';
 import {Routes} from '../../core/routes';
 import {useDIDManagement} from '@docknetwork/wallet-sdk-react-native/lib';
+import RNFS from 'react-native-fs';
+import {exportFile} from '../accounts/account-slice';
 
 export function useDIDManagementHandlers() {
-  const {createKeyDID, deleteDID, editDID, didList, importDID} =
+  const {createKeyDID, deleteDID, editDID, didList, importDID, exportDID} =
     useDIDManagement();
   const [form, setForm] = useState({
     didName: '',
@@ -82,6 +84,32 @@ export function useDIDManagementHandlers() {
     navigate(Routes.DID_MANAGEMENT_LIST);
     logAnalyticsEvent(ANALYTICS_EVENT.DID.DID_UPDATED, {});
   }, [editDID, form]);
+
+  const onExportDID = useCallback(
+    async ({id, password}) => {
+      const res = await exportDID({id, password});
+
+      const encryptedWalletJSONStr =
+        typeof res === 'string' ? res : JSON.stringify(res);
+
+      const path = `${RNFS.DocumentDirectoryPath}/did_${id}.json`;
+      const mimeType = 'application/json';
+      await RNFS.writeFile(path, encryptedWalletJSONStr);
+
+      exportFile({
+        path,
+        mimeType,
+        errorMessage: translate('didManagement.export_error'),
+      });
+      showToast({
+        message: translate('didManagement.did_exported'),
+        type: 'success',
+      });
+      navigate(Routes.DID_MANAGEMENT_LIST);
+      logAnalyticsEvent(ANALYTICS_EVENT.DID.DID_EXPORTED, {});
+    },
+    [exportDID],
+  );
   return useMemo(() => {
     return {
       onCreateDID: withErrorToast(onCreateDID),
@@ -90,6 +118,7 @@ export function useDIDManagementHandlers() {
       onEditDID: withErrorToast(onEditDID),
       onDeleteDID: withErrorToast(onDeleteDID),
       onImportDID: withErrorToast(onImportDID),
+      onExportDID: withErrorToast(onExportDID),
       didList,
     };
   }, [
@@ -98,7 +127,8 @@ export function useDIDManagementHandlers() {
     handleChange,
     onEditDID,
     onDeleteDID,
-    didList,
     onImportDID,
+    onExportDID,
+    didList,
   ]);
 }

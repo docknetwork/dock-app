@@ -39,5 +39,6 @@ export const ANALYTICS_EVENT = {
     DID_UPDATED: 'didUpdated',
     DID_IMPORTED: 'didUpdated',
     DID_SHARED: 'didShared',
+    DID_EXPORTED: 'didExported',
   },
 };
